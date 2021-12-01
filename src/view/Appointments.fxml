@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="540.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+   <children>
+      <TableView layoutX="53.0" layoutY="97.0" prefHeight="200.0" prefWidth="894.0">
+         <columns>
+            <TableColumn fx:id="Appointment_ID" prefWidth="107.0" text="Appointment_ID" />
+            <TableColumn fx:id="Title" prefWidth="73.0" text="Title" />
+            <TableColumn fx:id="Description" prefWidth="85.0" text="Description" />
+            <TableColumn fx:id="Location" prefWidth="76.0" text="Location" />
+            <TableColumn fx:id="Contact" prefWidth="91.0" text="Contact" />
+            <TableColumn fx:id="Type" prefWidth="91.0" text="Type" />
+            <TableColumn fx:id="Start" prefWidth="78.0" text="Start" />
+            <TableColumn fx:id="End" prefWidth="103.0" text="End" />
+            <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="97.0" text="Customer_ID" />
+            <TableColumn fx:id="User_ID" prefWidth="92.0" text="User_ID" />
+         </columns>
+      </TableView>
+      <Label layoutX="53.0" layoutY="54.0" prefHeight="27.0" prefWidth="156.0" text="Appointments">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="733.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Delete" />
+      <Button layoutX="814.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Modify" />
+      <Button layoutX="890.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Add" />
+      <RadioButton layoutX="762.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Week" />
+      <RadioButton layoutX="833.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Month" />
+      <RadioButton layoutX="904.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="43.0" text="All" />
+   </children>
+</AnchorPane>
