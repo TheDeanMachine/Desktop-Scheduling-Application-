@@ -2,59 +2,55 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+<AnchorPane prefHeight="492.0" prefWidth="791.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
    <children>
-      <TableView layoutX="53.0" layoutY="82.0" prefHeight="200.0" prefWidth="586.0">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="448.0" layoutX="23.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="742.0" />
+      <TableView layoutX="57.0" layoutY="95.0" prefHeight="262.0" prefWidth="675.0">
         <columns>
           <TableColumn fx:id="Customer_ID" prefWidth="86.0" text="Customer_ID" />
           <TableColumn fx:id="Customer_Name" prefWidth="113.0" text="Customer_Name" />
             <TableColumn fx:id="Address" prefWidth="115.0" text="Address" />
             <TableColumn fx:id="Postal_Code" prefWidth="79.0" text="Postal_Code" />
             <TableColumn fx:id="Phone" prefWidth="101.0" text="Phone" />
-            <TableColumn fx:id="Division_ID" prefWidth="91.0" text="Division_ID" />
+            <TableColumn fx:id="Division_ID" prefWidth="91.0" text="Division" />
+            <TableColumn fx:id="Division_ID1" prefWidth="91.0" text="Country" />
         </columns>
       </TableView>
-      <TableView layoutX="53.0" layoutY="430.0" prefHeight="200.0" prefWidth="894.0">
-         <columns>
-            <TableColumn fx:id="Appointment_ID" prefWidth="107.0" text="Appointment_ID" />
-            <TableColumn fx:id="Title" prefWidth="73.0" text="Title" />
-            <TableColumn fx:id="Description" prefWidth="85.0" text="Description" />
-            <TableColumn fx:id="Location" prefWidth="76.0" text="Location" />
-            <TableColumn fx:id="Type" prefWidth="91.0" text="Type" />
-            <TableColumn fx:id="Start" prefWidth="78.0" text="Start" />
-            <TableColumn fx:id="End" prefWidth="82.0" text="End" />
-            <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="89.0" text="Customer_ID" />
-            <TableColumn fx:id="User_ID" prefWidth="99.0" text="User_ID" />
-            <TableColumn fx:id="Contact_ID" prefWidth="113.0" text="Contact_ID" />
-         </columns>
-      </TableView>
-      <Line endX="483.0" layoutX="517.0" layoutY="349.0" startX="-517.0" />
-      <Label layoutX="53.0" layoutY="41.0" prefHeight="27.0" prefWidth="122.0" text="Customers">
+      <Label layoutX="57.0" layoutY="41.0" prefHeight="37.0" prefWidth="168.0" text="Customers" textFill="#053579">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="387.0" prefHeight="27.0" prefWidth="156.0" text="Appointments">
+      <HBox layoutX="456.0" layoutY="379.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="MODIFY" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="ADD" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Button layoutX="57.0" layoutY="379.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW APPOINTMENTS" textFill="#053579">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Arial Bold" size="12.0" />
          </font>
-      </Label>
-      <Button layoutX="508.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Modify" />
-      <Button layoutX="432.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Delete" />
-      <Button layoutX="582.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Add" />
-      <Button layoutX="733.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Delete" />
-      <Button layoutX="814.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Modify" />
-      <Button layoutX="890.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Add" />
-      <RadioButton layoutX="762.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Week" />
-      <RadioButton layoutX="833.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Month" />
-      <RadioButton layoutX="904.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="43.0" text="All" />
+      </Button>
    </children>
 </AnchorPane>

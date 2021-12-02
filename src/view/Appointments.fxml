@@ -6,35 +6,84 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="540.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+<AnchorPane prefHeight="602.0" prefWidth="1012.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
    <children>
-      <TableView layoutX="53.0" layoutY="97.0" prefHeight="200.0" prefWidth="894.0">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="561.0" layoutX="28.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="957.0" />
+      <TableView layoutX="53.0" layoutY="97.0" prefHeight="326.0" prefWidth="894.0">
          <columns>
             <TableColumn fx:id="Appointment_ID" prefWidth="107.0" text="Appointment_ID" />
             <TableColumn fx:id="Title" prefWidth="73.0" text="Title" />
-            <TableColumn fx:id="Description" prefWidth="85.0" text="Description" />
-            <TableColumn fx:id="Location" prefWidth="76.0" text="Location" />
-            <TableColumn fx:id="Contact" prefWidth="91.0" text="Contact" />
-            <TableColumn fx:id="Type" prefWidth="91.0" text="Type" />
-            <TableColumn fx:id="Start" prefWidth="78.0" text="Start" />
-            <TableColumn fx:id="End" prefWidth="103.0" text="End" />
-            <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="97.0" text="Customer_ID" />
-            <TableColumn fx:id="User_ID" prefWidth="92.0" text="User_ID" />
+            <TableColumn fx:id="Description" prefWidth="98.0" text="Description" />
+            <TableColumn fx:id="Location" prefWidth="99.0" text="Location" />
+            <TableColumn fx:id="Contact" prefWidth="77.0" text="Contact" />
+            <TableColumn fx:id="Type" prefWidth="85.0" text="Type" />
+            <TableColumn fx:id="Start" prefWidth="90.0" text="Start" />
+            <TableColumn fx:id="End" prefWidth="86.0" text="End" />
+            <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="100.0" text="Customer_ID" />
+            <TableColumn fx:id="User_ID" prefWidth="78.0" text="User_ID" />
          </columns>
       </TableView>
-      <Label layoutX="53.0" layoutY="54.0" prefHeight="27.0" prefWidth="156.0" text="Appointments">
+      <Label layoutX="53.0" layoutY="41.0" prefHeight="37.0" prefWidth="212.0" text="Appointments" textFill="#053579">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="733.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Delete" />
-      <Button layoutX="814.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Modify" />
-      <Button layoutX="890.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Add" />
-      <RadioButton layoutX="762.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Week" />
-      <RadioButton layoutX="833.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Month" />
-      <RadioButton layoutX="904.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="43.0" text="All" />
+      <HBox layoutX="671.0" layoutY="443.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="MODIFY" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="ADD" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="747.0" layoutY="59.0" spacing="15.0">
+         <children>
+            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="WEEK" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" text="MONTH" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="50.0" text="ALL" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="53.0" layoutY="443.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW CUSTOMERS" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW REPORTS" textFill="#053579">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
