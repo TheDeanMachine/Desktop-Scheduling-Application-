@@ -12,15 +12,15 @@
 <AnchorPane prefHeight="492.0" prefWidth="791.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
    <children>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="448.0" layoutX="23.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="742.0" />
-      <TableView layoutX="57.0" layoutY="95.0" prefHeight="262.0" prefWidth="675.0">
+      <TableView fx:id="customersTableView" layoutX="57.0" layoutY="95.0" prefHeight="262.0" prefWidth="675.0">
         <columns>
-          <TableColumn fx:id="Customer_ID" prefWidth="86.0" text="Customer_ID" />
-          <TableColumn fx:id="Customer_Name" prefWidth="113.0" text="Customer_Name" />
-            <TableColumn fx:id="Address" prefWidth="115.0" text="Address" />
-            <TableColumn fx:id="Postal_Code" prefWidth="79.0" text="Postal_Code" />
-            <TableColumn fx:id="Phone" prefWidth="101.0" text="Phone" />
-            <TableColumn fx:id="Division_ID" prefWidth="91.0" text="Division" />
-            <TableColumn fx:id="Division_ID1" prefWidth="91.0" text="Country" />
+          <TableColumn fx:id="customerIdColumn" prefWidth="86.0" text="Customer_ID" />
+          <TableColumn fx:id="customerNameColumn" prefWidth="113.0" text="Customer_Name" />
+            <TableColumn fx:id="addressColumn" prefWidth="115.0" text="Address" />
+            <TableColumn fx:id="postalCodeColumn" prefWidth="79.0" text="Postal_Code" />
+            <TableColumn fx:id="phoneColumn" prefWidth="101.0" text="Phone" />
+            <TableColumn fx:id="divisionIdColumn" prefWidth="91.0" text="Division" />
+            <TableColumn fx:id="countryColumn" prefWidth="91.0" text="Country" />
         </columns>
       </TableView>
       <Label layoutX="57.0" layoutY="41.0" prefHeight="37.0" prefWidth="168.0" text="Customers" textFill="#053579">
@@ -30,24 +30,24 @@
       </Label>
       <HBox layoutX="456.0" layoutY="379.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="MODIFY" textFill="#053579">
+            <Button fx:id="modifyButton" mnemonicParsing="false" onAction="#onActionOpenModifyFrom" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="MODIFY" textFill="#053579">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="ADD" textFill="#053579">
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onActionOpenAddForm" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="ADD" textFill="#053579">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <Button layoutX="57.0" layoutY="379.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
+      <Button fx:id="backButton" layoutX="57.0" layoutY="379.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>

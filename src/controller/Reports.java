@@ -17,25 +17,25 @@ public class Reports {
     private TableView<?> reportsTableView;
 
     @FXML
-    private TableColumn<?, ?> appointment_ID;
+    private TableColumn<?, ?> appointmentIdColumn;
 
     @FXML
-    private TableColumn<?, ?> title;
+    private TableColumn<?, ?> titleColumn;
 
     @FXML
-    private TableColumn<?, ?> description;
+    private TableColumn<?, ?> descriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> type;
+    private TableColumn<?, ?> typeColumn;
 
     @FXML
-    private TableColumn<?, ?> start;
+    private TableColumn<?, ?> startColumn;
 
     @FXML
-    private TableColumn<?, ?> end;
+    private TableColumn<?, ?> endColumn;
 
     @FXML
-    private TableColumn<?, ?> customer_ID;
+    private TableColumn<?, ?> customerIdColumn;
 
     @FXML
     private ComboBox<?> contactComboBox;
@@ -47,13 +47,13 @@ public class Reports {
     private ComboBox<?> typeComboBox;
 
     @FXML
-    private ListView<?> listViewResult;
+    private ListView<?> resultListView;
 
     @FXML
     private ComboBox<?> countryComboBox;
 
     @FXML
-    private ListView<?> listViewResults2;
+    private ListView<?> result2ListView;
 
     @FXML
     void onActionBackToMain(ActionEvent event) {
