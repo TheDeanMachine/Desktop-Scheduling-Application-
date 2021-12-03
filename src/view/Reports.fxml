@@ -12,20 +12,20 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1106.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Reports">
+<AnchorPane prefHeight="887.0" prefWidth="749.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Reports">
    <children>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="709.0" layoutX="25.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1056.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="841.0" layoutX="23.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="703.0" />
       <Label layoutX="57.0" layoutY="52.0" prefHeight="37.0" prefWidth="168.0" text="Reports" textFill="#053579">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="57.0" layoutY="640.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
+      <Button fx:id="backButton" layoutX="58.0" layoutY="801.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="reportsTableView" layoutX="57.0" layoutY="244.0" prefHeight="262.0" prefWidth="640.0">
+      <TableView fx:id="reportsTableView" layoutX="58.0" layoutY="178.0" prefHeight="262.0" prefWidth="640.0">
          <columns>
             <TableColumn fx:id="appointmentIdColumn" prefWidth="100.0" text="Appointment_ID" />
             <TableColumn fx:id="titleColumn" text="Title" />
@@ -36,28 +36,30 @@
             <TableColumn fx:id="customerIdColumn" minWidth="8.0" prefWidth="100.0" text="Customer_ID" />
          </columns>
       </TableView>
-      <VBox layoutX="54.0" layoutY="164.0" spacing="15.0">
+      <VBox layoutX="55.0" layoutY="98.0" spacing="15.0">
          <children>
             <Label text="View schedule for each contact " />
             <ComboBox fx:id="contactComboBox" prefWidth="174.0" promptText="Select Contact" style="-fx-background-color: #d9d9d9;" />
          </children>
       </VBox>
-      <VBox layoutX="815.0" layoutY="89.0" spacing="15.0">
+      <VBox layoutX="130.0" layoutY="504.0" spacing="15.0">
          <children>
-            <Label prefHeight="51.0" prefWidth="149.0" text="View total number of appointments by month and type" wrapText="true" />
+            <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by month and type" wrapText="true" />
             <ComboBox fx:id="monthComboBox" prefWidth="174.0" promptText="Select Month" style="-fx-background-color: #d9d9d9;" />
             <ComboBox fx:id="typeComboBox" prefWidth="174.0" promptText="Select Type" style="-fx-background-color: #d9d9d9;" />
-            <ListView fx:id="resultListView" prefHeight="75.0" prefWidth="174.0" />
+            <ListView fx:id="resultListView1" maxWidth="-Infinity" prefHeight="90.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <VBox layoutX="815.0" layoutY="428.0" spacing="15.0">
+      <Line endX="75.0" endY="-224.0" fill="#053579" layoutX="299.0" layoutY="987.0" startX="75.0" startY="-515.0" stroke="#053579" />
+      <Line endX="417.0" fill="#053579" layoutX="309.0" layoutY="472.0" startX="-286.0" stroke="#053579" />
+      <VBox layoutX="438.0" layoutY="504.0" spacing="15.0">
          <children>
-            <Label prefWidth="174.0" text="View number of appointments in each division" wrapText="true" />
+            <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by country and division" wrapText="true" />
             <ComboBox fx:id="countryComboBox" prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
-            <ListView fx:id="result2ListView" prefHeight="169.0" prefWidth="174.0" />
+            <ComboBox fx:id="divisionComboBox" prefWidth="174.0" promptText="Select Division" style="-fx-background-color: #d9d9d9;" />
+            <ListView fx:id="resultListView2" maxWidth="-Infinity" prefHeight="90.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Line endX="75.0" endY="194.0" fill="#053579" layoutX="678.0" layoutY="537.0" startX="75.0" startY="-515.0" stroke="#053579" />
-      <Line endX="178.0" fill="#053579" layoutX="902.0" layoutY="376.0" startX="-148.5" stroke="#053579" />
+      <Line endX="414.0" fill="#053579" layoutX="312.0" layoutY="763.0" startX="-289.0" stroke="#053579" />
    </children>
 </AnchorPane>

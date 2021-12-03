@@ -47,13 +47,16 @@ public class Reports {
     private ComboBox<?> typeComboBox;
 
     @FXML
-    private ListView<?> resultListView;
+    private ListView<?> resultListView1;
 
     @FXML
     private ComboBox<?> countryComboBox;
 
     @FXML
-    private ListView<?> result2ListView;
+    private ComboBox<?> divisionComboBox;
+
+    @FXML
+    private ListView<?> resultListView2;
 
     @FXML
     void onActionBackToMain(ActionEvent event) {
