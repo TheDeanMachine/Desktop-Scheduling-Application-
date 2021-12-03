@@ -12,49 +12,49 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1106.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+<AnchorPane prefHeight="750.0" prefWidth="1106.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Reports">
    <children>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="709.0" layoutX="25.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1056.0" />
-      <Label layoutX="57.0" layoutY="41.0" prefHeight="37.0" prefWidth="168.0" text="Reports" textFill="#053579">
+      <Label layoutX="57.0" layoutY="52.0" prefHeight="37.0" prefWidth="168.0" text="Reports" textFill="#053579">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="57.0" layoutY="640.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW APPOINTMENTS" textFill="#053579">
+      <Button fx:id="backButton" layoutX="57.0" layoutY="640.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="57.0" layoutY="244.0" prefHeight="262.0" prefWidth="640.0">
+      <TableView fx:id="reportsTableView" layoutX="57.0" layoutY="244.0" prefHeight="262.0" prefWidth="640.0">
          <columns>
-            <TableColumn fx:id="Appointment_ID" prefWidth="100.0" text="Appointment_ID" />
-            <TableColumn fx:id="Title" text="Title" />
-            <TableColumn fx:id="Description" prefWidth="98.0" text="Description" />
-            <TableColumn fx:id="Type" prefWidth="85.0" text="Type" />
-            <TableColumn fx:id="Start" prefWidth="90.0" text="Start" />
-            <TableColumn fx:id="End" prefWidth="86.0" text="End" />
-            <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="100.0" text="Customer_ID" />
+            <TableColumn fx:id="appointment_ID" prefWidth="100.0" text="Appointment_ID" />
+            <TableColumn fx:id="title" text="Title" />
+            <TableColumn fx:id="description" prefWidth="98.0" text="Description" />
+            <TableColumn fx:id="type" prefWidth="85.0" text="Type" />
+            <TableColumn fx:id="start" prefWidth="90.0" text="Start" />
+            <TableColumn fx:id="end" prefWidth="86.0" text="End" />
+            <TableColumn fx:id="customer_ID" minWidth="8.0" prefWidth="100.0" text="Customer_ID" />
          </columns>
       </TableView>
       <VBox layoutX="54.0" layoutY="164.0" spacing="15.0">
          <children>
             <Label text="View schedule for each contact " />
-            <ComboBox prefWidth="174.0" promptText="Select Contact" style="-fx-background-color: #d9d9d9;" />
+            <ComboBox fx:id="contactComboBox" prefWidth="174.0" promptText="Select Contact" style="-fx-background-color: #d9d9d9;" />
          </children>
       </VBox>
       <VBox layoutX="815.0" layoutY="89.0" spacing="15.0">
          <children>
-            <Label prefHeight="51.0" prefWidth="174.0" text="View total number of appointments by month and type" wrapText="true" />
-            <ComboBox prefWidth="174.0" promptText="Select Month" style="-fx-background-color: #d9d9d9;" />
-            <ComboBox prefWidth="174.0" promptText="Select Type" style="-fx-background-color: #d9d9d9;" />
-            <ListView prefHeight="75.0" prefWidth="174.0" />
+            <Label prefHeight="51.0" prefWidth="149.0" text="View total number of appointments by month and type" wrapText="true" />
+            <ComboBox fx:id="monthComboBox" prefWidth="174.0" promptText="Select Month" style="-fx-background-color: #d9d9d9;" />
+            <ComboBox fx:id="typeComboBox" prefWidth="174.0" promptText="Select Type" style="-fx-background-color: #d9d9d9;" />
+            <ListView fx:id="listViewResult" prefHeight="75.0" prefWidth="174.0" />
          </children>
       </VBox>
       <VBox layoutX="815.0" layoutY="428.0" spacing="15.0">
          <children>
             <Label prefWidth="174.0" text="View number of appointments in each division" wrapText="true" />
-            <ComboBox prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
-            <ListView prefHeight="169.0" prefWidth="174.0" />
+            <ComboBox fx:id="countryComboBox" prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
+            <ListView fx:id="listViewResults2" prefHeight="169.0" prefWidth="174.0" />
          </children>
       </VBox>
       <Line endX="75.0" endY="194.0" fill="#053579" layoutX="678.0" layoutY="537.0" startX="75.0" startY="-515.0" stroke="#053579" />
