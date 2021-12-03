@@ -7,43 +7,25 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="750.0" prefWidth="1106.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
    <children>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="709.0" layoutX="23.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1056.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="709.0" layoutX="25.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1056.0" />
       <Label layoutX="57.0" layoutY="41.0" prefHeight="37.0" prefWidth="168.0" text="Reports" textFill="#053579">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <HBox layoutX="450.0" layoutY="548.0" spacing="15.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="MODIFY" textFill="#053579">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="ADD" textFill="#053579">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <Button layoutX="71.0" layoutY="612.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW APPOINTMENTS" textFill="#053579">
+      <Button layoutX="57.0" layoutY="640.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="VIEW APPOINTMENTS" textFill="#053579">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="57.0" layoutY="192.0" prefHeight="291.0" prefWidth="640.0">
+      <TableView layoutX="57.0" layoutY="244.0" prefHeight="262.0" prefWidth="640.0">
          <columns>
             <TableColumn fx:id="Appointment_ID" prefWidth="100.0" text="Appointment_ID" />
             <TableColumn fx:id="Title" text="Title" />
@@ -54,13 +36,28 @@
             <TableColumn fx:id="Customer_ID" minWidth="8.0" prefWidth="100.0" text="Customer_ID" />
          </columns>
       </TableView>
-      <ComboBox layoutX="57.0" layoutY="154.0" prefWidth="150.0" promptText="Select Contact" />
-      <Label layoutX="531.0" layoutY="158.0" text="View schedule for each contact " />
-      <ComboBox layoutX="826.0" layoutY="200.0" prefWidth="150.0" />
-      <ComboBox layoutX="826.0" layoutY="246.0" prefWidth="150.0" />
-      <Label layoutX="809.0" layoutY="171.0" text="total number of customer appointments " />
-      <ListView layoutX="810.0" layoutY="429.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="809.0" layoutY="388.0" text="Contrys with most appointments  " />
-      <ListView layoutX="817.0" layoutY="277.0" prefHeight="75.0" prefWidth="200.0" />
+      <VBox layoutX="54.0" layoutY="164.0" spacing="15.0">
+         <children>
+            <Label text="View schedule for each contact " />
+            <ComboBox prefWidth="174.0" promptText="Select Contact" style="-fx-background-color: #d9d9d9;" />
+         </children>
+      </VBox>
+      <VBox layoutX="815.0" layoutY="89.0" spacing="15.0">
+         <children>
+            <Label prefHeight="51.0" prefWidth="174.0" text="View total number of appointments by month and type" wrapText="true" />
+            <ComboBox prefWidth="174.0" promptText="Select Month" style="-fx-background-color: #d9d9d9;" />
+            <ComboBox prefWidth="174.0" promptText="Select Type" style="-fx-background-color: #d9d9d9;" />
+            <ListView prefHeight="75.0" prefWidth="174.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="815.0" layoutY="428.0" spacing="15.0">
+         <children>
+            <Label prefWidth="174.0" text="View number of appointments in each division" wrapText="true" />
+            <ComboBox prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
+            <ListView prefHeight="169.0" prefWidth="174.0" />
+         </children>
+      </VBox>
+      <Line endX="75.0" endY="194.0" fill="#053579" layoutX="678.0" layoutY="537.0" startX="75.0" startY="-515.0" stroke="#053579" />
+      <Line endX="178.0" fill="#053579" layoutX="902.0" layoutY="376.0" startX="-148.5" stroke="#053579" />
    </children>
 </AnchorPane>
