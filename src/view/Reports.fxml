@@ -12,20 +12,20 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="887.0" prefWidth="749.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Reports">
+<AnchorPane prefHeight="773.0" prefWidth="749.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Reports">
    <children>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="841.0" layoutX="23.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="703.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="739.0" layoutX="22.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="703.0" />
       <Label layoutX="57.0" layoutY="52.0" prefHeight="37.0" prefWidth="168.0" text="Reports" textFill="#053579">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="58.0" layoutY="801.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
+      <Button fx:id="backButton" layoutX="58.0" layoutY="706.0" mnemonicParsing="false" onAction="#onActionBackToMain" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="&lt;  BACK" textFill="#053579">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="reportsTableView" layoutX="58.0" layoutY="178.0" prefHeight="262.0" prefWidth="640.0">
+      <TableView fx:id="reportsTableView" layoutX="58.0" layoutY="178.0" prefHeight="200.0" prefWidth="640.0">
          <columns>
             <TableColumn fx:id="appointmentIdColumn" prefWidth="100.0" text="Appointment_ID" />
             <TableColumn fx:id="titleColumn" text="Title" />
@@ -42,7 +42,7 @@
             <ComboBox fx:id="contactComboBox" prefWidth="174.0" promptText="Select Contact" style="-fx-background-color: #d9d9d9;" />
          </children>
       </VBox>
-      <VBox layoutX="130.0" layoutY="504.0" spacing="15.0">
+      <VBox layoutX="130.0" layoutY="438.0" spacing="15.0">
          <children>
             <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by month and type" wrapText="true" />
             <ComboBox fx:id="monthComboBox" prefWidth="174.0" promptText="Select Month" style="-fx-background-color: #d9d9d9;" />
@@ -50,9 +50,9 @@
             <ListView fx:id="resultListView1" maxWidth="-Infinity" prefHeight="90.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Line endX="75.0" endY="-224.0" fill="#053579" layoutX="299.0" layoutY="987.0" startX="75.0" startY="-515.0" stroke="#053579" />
-      <Line endX="417.0" fill="#053579" layoutX="309.0" layoutY="472.0" startX="-286.0" stroke="#053579" />
-      <VBox layoutX="438.0" layoutY="504.0" spacing="15.0">
+      <Line endX="75.5" endY="-232.0" fill="#053579" layoutX="299.0" layoutY="921.0" startX="75.0" startY="-515.0" stroke="#053579" />
+      <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="405.0" startX="-286.0" stroke="#053579" />
+      <VBox layoutX="437.0" layoutY="438.0" spacing="15.0">
          <children>
             <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by country and division" wrapText="true" />
             <ComboBox fx:id="countryComboBox" prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
@@ -60,6 +60,6 @@
             <ListView fx:id="resultListView2" maxWidth="-Infinity" prefHeight="90.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Line endX="414.0" fill="#053579" layoutX="312.0" layoutY="763.0" startX="-289.0" stroke="#053579" />
+      <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="689.0" startX="-286.0" stroke="#053579" />
    </children>
 </AnchorPane>
