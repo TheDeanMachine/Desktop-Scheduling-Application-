@@ -7,7 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class AddAppointment {
+public class ModifyAppointment {
 
     @FXML
     private TextField appointmentIdText;
@@ -46,7 +46,7 @@ public class AddAppointment {
     private Button cancelButton;
 
     @FXML
-    private Button createAppointmentButton;
+    private Button updateAppointmentButton;
 
     @FXML
     void onActionBackToMain(ActionEvent event) {
@@ -54,7 +54,7 @@ public class AddAppointment {
     }
 
     @FXML
-    void onActionCreateAppointment(ActionEvent event) {
+    void onActionUpdateAppointment(ActionEvent event) {
 
     }
 
