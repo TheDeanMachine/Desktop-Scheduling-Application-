@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utilities.JDBC;
 
 public class Main extends Application {
 
@@ -17,9 +18,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        JDBC.getConnection();
         launch(args);
-
-        JDBC.openConnection();
         JDBC.closeConnection();
     }
 }
