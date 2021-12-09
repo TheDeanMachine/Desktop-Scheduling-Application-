@@ -35,7 +35,7 @@
       </Label>
       <HBox layoutX="671.0" layoutY="443.0" spacing="15.0">
          <children>
-            <Button fx:id="delteButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #fafafa; -fx-border-color: #9ab8e5; -fx-border-radius: 5px;" text="DELETE" textFill="#053579">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
@@ -59,15 +59,15 @@
                   <Font name="Arial Bold" size="12.0" />
                </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="weekMonthAllToggelGroup" />
+                  <ToggleGroup fx:id="weekMonthAllToggleGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="monthRadioButton" mnemonicParsing="false" onAction="#onActionMonthRadioButton" prefHeight="17.0" prefWidth="66.0" text="MONTH" textFill="#053579" toggleGroup="$weekMonthAllToggelGroup">
+            <RadioButton fx:id="monthRadioButton" mnemonicParsing="false" onAction="#onActionMonthRadioButton" prefHeight="17.0" prefWidth="66.0" text="MONTH" textFill="#053579" toggleGroup="$weekMonthAllToggleGroup">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="allRadioButton" mnemonicParsing="false" onAction="#onActionAllRadioButton" prefHeight="17.0" prefWidth="50.0" selected="true" text="ALL" textFill="#053579" toggleGroup="$weekMonthAllToggelGroup">
+            <RadioButton fx:id="allRadioButton" mnemonicParsing="false" onAction="#onActionAllRadioButton" prefHeight="17.0" prefWidth="50.0" selected="true" text="ALL" textFill="#053579" toggleGroup="$weekMonthAllToggleGroup">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>

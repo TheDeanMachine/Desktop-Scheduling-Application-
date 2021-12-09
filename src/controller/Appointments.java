@@ -8,8 +8,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 
-public class Appointments {
+import java.io.IOException;
 
+public class Appointments extends SuperController {
+
+    /// Appointments TableView Fields fx:id ///
     @FXML
     private TableView<?> appointmentsTableView;
 
@@ -43,8 +46,9 @@ public class Appointments {
     @FXML
     private TableColumn<?, ?> userIdColumn;
 
+    /// Appointments Button Fields fx:id ///
     @FXML
-    private Button delteButton;
+    private Button deleteButton;
 
     @FXML
     private Button modifyButton;
@@ -52,11 +56,12 @@ public class Appointments {
     @FXML
     private Button addButton;
 
+    /// Appointments Radio Fields fx:id ///
     @FXML
-    private RadioButton weekRadioButton;
+    private ToggleGroup weekMonthAllToggleGroup;
 
     @FXML
-    private ToggleGroup weekMonthAllToggelGroup;
+    private RadioButton weekRadioButton;
 
     @FXML
     private RadioButton monthRadioButton;
@@ -64,19 +69,17 @@ public class Appointments {
     @FXML
     private RadioButton allRadioButton;
 
+    /// Transfer Button Fields fx:id ///
     @FXML
     private Button viewCustomersButton;
 
     @FXML
     private Button viewReportsButton;
 
-    @FXML
-    void onActionAllRadioButton(ActionEvent event) {
 
-    }
-
+    /// Radio Button Methods ///
     @FXML
-    void onActionDeleteAppointment(ActionEvent event) {
+    void onActionWeekRadioButton(ActionEvent event) {
 
     }
 
@@ -86,28 +89,39 @@ public class Appointments {
     }
 
     @FXML
-    void onActionOpenAddForm(ActionEvent event) {
+    void onActionAllRadioButton(ActionEvent event) {
+
+    }
+
+    /// Appointments Methods ///
+    @FXML
+    void onActionDeleteAppointment(ActionEvent event) {
 
     }
 
     @FXML
-    void onActionOpenCustomersWindow(ActionEvent event) {
+    void onActionOpenModifyForm(ActionEvent event) throws IOException {
 
+        displayNewScreen(modifyButton, "/view/ModifyAppointment.fxml", "Modify Appointment" );
     }
 
     @FXML
-    void onActionOpenModifyForm(ActionEvent event) {
+    void onActionOpenAddForm(ActionEvent event) throws IOException {
 
+        displayNewScreen(addButton, "/view/AddAppointment.fxml", "Add Appointment" );
+    }
+
+    /// Transfer Methods ///
+    @FXML
+    void onActionOpenReportsWindow(ActionEvent event) throws IOException {
+
+        displayNewScreen(viewReportsButton, "/view/Reports.fxml", "" );
     }
 
     @FXML
-    void onActionOpenReportsWindow(ActionEvent event) {
+    void onActionOpenCustomersWindow(ActionEvent event) throws IOException {
 
-    }
-
-    @FXML
-    void onActionWeekRadioButton(ActionEvent event) {
-
+        displayNewScreen(viewCustomersButton, "/view/Customers.fxml", "" );
     }
 
 }

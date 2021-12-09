@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LogInScreen {
+import java.io.IOException;
+
+public class LogInScreen extends SuperController {
 
     @FXML
     private Label timezoneLabel;
@@ -22,8 +24,8 @@ public class LogInScreen {
     private Button logInButton;
 
     @FXML
-    void onActionDisplayMainScreen(ActionEvent event) {
-
+    void onActionDisplayMainScreen(ActionEvent event) throws IOException {
+        displayNewScreen(logInButton, "/view/Appointments.fxml", "Main Screen" );
     }
 
 }
