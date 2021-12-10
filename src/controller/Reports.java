@@ -8,11 +8,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class Reports {
+import java.io.IOException;
 
-    @FXML
-    private Button backButton;
+public class Reports extends SuperController {
 
+    /// Contact Reports Fields fx:id ///
     @FXML
     private TableView<?> reportsTableView;
 
@@ -37,6 +37,7 @@ public class Reports {
     @FXML
     private TableColumn<?, ?> customerIdColumn;
 
+    /// Month/Type Reports Fields fx:id ///
     @FXML
     private ComboBox<?> contactComboBox;
 
@@ -49,6 +50,7 @@ public class Reports {
     @FXML
     private ListView<?> resultListView1;
 
+    /// Country/Division Reports Fields fx:id ///
     @FXML
     private ComboBox<?> countryComboBox;
 
@@ -58,9 +60,13 @@ public class Reports {
     @FXML
     private ListView<?> resultListView2;
 
+    /// Back
     @FXML
-    void onActionBackToMain(ActionEvent event) {
+    private Button backButton;
 
+    @FXML
+    void onActionBackToMain(ActionEvent event) throws IOException {
+        displayNewScreen(backButton, "/view/Appointments.fxml");
     }
 
 }

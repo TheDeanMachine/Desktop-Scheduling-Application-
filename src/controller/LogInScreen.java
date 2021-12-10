@@ -25,7 +25,7 @@ public class LogInScreen extends SuperController {
 
     @FXML
     void onActionDisplayMainScreen(ActionEvent event) throws IOException {
-        displayNewScreen(logInButton, "/view/Appointments.fxml", "Main Screen" );
+        displayNewScreen(logInButton, "/view/Appointments.fxml");
     }
 
 }

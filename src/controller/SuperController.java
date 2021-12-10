@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * The SuperController Class is the Super class to multiple controller Sub classes.
+ * Provides a single method for switching screens.
  */
 public abstract class SuperController {
     // Reference Variables
@@ -20,14 +21,11 @@ public abstract class SuperController {
      * Method for switching screens on button clicks.
      * @param node the placement holder for the type of button being passed in.
      * @param locationString the location of the next screen.
-     * @param setTitle the title of the next screen.
-     * @throws IOException catches IO errors.
      */
-    public void displayNewScreen(Node node, String locationString, String setTitle) throws IOException {
+    public void displayNewScreen(Node node, String locationString) throws IOException {
         stage = (Stage)(node).getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource(locationString));
         stage.setScene(new Scene(root));
-        stage.setTitle(setTitle);
         stage.show();
     }
 }

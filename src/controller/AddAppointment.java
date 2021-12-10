@@ -7,8 +7,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class AddAppointment {
+import java.io.IOException;
 
+public class AddAppointment extends SuperController {
+
+    /// Appointment Fields fx:id ///
     @FXML
     private TextField appointmentIdText;
 
@@ -49,13 +52,15 @@ public class AddAppointment {
     private Button createAppointmentButton;
 
     @FXML
-    void onActionBackToMain(ActionEvent event) {
-
+    void onActionBackToMain(ActionEvent event) throws IOException {
+        displayNewScreen(cancelButton, "/view/Appointments.fxml");
     }
 
     @FXML
-    void onActionCreateAppointment(ActionEvent event) {
+    void onActionCreateAppointment(ActionEvent event) throws IOException {
 
+
+        displayNewScreen(createAppointmentButton, "/view/Appointments.fxml");
     }
 
 }

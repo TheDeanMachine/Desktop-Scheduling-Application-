@@ -69,7 +69,7 @@ public class Appointments extends SuperController {
     @FXML
     private RadioButton allRadioButton;
 
-    /// Transfer Button Fields fx:id ///
+    /// Button Fields fx:id ///
     @FXML
     private Button viewCustomersButton;
 
@@ -102,26 +102,26 @@ public class Appointments extends SuperController {
     @FXML
     void onActionOpenModifyForm(ActionEvent event) throws IOException {
 
-        displayNewScreen(modifyButton, "/view/ModifyAppointment.fxml", "Modify Appointment" );
+        displayNewScreen(modifyButton, "/view/ModifyAppointment.fxml");
     }
 
     @FXML
     void onActionOpenAddForm(ActionEvent event) throws IOException {
 
-        displayNewScreen(addButton, "/view/AddAppointment.fxml", "Add Appointment" );
+        displayNewScreen(addButton, "/view/AddAppointment.fxml" );
     }
 
-    /// Transfer Methods ///
+    /// Transfer Screen Methods ///
     @FXML
     void onActionOpenReportsWindow(ActionEvent event) throws IOException {
 
-        displayNewScreen(viewReportsButton, "/view/Reports.fxml", "" );
+        displayNewScreen(viewReportsButton, "/view/Reports.fxml");
     }
 
     @FXML
     void onActionOpenCustomersWindow(ActionEvent event) throws IOException {
 
-        displayNewScreen(viewCustomersButton, "/view/Customers.fxml", "" );
+        displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
 }

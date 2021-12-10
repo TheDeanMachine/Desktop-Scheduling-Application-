@@ -6,8 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class Customers {
+import java.io.IOException;
 
+public class Customers extends SuperController {
+
+    /// Customers TableView Fields fx:id ///
     @FXML
     private TableView<?> customersTableView;
 
@@ -32,6 +35,7 @@ public class Customers {
     @FXML
     private TableColumn<?, ?> countryColumn;
 
+    /// Customers Button Fields fx:id ///
     @FXML
     private Button deleteButton;
 
@@ -45,23 +49,23 @@ public class Customers {
     private Button backButton;
 
     @FXML
-    void onActionBackToMain(ActionEvent event) {
+    void onActionBackToMain(ActionEvent event) throws IOException {
+        displayNewScreen(backButton, "/view/Appointments.fxml");
+    }
+
+    @FXML
+    void onActionDeleteCustomer(ActionEvent event) throws IOException {
 
     }
 
     @FXML
-    void onActionDeleteCustomer(ActionEvent event) {
-
+    void onActionOpenAddForm(ActionEvent event) throws IOException {
+        displayNewScreen(addButton, "/view/AddCustomer.fxml");
     }
 
     @FXML
-    void onActionOpenAddForm(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionOpenModifyFrom(ActionEvent event) {
-
+    void onActionOpenModifyFrom(ActionEvent event) throws IOException {
+        displayNewScreen(modifyButton, "/view/ModifyCustomer.fxml");
     }
 
 }

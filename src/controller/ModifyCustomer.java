@@ -6,8 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class ModifyCustomer {
+import java.io.IOException;
 
+public class ModifyCustomer extends SuperController {
+
+    /// Customer Fields fx:id ///
     @FXML
     private TextField customerIdText;
 
@@ -36,13 +39,13 @@ public class ModifyCustomer {
     private Button updateCustomerButton;
 
     @FXML
-    void onActionBackToMain(ActionEvent event) {
-
+    void onActionBackToMain(ActionEvent event) throws IOException {
+        displayNewScreen(cancelButton, "/view/Customers.fxml");
     }
 
     @FXML
-    void onActionUpdateCustomer(ActionEvent event) {
-
+    void onActionUpdateCustomer(ActionEvent event) throws IOException {
+        displayNewScreen(updateCustomerButton, "/view/Customers.fxml");
     }
 
 }
