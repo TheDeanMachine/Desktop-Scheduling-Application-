@@ -12,6 +12,10 @@ public class Countries {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
 
+    public Countries(int countryId, String country) {
+        this.countryId = countryId;
+        this.country = country;
+    }
 
     // Getters
     public int getCountryId() {

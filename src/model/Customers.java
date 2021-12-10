@@ -17,6 +17,14 @@ public class Customers {
     private String lastUpdatedBy;
     private int divisionId; //FK
 
+    public Customers(int customerId, String customerName, String address, String postalCode, String phone) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.phone = phone;
+    }
+
     // Getters
     public int getCustomerId() {
         return customerId;

@@ -5,6 +5,12 @@ public class Contacts {
     private String contactName;
     private String email;
 
+    public Contacts(int contactId, String contactName, String email) {
+        this.contactId = contactId;
+        this.contactName = contactName;
+        this.email = email;
+    }
+
     // Getters
     public int getContactId() {
         return contactId;

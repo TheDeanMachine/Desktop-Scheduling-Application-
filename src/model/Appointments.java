@@ -20,6 +20,17 @@ public class Appointments {
     private int useId; //FK
     private int contactId; //FK
 
+    public Appointments(int appointmentId, String title, String description, String location,
+                        String type, LocalDateTime start, LocalDateTime end) {
+        this.appointmentId = appointmentId;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.type = type;
+        this.start = start;
+        this.end = end;
+    }
+
     // Getters
     public int getAppointmentId() {
         return appointmentId;

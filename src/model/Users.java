@@ -13,6 +13,12 @@ public class Users {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
 
+    public Users(int userID, String userName, String password) {
+        this.userID = userID;
+        this.userName = userName;
+        this.password = password;
+    }
+
     // Getters
     public int getUserID() {
         return userID;
