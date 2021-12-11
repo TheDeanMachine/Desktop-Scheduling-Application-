@@ -2,17 +2,15 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Users;
+import model.Customers;
 import utilities.JDBC;
-
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UsersDAO implements DataAccessObject {
-
+public class CustomerDAO implements DataAccessObject {
 
 
 
@@ -22,30 +20,31 @@ public class UsersDAO implements DataAccessObject {
     }
 
     @Override
-    public ObservableList<Users> read() {
-        ObservableList<Users> listOfUsers = FXCollections.observableArrayList();
+    public ObservableList read() {
+        ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
 
         try {
             Connection connection = JDBC.getConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM users";
+            String query = "SELECT * FROM customers";
             ResultSet resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
-                int userID = resultSet.getInt(1);
-                String userName = resultSet.getString(2);
-                String password = resultSet.getString(3);
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String address = resultSet.getString(3);
+                String code = resultSet.getString(4);
+                String phone = resultSet.getString(5);
 
-                Users user = new Users(userID, userName, password);
-                listOfUsers.add(user);
-
+                Customers customer = new Customers(id, name, address, code, phone);
+                listOfCustomers.add(customer);
             }
 
         } catch(SQLException e) {
             e.printStackTrace();
         }
 
-        return listOfUsers;
+        return listOfCustomers;
     }
 
     @Override
@@ -57,11 +56,4 @@ public class UsersDAO implements DataAccessObject {
     public void delete() {
 
     }
-
-
-
-
-
-
-
 }

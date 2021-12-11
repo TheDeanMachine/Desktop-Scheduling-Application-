@@ -10,7 +10,7 @@ import javafx.scene.control.ToggleGroup;
 
 import java.io.IOException;
 
-public class Appointments extends SuperController {
+public class AppointmentsScreen extends SuperController {
 
     /// Appointments TableView Fields fx:id ///
     @FXML

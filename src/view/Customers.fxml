@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="492.0" prefWidth="791.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+<AnchorPane prefHeight="492.0" prefWidth="791.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomersScreen">
    <children>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="448.0" layoutX="23.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="742.0" />
       <TableView fx:id="customersTableView" layoutX="57.0" layoutY="95.0" prefHeight="262.0" prefWidth="675.0">

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="602.0" prefWidth="1012.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Appointments">
+<AnchorPane prefHeight="602.0" prefWidth="1012.0" style="-fx-background-color: #749dda;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentsScreen">
    <children>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#fafafa" height="561.0" layoutX="28.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="957.0" />
       <TableView fx:id="appointmentsTableView" layoutX="53.0" layoutY="97.0" prefHeight="326.0" prefWidth="894.0">
