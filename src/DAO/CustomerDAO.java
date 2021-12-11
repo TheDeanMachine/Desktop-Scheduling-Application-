@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CustomerDAO implements DataAccessObject {
-
-
+public class CustomerDAO implements DataAccessObject<Customers> {
+    ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
+    Statement statement;
+    ResultSet resultSet;
+    String query;
 
     @Override
     public void create() {
@@ -20,14 +22,11 @@ public class CustomerDAO implements DataAccessObject {
     }
 
     @Override
-    public ObservableList read() {
-        ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
-
+    public ObservableList<Customers> read() {
         try {
-            Connection connection = JDBC.getConnection();
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM customers";
-            ResultSet resultSet = statement.executeQuery(query);
+            statement = connection.createStatement();
+            query = "SELECT * FROM customers";
+            resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
                 int id = resultSet.getInt(1);
@@ -43,7 +42,6 @@ public class CustomerDAO implements DataAccessObject {
         } catch(SQLException e) {
             e.printStackTrace();
         }
-
         return listOfCustomers;
     }
 
