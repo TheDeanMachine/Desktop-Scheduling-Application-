@@ -14,7 +14,10 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
     Statement statement;
     ResultSet resultSet;
-    String query;
+    String query = "SELECT c.customer_ID, c.customer_name, c.address, c.postal_code, c.phone, fld.division_Id, con.country_Id \n" +
+            "FROM customers c \n" +
+            "JOIN first_level_divisions fld ON c.division_Id = fld.division_Id \n" +
+            "JOIN countries con ON fld.country_Id = con.country_Id;";
 
     @Override
     public void create() {
@@ -25,17 +28,20 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     public ObservableList<Customers> read() {
         try {
             statement = connection.createStatement();
-            query = "SELECT * FROM customers";
             resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
-                int id = resultSet.getInt(1);
+                int customerId = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String address = resultSet.getString(3);
                 String code = resultSet.getString(4);
                 String phone = resultSet.getString(5);
 
-                Customers customer = new Customers(id, name, address, code, phone);
+                int divisionId = resultSet.getInt(6);
+                int countryId = resultSet.getInt(7);
+
+
+                Customers customer = new Customers(customerId, name, address, code, phone, divisionId, countryId);
                 listOfCustomers.add(customer);
             }
 

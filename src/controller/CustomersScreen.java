@@ -1,6 +1,8 @@
 package controller;
 
+import DAO.CountriesDAO;
 import DAO.CustomerDAO;
+import DAO.FirstLevelDivisionsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +41,7 @@ public class CustomersScreen extends SuperController implements Initializable {
     private TableColumn<Customers, Integer> divisionIdColumn;
 
     @FXML
-    private TableColumn<Customers, String> countryColumn;
+    private TableColumn<Customers, Integer> countryColumn;
 
     /// Customers Button Fields fx:id ///
     @FXML
@@ -87,6 +89,9 @@ public class CustomersScreen extends SuperController implements Initializable {
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        divisionIdColumn.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("countryId"));
+
 
 
     }

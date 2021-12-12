@@ -15,14 +15,21 @@ public class Customers {
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
+
     private int divisionId; //FK
 
-    public Customers(int customerId, String customerName, String address, String postalCode, String phone) {
+    private int countryId; //??
+
+    public Customers(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, int countryId ) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
+
+        this.divisionId = divisionId;
+        this.countryId = countryId;
+
     }
 
     // Getters
@@ -65,5 +72,24 @@ public class Customers {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+
+
+
+    public int getDivisionId() {
+        return divisionId;
+    }
+
+    public void setDivisionId(int divisionId) {
+        this.divisionId = divisionId;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 }

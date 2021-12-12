@@ -14,9 +14,10 @@ public class FirstLevelDivisions {
     private String lastUpdatedBy;
     private int countryId; //FK
 
-    public FirstLevelDivisions(int divisionId, String division) {
+    public FirstLevelDivisions(int divisionId, String division, int countryId) {
         this.divisionId = divisionId;
         this.division = division;
+        this.countryId = countryId; // ??
     }
 
     // Getters
