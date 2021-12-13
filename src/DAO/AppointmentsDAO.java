@@ -8,6 +8,7 @@ import model.Appointments;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
@@ -39,8 +40,16 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String location = resultSet.getString(4);
                 String contact = resultSet.getString(5);
                 String type = resultSet.getString(6);
-                LocalDateTime start = LocalDateTime.parse(resultSet.getString(7));
-                LocalDateTime end = LocalDateTime.parse(resultSet.getString(8));
+
+
+                Timestamp resultSetTimestamp = resultSet.getTimestamp(7);
+                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
+
+
+                Timestamp resultSetTimestamp1 = resultSet.getTimestamp(8);
+                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+
+
                 int customerId = resultSet.getInt(9);
                 int userId = resultSet.getInt(10);
 

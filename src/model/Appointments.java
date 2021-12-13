@@ -118,4 +118,6 @@ public class Appointments {
     public void setContactId(int contactId) {
         this.contactId = contactId;
     }
+
+
 }
