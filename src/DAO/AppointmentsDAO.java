@@ -50,6 +50,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
 
 
+
                 int customerId = resultSet.getInt(9);
                 int userId = resultSet.getInt(10);
 
