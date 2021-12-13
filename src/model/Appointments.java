@@ -20,12 +20,15 @@ public class Appointments {
     private int userId; //FK
     private int contactId; //FK
 
-    public Appointments(int appointmentId, String title, String description, String location,
+    private String contact; //?
+
+    public Appointments(int appointmentId, String title, String description, String location, String contact,
                         String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
+        this.contact = contact; // ?
         this.type = type;
         this.start = start;
         this.end = end;
@@ -105,5 +108,14 @@ public class Appointments {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+
+    public int getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
     }
 }

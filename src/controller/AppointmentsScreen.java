@@ -1,50 +1,57 @@
 package controller;
 
+import DAO.AppointmentsDAO;
+import DAO.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
-
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Appointments;
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class AppointmentsScreen extends SuperController {
+public class AppointmentsScreen extends SuperController implements Initializable {
 
     /// Appointments TableView Fields fx:id ///
     @FXML
-    private TableView<?> appointmentsTableView;
+    private TableView<Appointments> appointmentsTableView;
 
     @FXML
-    private TableColumn<?, ?> appointmentIdColumn;
+    private TableColumn<Appointments, Integer> appointmentIdColumn;
 
     @FXML
-    private TableColumn<?, ?> titleColumn;
+    private TableColumn<Appointments, String> titleColumn;
 
     @FXML
-    private TableColumn<?, ?> descriptionColumn;
+    private TableColumn<Appointments, String> descriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> locationColumn;
+    private TableColumn<Appointments, String> locationColumn;
 
     @FXML
-    private TableColumn<?, ?> contactColumn;
+    private TableColumn<Appointments, String> contactColumn;
 
     @FXML
-    private TableColumn<?, ?> typeColumn;
+    private TableColumn<Appointments, String> typeColumn;
 
     @FXML
-    private TableColumn<?, ?> startColumn;
+    private TableColumn<Appointments, LocalDateTime> startColumn;
 
     @FXML
-    private TableColumn<?, ?> endColumn;
+    private TableColumn<Appointments, LocalDateTime> endColumn;
 
     @FXML
-    private TableColumn<?, ?> customerIdColumn;
+    private TableColumn<Appointments, Integer> customerIdColumn;
 
     @FXML
-    private TableColumn<?, ?> userIdColumn;
+    private TableColumn<Appointments, Integer> userIdColumn;
 
     /// Appointments Button Fields fx:id ///
     @FXML
@@ -124,4 +131,23 @@ public class AppointmentsScreen extends SuperController {
         displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // set the appointments' tableview with the data it will be working with
+        appointmentsTableView.setItems(new AppointmentsDAO().read());
+
+        // set the columns with the data
+        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+    }
 }
