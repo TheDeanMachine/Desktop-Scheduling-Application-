@@ -89,8 +89,8 @@ public class CustomersScreen extends SuperController implements Initializable {
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        divisionIdColumn.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
-        countryColumn.setCellValueFactory(new PropertyValueFactory<>("countryId"));
+        divisionIdColumn.setCellValueFactory(new PropertyValueFactory<>("division"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
 
 
 

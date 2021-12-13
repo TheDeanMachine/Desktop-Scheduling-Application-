@@ -17,11 +17,11 @@ public class Appointments {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
     private int customerId; //FK
-    private int useId; //FK
+    private int userId; //FK
     private int contactId; //FK
 
     public Appointments(int appointmentId, String title, String description, String location,
-                        String type, LocalDateTime start, LocalDateTime end) {
+                        String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -29,6 +29,8 @@ public class Appointments {
         this.type = type;
         this.start = start;
         this.end = end;
+        this.customerId = customerId;
+        this.userId = userId;
     }
 
     // Getters
@@ -60,8 +62,15 @@ public class Appointments {
         return end;
     }
 
-    // Setters
+    public int getCustomerId() {
+        return customerId;
+    }
 
+    public int getUseId() {
+        return userId;
+    }
+
+    // Setters
     public void setAppointmentId(int appointmentId) {
         this.appointmentId = appointmentId;
     }
@@ -90,5 +99,11 @@ public class Appointments {
         this.end = end;
     }
 
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
