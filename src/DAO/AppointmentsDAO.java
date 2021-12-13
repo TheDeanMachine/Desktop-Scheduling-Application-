@@ -28,8 +28,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         try {
             statement = connection.createStatement();
             query = "SELECT app.appointment_id, app.title, app.description, app.location, con.contact_name, app.type,\n" +
-                    "app.start, app.end, app.customer_id, app.user_id\n" +
-                    "FROM appointments app\n" +
+                    "app.start, app.end, app.customer_id, app.user_id \n" +
+                    "FROM appointments app \n" +
                     "JOIN contacts con ON con.contact_id = app.contact_id;" ;
             resultSet = statement.executeQuery(query);
 
@@ -41,22 +41,19 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String contact = resultSet.getString(5);
                 String type = resultSet.getString(6);
 
-
                 Timestamp resultSetTimestamp = resultSet.getTimestamp(7);
                 LocalDateTime start = resultSetTimestamp.toLocalDateTime();
 
-
                 Timestamp resultSetTimestamp1 = resultSet.getTimestamp(8);
                 LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
-
-
 
                 int customerId = resultSet.getInt(9);
                 int userId = resultSet.getInt(10);
 
 
                 Appointments appointment =
-                        new Appointments(id, title, description, location, contact, type, start, end, customerId, userId);
+                        new Appointments(id, title, description, location, contact, type,
+                                start, end, customerId, userId);
                 listOfAppointments.add(appointment);
             }
 

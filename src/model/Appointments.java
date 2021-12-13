@@ -16,6 +16,7 @@ public class Appointments {
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
+
     private int customerId; //FK
     private int userId; //FK
     private int contactId; //FK
@@ -69,8 +70,16 @@ public class Appointments {
         return customerId;
     }
 
-    public int getUseId() {
+    public int getUserId() {
         return userId;
+    }
+
+    public int getContactId() {
+        return contactId;
+    }
+
+    public String getContact() {
+        return contact;
     }
 
     // Setters
@@ -110,14 +119,11 @@ public class Appointments {
         this.userId = userId;
     }
 
-
-    public int getContactId() {
-        return contactId;
-    }
-
     public void setContactId(int contactId) {
         this.contactId = contactId;
     }
 
-
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 }

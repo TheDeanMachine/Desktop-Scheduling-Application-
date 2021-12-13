@@ -1,7 +1,6 @@
 package controller;
 
 import DAO.AppointmentsDAO;
-import DAO.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
