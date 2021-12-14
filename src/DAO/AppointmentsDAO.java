@@ -14,6 +14,10 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ResultSet resultSet;
     String query;
 
+//    query = "SELECT app.appointment_id, app.title, app.description, app.location, con.contact_name, app.type,\n" +
+//            "app.start, app.end, app.customer_id, app.user_id \n" +
+//            "FROM appointments app \n" +
+//            "JOIN contacts con ON con.contact_id = app.contact_id;"
 
     @Override
     public void create() {
@@ -24,32 +28,26 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     public ObservableList<Appointments> read() {
         try {
             statement = connection.createStatement();
-            query = "SELECT app.appointment_id, app.title, app.description, app.location, con.contact_name, app.type,\n" +
-                    "app.start, app.end, app.customer_id, app.user_id \n" +
-                    "FROM appointments app \n" +
-                    "JOIN contacts con ON con.contact_id = app.contact_id;" ;
+            query = "SELECT appointment_id, title, description, location, type, start, end, customer_id, user_id " +
+                    "FROM appointments;" ;
             resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
-                int id = resultSet.getInt(1);
-                String title = resultSet.getString(2);
-                String description = resultSet.getString(3);
-                String location = resultSet.getString(4);
-                String contact = resultSet.getString(5);
-                String type = resultSet.getString(6);
-
-                Timestamp resultSetTimestamp = resultSet.getTimestamp(7);
+                int id = resultSet.getInt("appointment_id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String location = resultSet.getString("location");
+               // String contact = resultSet.getString("contact_name");
+                String type = resultSet.getString("type");
+                Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
                 LocalDateTime start = resultSetTimestamp.toLocalDateTime();
-
-                Timestamp resultSetTimestamp1 = resultSet.getTimestamp(8);
+                Timestamp resultSetTimestamp1 = resultSet.getTimestamp("end");
                 LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
-
-                int customerId = resultSet.getInt(9);
-                int userId = resultSet.getInt(10);
-
+                int customerId = resultSet.getInt("customer_id");
+                int userId = resultSet.getInt("user_id");
 
                 Appointments appointment =
-                        new Appointments(id, title, description, location, contact, type, start, end, customerId, userId);
+                        new Appointments(id, title, description, location, type, start, end, customerId, userId);
                 listOfAppointments.add(appointment);
             }
 
@@ -65,9 +63,10 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                     "FROM appointments WHERE contact_id = ?;" ;
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-
             preparedStatement.setInt(1, id);
-            preparedStatement.execute();
+
+            resultSet = preparedStatement.executeQuery();
+
 
 
             while(resultSet.next()){

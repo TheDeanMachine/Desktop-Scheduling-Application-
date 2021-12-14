@@ -1,5 +1,7 @@
 package model;
 
+import DAO.ContactsDAO;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -21,15 +23,21 @@ public class Appointments {
     private int userId; //FK
     private int contactId; //FK
 
-    private String contact; //?
+//    private String contact; //?
 
-    public Appointments(int appointmentId, String title, String description, String location, String contact,
+    // default constructor
+    public Appointments(){
+
+    }
+
+    // full constructor
+    public Appointments(int appointmentId, String title, String description, String location,
                         String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
-        this.contact = contact; // ?
+        //this.contact = contact; // ?
         this.type = type;
         this.start = start;
         this.end = end;
@@ -38,7 +46,8 @@ public class Appointments {
     }
 
     // overloaded constructor for reports tableview
-    public Appointments(int appointmentId, String title, String description, String type, LocalDateTime start, LocalDateTime end, int customerId) {
+    public Appointments(int appointmentId, String title, String description, String type, LocalDateTime start,
+                        LocalDateTime end, int customerId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -90,7 +99,7 @@ public class Appointments {
     }
 
     public String getContact() {
-        return contact;
+        return ContactsDAO.getById(contactId);
     }
 
     // Setters
@@ -134,7 +143,7 @@ public class Appointments {
         this.contactId = contactId;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
+//    public void setContact(String contact) {
+//        this.contact = contact;
+//    }
 }

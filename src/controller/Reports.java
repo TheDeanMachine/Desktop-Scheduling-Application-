@@ -80,12 +80,13 @@ public class Reports extends SuperController implements Initializable  {
 
     @FXML
     void onActionSelectContact(ActionEvent event) {
+        // get users selection
         Contacts selectedContact = contactComboBox.getSelectionModel().getSelectedItem();
         int id = selectedContact.getContactId();
         // set the appointments' tableview with the data it will be working with
         reportsTableView.setItems(new AppointmentsDAO().findByContactId(id));
 
-        //TODO
+
 
 
     }
@@ -96,8 +97,7 @@ public class Reports extends SuperController implements Initializable  {
 
         // set the contacts' combo box with contacts
         contactComboBox.setItems(new ContactsDAO().read());
-//        Contacts selectedContact = contactComboBox.getSelectionModel().getSelectedItem();
-//        int id = selectedContact.getContactId();
+
 
 
         // set the appointments' tableview with the data it will be working with
