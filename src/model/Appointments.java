@@ -37,6 +37,17 @@ public class Appointments {
         this.userId = userId;
     }
 
+    // overloaded constructor for reports tableview
+    public Appointments(int appointmentId, String title, String description, String type, LocalDateTime start, LocalDateTime end, int customerId) {
+        this.appointmentId = appointmentId;
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.start = start;
+        this.end = end;
+        this.customerId = customerId;
+    }
+
     // Getters
     public int getAppointmentId() {
         return appointmentId;

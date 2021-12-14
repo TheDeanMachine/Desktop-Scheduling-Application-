@@ -28,7 +28,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
             query = "SELECT * FROM contacts";
             resultSet = statement.executeQuery(query);
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String email = resultSet.getString(3);
@@ -37,7 +37,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
                 listOfContacts.add(contact);
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return listOfContacts;

@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
@@ -52,8 +49,42 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
 
                 Appointments appointment =
-                        new Appointments(id, title, description, location, contact, type,
-                                start, end, customerId, userId);
+                        new Appointments(id, title, description, location, contact, type, start, end, customerId, userId);
+                listOfAppointments.add(appointment);
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfAppointments;
+    }
+
+    public ObservableList<Appointments> findByContactId(int id) {
+        try {
+            query = "SELECT appointment_id, title, description, type, start, end, customer_id \n" +
+                    "FROM appointments WHERE contact_id = ?;" ;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+
+
+            while(resultSet.next()){
+                int appId = resultSet.getInt(1);
+                String title = resultSet.getString(2);
+                String description = resultSet.getString(3);
+                String type = resultSet.getString(4);
+
+                Timestamp resultSetTimestamp = resultSet.getTimestamp(5);
+                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
+
+                Timestamp resultSetTimestamp1 = resultSet.getTimestamp(6);
+                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+
+                int customerId = resultSet.getInt(7);
+
+                Appointments appointment = new Appointments(appId, title, description, type, start, end, customerId);
                 listOfAppointments.add(appointment);
             }
 
