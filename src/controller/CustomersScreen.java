@@ -77,7 +77,6 @@ public class CustomersScreen extends SuperController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the customers' tableview with the data it will be working with
@@ -91,7 +90,6 @@ public class CustomersScreen extends SuperController implements Initializable {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         divisionIdColumn.setCellValueFactory(new PropertyValueFactory<>("division"));
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
-
 
 
     }

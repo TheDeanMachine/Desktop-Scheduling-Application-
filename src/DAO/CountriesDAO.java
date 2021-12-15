@@ -45,7 +45,8 @@ public class CountriesDAO implements DataAccessObject<Countries> {
     public static String getCountryNameById(int id) {
         String countryName = "";
         try {
-            String query = "SELECT * FROM countries WHERE country_id = ?";
+            String query = "SELECT * FROM first_level_divisions fd \n" +
+                    "JOIN countries con ON fd.Country_ID = con.Country_ID WHERE division_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();

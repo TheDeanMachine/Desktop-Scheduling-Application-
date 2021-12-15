@@ -39,28 +39,13 @@ public class CustomerDAO implements DataAccessObject<Customers> {
                 int divisionId = resultSet.getInt("division_id");
 
                 Customers customer = new Customers(customerId, name, address, code, phone, divisionId);
-
-                // TODO
-                //get and set division name and country
-
-                String division = customer.getDivision();
-                customer.setDivision(division);
-
-                String country ; ///??
-
                 listOfCustomers.add(customer);
-
-
-
             }
         } catch(SQLException e) {
             e.printStackTrace();
         }
         return listOfCustomers;
     }
-
-
-
 
     @Override
     public void update() {

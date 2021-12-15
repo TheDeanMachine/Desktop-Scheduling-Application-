@@ -2,7 +2,6 @@ package model;
 
 import DAO.CountriesDAO;
 import DAO.FirstLevelDivisionsDAO;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -17,9 +16,6 @@ public class Customers {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
     private int divisionId; //FK
-
-    private String division; //?
-
 
     public Customers(int customerId, String customerName, String address, String postalCode, String phone,
                      int divisionId) {
@@ -60,9 +56,9 @@ public class Customers {
         return FirstLevelDivisionsDAO.getDivisionNameById(divisionId);
     }
 
-//    public String getCountry(){
-//        return CountriesDAO.getCountryNameById(divisionId);
-//    }
+    public String getCountry(){
+        return CountriesDAO.getCountryNameById(divisionId);
+    }
 
     // Setters
     public void setCustomerId(int customerId) {
@@ -88,13 +84,5 @@ public class Customers {
     public void setDivisionId(int divisionId) {
         this.divisionId = divisionId;
     }
-
-    public void setDivision(String division) {
-        this.division = division;
-    }
-//
-//    public void setCountry(String country) {
-//        this.country = country;
-//    }
 
 }
