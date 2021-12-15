@@ -83,22 +83,15 @@ public class Reports extends SuperController implements Initializable  {
         // get users selection
         Contacts selectedContact = contactComboBox.getSelectionModel().getSelectedItem();
         int id = selectedContact.getContactId();
-        // set the appointments' tableview with the data it will be working with
-        reportsTableView.setItems(new AppointmentsDAO().findByContactId(id));
-
-
-
-
+        // display the appointments corresponding to the contact
+        reportsTableView.setItems(new AppointmentsDAO().findAppointmentByContactId(id));
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         // set the contacts' combo box with contacts
         contactComboBox.setItems(new ContactsDAO().read());
-
-
 
         // set the appointments' tableview with the data it will be working with
         reportsTableView.setItems(new AppointmentsDAO().read());

@@ -25,7 +25,7 @@ public class Appointments {
 
     private String contact; //?
 
-    // full constructor
+
     public Appointments(int appointmentId, String title, String description, String location,
                         String type, LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
@@ -38,18 +38,6 @@ public class Appointments {
         this.customerId = customerId;
         this.userId = userId;
         this.contactId = contactId;
-    }
-
-    // overloaded constructor for reports tableview
-    public Appointments(int appointmentId, String title, String description, String type, LocalDateTime start,
-                        LocalDateTime end, int customerId) {
-        this.appointmentId = appointmentId;
-        this.title = title;
-        this.description = description;
-        this.type = type;
-        this.start = start;
-        this.end = end;
-        this.customerId = customerId;
     }
 
     // Getters
