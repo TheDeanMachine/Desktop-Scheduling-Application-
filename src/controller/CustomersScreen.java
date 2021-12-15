@@ -38,10 +38,10 @@ public class CustomersScreen extends SuperController implements Initializable {
     private TableColumn<Customers, String> phoneColumn;
 
     @FXML
-    private TableColumn<Customers, Integer> divisionIdColumn;
+    private TableColumn<Customers, String> divisionIdColumn;
 
     @FXML
-    private TableColumn<Customers, Integer> countryColumn;
+    private TableColumn<Customers, String> countryColumn;
 
     /// Customers Button Fields fx:id ///
     @FXML

@@ -1,39 +1,34 @@
 package model;
 
+import DAO.CountriesDAO;
+import DAO.FirstLevelDivisionsDAO;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Customers {
-
     private int customerId; //PK
     private String customerName;
     private String address;
     private String postalCode;
     private String phone;
-
     private LocalDateTime createDate;
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
-
     private int divisionId; //FK
 
-    private int countryId; //??
     private String division; //?
-    private String country; //??
 
 
     public Customers(int customerId, String customerName, String address, String postalCode, String phone,
-                     String division, String country) {
+                     int divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
-
-        this.division = division;
-        this.country = country;
-
+        this.divisionId = divisionId;
     }
 
     // Getters
@@ -57,6 +52,18 @@ public class Customers {
         return phone;
     }
 
+    public int getDivisionId() {
+        return divisionId;
+    }
+
+    public String getDivision() {
+        return FirstLevelDivisionsDAO.getDivisionNameById(divisionId);
+    }
+
+//    public String getCountry(){
+//        return CountriesDAO.getCountryNameById(divisionId);
+//    }
+
     // Setters
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
@@ -78,38 +85,16 @@ public class Customers {
         this.phone = phone;
     }
 
-
-    //////////////////////
-
-    public int getDivisionId() {
-        return divisionId;
-    }
-
     public void setDivisionId(int divisionId) {
         this.divisionId = divisionId;
-    }
-
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
-    public String getDivision() {
-        return division;
     }
 
     public void setDivision(String division) {
         this.division = division;
     }
+//
+//    public void setCountry(String country) {
+//        this.country = country;
+//    }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }

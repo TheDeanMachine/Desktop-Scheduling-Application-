@@ -34,10 +34,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String description = resultSet.getString("description");
                 String location = resultSet.getString("location");
                 String type = resultSet.getString("type");
-                Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
-                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
-                Timestamp resultSetTimestamp1 = resultSet.getTimestamp("end");
-                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
                 int userId = resultSet.getInt("user_id");
                 int contactId = resultSet.getInt("contact_id");
@@ -45,11 +43,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 Appointments appointment =
                         new Appointments(id,title,description,location,type,start,end,customerId,userId,contactId);
 
-                String contact = appointment.getContact(); //???
-                appointment.setContact(contact);  //???
-
                 listOfAppointments.add(appointment);
-
             }
 
         } catch(SQLException e) {
@@ -58,7 +52,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return listOfAppointments;
     }
 
-    // displays reports appointments by contact
+    // displays the reports appointments by contact
     public ObservableList<Appointments> findAppointmentByContactId(int id) {
         try {
             query = "SELECT appointment_id, title, description, location, type, start, end, " +

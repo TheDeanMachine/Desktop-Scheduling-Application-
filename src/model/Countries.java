@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 public class Countries {
     private int countryId; //PK
     private String country;
-
     private LocalDateTime createDate;
     private String createdBy;
     private Timestamp lastUpdate;

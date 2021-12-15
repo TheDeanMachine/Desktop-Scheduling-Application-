@@ -2,6 +2,7 @@ package controller;
 
 import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -95,6 +96,7 @@ public class Reports extends SuperController implements Initializable  {
 
         // set the appointments' tableview with the data it will be working with
         reportsTableView.setItems(new AppointmentsDAO().read());
+        reportsTableView.getItems().clear(); //??
 
         // set the columns with the data
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));

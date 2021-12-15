@@ -1,7 +1,6 @@
 package model;
 
 import DAO.ContactsDAO;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -13,21 +12,18 @@ public class Appointments {
     private String type;
     private LocalDateTime start;
     private LocalDateTime end;
-
     private LocalDateTime createDate;
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
-
     private int customerId; //FK
     private int userId; //FK
     private int contactId; //FK
 
-    private String contact; //?
 
 
-    public Appointments(int appointmentId, String title, String description, String location,
-                        String type, LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String title, String description, String location, String type,
+                        LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -126,7 +122,4 @@ public class Appointments {
         this.contactId = contactId;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
 }

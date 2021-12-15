@@ -25,13 +25,13 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
     public ObservableList<Contacts> read() {
         try {
             statement = connection.createStatement();
-            query = "SELECT * FROM contacts";
+            query = "SELECT contact_id, contact_name, email  FROM contacts;";
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String email = resultSet.getString(3);
+                int id = resultSet.getInt("contact_id");
+                String name = resultSet.getString("contact_name");
+                String email = resultSet.getString("email");
 
                 Contacts contact = new Contacts(id, name, email);
                 listOfContacts.add(contact);
