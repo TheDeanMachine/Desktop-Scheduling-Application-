@@ -44,7 +44,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
     }
 
     // get contact name corresponding to contact id in appointments table
-    public static String getById(int id ) {
+    public static String getContactsNameById(int id) {
         String contactName = "";
         try {
             String query = "SELECT * FROM contacts WHERE contact_id = ?";
@@ -61,6 +61,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
         }
         return  contactName;
     }
+
 
     @Override
     public void update() {

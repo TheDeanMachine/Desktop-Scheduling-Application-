@@ -14,11 +14,6 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ResultSet resultSet;
     String query;
 
-//    query = "SELECT app.appointment_id, app.title, app.description, app.location, con.contact_name, app.type,\n" +
-//            "app.start, app.end, app.customer_id, app.user_id \n" +
-//            "FROM appointments app \n" +
-//            "JOIN contacts con ON con.contact_id = app.contact_id;"
-
     @Override
     public void create() {
 
@@ -28,7 +23,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     public ObservableList<Appointments> read() {
         try {
             statement = connection.createStatement();
-            query = "SELECT appointment_id, title, description, location, type, start, end, customer_id, user_id " +
+            query = "SELECT appointment_id, title, description, location, type, start, end, " +
+                    "customer_id, user_id, contact_id " +
                     "FROM appointments;" ;
             resultSet = statement.executeQuery(query);
 
@@ -37,7 +33,6 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String title = resultSet.getString("title");
                 String description = resultSet.getString("description");
                 String location = resultSet.getString("location");
-               // String contact = resultSet.getString("contact_name");
                 String type = resultSet.getString("type");
                 Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
                 LocalDateTime start = resultSetTimestamp.toLocalDateTime();
@@ -45,10 +40,16 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
                 int userId = resultSet.getInt("user_id");
+                int contactId = resultSet.getInt("contact_id");
 
                 Appointments appointment =
-                        new Appointments(id, title, description, location, type, start, end, customerId, userId);
+                        new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId);
+
+                String contact = appointment.getContact(); //???
+                appointment.setContact(contact);  //???
+
                 listOfAppointments.add(appointment);
+
             }
 
         } catch(SQLException e) {

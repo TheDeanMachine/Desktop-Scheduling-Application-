@@ -23,26 +23,21 @@ public class Appointments {
     private int userId; //FK
     private int contactId; //FK
 
-//    private String contact; //?
-
-    // default constructor
-    public Appointments(){
-
-    }
+    private String contact; //?
 
     // full constructor
     public Appointments(int appointmentId, String title, String description, String location,
-                        String type, LocalDateTime start, LocalDateTime end, int customerId, int userId) {
+                        String type, LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
-        //this.contact = contact; // ?
         this.type = type;
         this.start = start;
         this.end = end;
         this.customerId = customerId;
         this.userId = userId;
+        this.contactId = contactId;
     }
 
     // overloaded constructor for reports tableview
@@ -99,7 +94,7 @@ public class Appointments {
     }
 
     public String getContact() {
-        return ContactsDAO.getById(contactId);
+        return ContactsDAO.getContactsNameById(contactId);
     }
 
     // Setters
@@ -143,7 +138,7 @@ public class Appointments {
         this.contactId = contactId;
     }
 
-//    public void setContact(String contact) {
-//        this.contact = contact;
-//    }
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 }
