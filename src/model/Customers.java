@@ -85,4 +85,8 @@ public class Customers {
         this.divisionId = divisionId;
     }
 
+    @Override
+    public String toString() {
+        return customerName;
+    }
 }

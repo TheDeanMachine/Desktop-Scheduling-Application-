@@ -3,6 +3,8 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,6 +47,23 @@ public class CustomerDAO implements DataAccessObject<Customers> {
             e.printStackTrace();
         }
         return listOfCustomers;
+    }
+
+    public static String getCustomerPhoneNumber(int id) {
+        String phoneNumber = "";
+        try {
+            String query = "SELECT * FROM customers WHERE customer_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                phoneNumber = resultSet.getString("phone");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return phoneNumber;
     }
 
     @Override

@@ -54,10 +54,9 @@
       <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="405.0" startX="-286.0" stroke="#053579" />
       <VBox layoutX="437.0" layoutY="438.0" spacing="15.0">
          <children>
-            <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by country and division" wrapText="true" />
-            <ComboBox fx:id="countryComboBox" prefWidth="174.0" promptText="Select Country" style="-fx-background-color: #d9d9d9;" />
-            <ComboBox fx:id="divisionComboBox" prefWidth="174.0" promptText="Select Division" style="-fx-background-color: #d9d9d9;" />
-            <ListView fx:id="resultListView2" maxWidth="-Infinity" prefHeight="90.0" prefWidth="174.0" />
+            <Label prefHeight="34.0" prefWidth="190.0" text="View the phone number for the contacts customer " wrapText="true" />
+            <ComboBox fx:id="customerIdComboBox" onAction="#onActionSelectCustomerId" prefWidth="174.0" promptText="Select Customer_ID" style="-fx-background-color: #d9d9d9;" />
+            <ListView fx:id="resultListView2" maxWidth="-Infinity" prefHeight="131.0" prefWidth="174.0" />
          </children>
       </VBox>
       <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="689.0" startX="-286.0" stroke="#053579" />

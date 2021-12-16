@@ -1,8 +1,8 @@
 package controller;
 
-import DAO.AppointmentsDAO;
-import DAO.ContactsDAO;
+import DAO.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,8 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Appointments;
-import model.Contacts;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,28 +46,25 @@ public class Reports extends SuperController implements Initializable  {
     @FXML
     private TableColumn<Appointments, Integer> customerIdColumn;
 
-    /// Month/Type Reports Fields fx:id ///
     @FXML
     private ComboBox<Contacts> contactComboBox;
 
+    /// Month/Type Reports Fields fx:id ///
     @FXML
     private ComboBox<?> monthComboBox;
 
     @FXML
-    private ComboBox<?> typeComboBox;
+    private ComboBox<Appointments> typeComboBox;
 
     @FXML
-    private ListView<?> resultListView1;
+    private ListView<String> resultListView1;
 
-    /// Country/Division Reports Fields fx:id ///
+    /// Customer Reports Fields fx:id ///
     @FXML
-    private ComboBox<?> countryComboBox;
-
-    @FXML
-    private ComboBox<?> divisionComboBox;
+    private ComboBox<Customers> customerIdComboBox;
 
     @FXML
-    private ListView<?> resultListView2;
+    private ListView<String> resultListView2;
 
     /// Back
     @FXML
@@ -88,17 +84,27 @@ public class Reports extends SuperController implements Initializable  {
         reportsTableView.setItems(new AppointmentsDAO().findAppointmentByContactId(id));
     }
 
+    @FXML
+    void onActionSelectCustomerId(ActionEvent event) {
+        // get users selection
+        Customers customer = customerIdComboBox.getSelectionModel().getSelectedItem();
+        int id = customer.getCustomerId();
+        String phone = CustomerDAO.getCustomerPhoneNumber(id);
+        // set customers list results based on user selection
+        //resultListView2.setItems(phone);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the contacts' combo box with contacts
         contactComboBox.setItems(new ContactsDAO().read());
 
-        // set the appointments' tableview with the data it will be working with
-        reportsTableView.setItems(new AppointmentsDAO().read());
-        reportsTableView.getItems().clear(); //??
+        // set the contacts appointments' tableview with an empty list
+        ObservableList<Appointments> emptyList = FXCollections.observableArrayList();
+        reportsTableView.setItems(emptyList);
 
-        // set the columns with the data
+        // set the columns with the data they will be working with
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -107,8 +113,11 @@ public class Reports extends SuperController implements Initializable  {
         endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
+        // set the type combo box with list of appointmetn types
+        typeComboBox.setItems(new AppointmentsDAO().read());
 
-
+        // set the customers' combo box with customers names list
+        customerIdComboBox.setItems(new CustomerDAO().read());
 
 
 

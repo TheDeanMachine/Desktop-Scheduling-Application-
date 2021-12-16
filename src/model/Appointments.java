@@ -122,4 +122,8 @@ public class Appointments {
         this.contactId = contactId;
     }
 
+    @Override
+    public String toString() {
+        return type;
+    }
 }
