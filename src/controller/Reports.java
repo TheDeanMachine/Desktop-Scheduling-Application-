@@ -9,9 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
-
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -46,16 +46,14 @@ public class Reports extends SuperController implements Initializable  {
     private ComboBox<Contacts> contactComboBox;
 
     /// Month/Type Reports Fields fx:id ///
-
     @FXML
-    private DatePicker MonthDatePicker;
+    private DatePicker monthDatePicker;
 
     @FXML
     private ComboBox<Appointments> typeComboBox;
 
     @FXML
-    private Label ResultText;
-
+    private Label resultText;
 
     /// Customer Reports Fields fx:id ///
     @FXML
@@ -69,7 +67,6 @@ public class Reports extends SuperController implements Initializable  {
 
     @FXML
     private TableColumn<Customers, String> customerPhoneColumn;
-
 
     /// Back
     @FXML
@@ -88,6 +85,24 @@ public class Reports extends SuperController implements Initializable  {
         // display the appointments corresponding to the contact
         reportsTableView.setItems(new AppointmentsDAO().findAppointmentByContactId(id));
         customerContactInformationTableView.setItems(new CustomerDAO().getCustomerContactInformation(id));
+    }
+
+    @FXML
+    void onActionDisplayResults(ActionEvent event) {
+       //TODO
+        // the date picker
+        monthDatePicker = new DatePicker();
+        LocalDate dateSelection = monthDatePicker.getValue();
+
+        // the type selected
+        Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
+
+
+        // then display the results in the text string
+        resultText.setText("The result is..???");
+
+
+
     }
 
 
@@ -118,12 +133,9 @@ public class Reports extends SuperController implements Initializable  {
         endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
+
         // set the type combo box with list of appointment types
         typeComboBox.setItems(new AppointmentsDAO().read());
-
-
-
-
 
     }
 }

@@ -3,7 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +13,6 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     Statement statement;
     ResultSet resultSet;
     String query;
-
-//    query = "SELECT c.customer_ID, c.customer_name, c.address, c.postal_code, c.phone, fld.division, con.country \n" +
-//            "FROM customers c \n" +
-//            "JOIN first_level_divisions fld ON c.division_Id = fld.division_Id \n" +
-//            "JOIN countries con ON fld.country_Id = con.country_Id;";
 
     @Override
     public void create() {

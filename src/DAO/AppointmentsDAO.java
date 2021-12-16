@@ -3,8 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
-
-
 import java.sql.*;
 import java.time.LocalDateTime;
 

@@ -1,8 +1,6 @@
 package controller;
 
-import DAO.CountriesDAO;
 import DAO.CustomerDAO;
-import DAO.FirstLevelDivisionsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -90,7 +87,6 @@ public class CustomersScreen extends SuperController implements Initializable {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         divisionIdColumn.setCellValueFactory(new PropertyValueFactory<>("division"));
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
-
 
     }
 }
