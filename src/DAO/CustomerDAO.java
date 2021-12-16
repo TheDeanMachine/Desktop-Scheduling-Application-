@@ -49,21 +49,31 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         return listOfCustomers;
     }
 
-    public static String getCustomerPhoneNumber(int id) {
-        String phoneNumber = "";
+    public ObservableList<Customers> getCustomerContactInformation(int id) {
         try {
-            String query = "SELECT * FROM customers WHERE customer_id = ?";
+            query = "SELECT c.customer_id, c.customer_name, c.address, c.postal_code, c.phone, c.division_Id \n" +
+                    "FROM customers c \n" +
+                    "JOIN appointments a ON a.customer_id = c.customer_id \n" +
+                    "WHERE a.contact_id = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                phoneNumber = resultSet.getString("phone");
+                int customerId = resultSet.getInt("customer_id");
+                String name = resultSet.getString("customer_name");
+                String address = resultSet.getString("address");
+                String code = resultSet.getString("postal_code");
+                String phone = resultSet.getString("phone");
+                int divisionId = resultSet.getInt("division_id");
+
+                Customers customer = new Customers(customerId, name, address, code, phone, divisionId);
+                listOfCustomers.add(customer);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return phoneNumber;
+        return listOfCustomers;
     }
 
     @Override
