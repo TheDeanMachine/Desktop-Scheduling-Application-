@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
@@ -40,7 +41,6 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
                 Appointments appointment =
                         new Appointments(id,title,description,location,type,start,end,customerId,userId,contactId);
-
                 listOfAppointments.add(appointment);
             }
 
@@ -77,7 +77,6 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
                 Appointments appointment =
                         new Appointments(appId,title,description,location,type,start,end,customerId,userId,contactId);
-
                 listOfAppointments.add(appointment);
 
             }
@@ -86,6 +85,44 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             e.printStackTrace();
         }
         return listOfAppointments;
+    }
+
+    public int getResultsForReports(int month, String type) {
+        int count = 0;
+        try {
+            query = "SELECT * \n" +
+                    "FROM appointments \n" +
+                    "WHERE type = \" ? \" AND MONTH(start) = ? ;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, type);
+            preparedStatement.setInt(2, month);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int appId = resultSet.getInt("appointment_id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String location = resultSet.getString("location");
+                String apptype = resultSet.getString("type");
+                Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
+                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
+                Timestamp resultSetTimestamp1 = resultSet.getTimestamp("end");
+                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+                int customerId = resultSet.getInt("customer_id");
+                int userId = resultSet.getInt("user_id");
+                int contactId = resultSet.getInt("contact_id");
+
+                Appointments appointment =
+                        new Appointments(appId,title,description,location,apptype,start,end,customerId,userId,contactId);
+                listOfAppointments.add(appointment);
+                count = listOfAppointments.size();
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
     @Override

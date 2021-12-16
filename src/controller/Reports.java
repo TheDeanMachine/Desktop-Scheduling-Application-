@@ -87,21 +87,26 @@ public class Reports extends SuperController implements Initializable  {
         customerContactInformationTableView.setItems(new CustomerDAO().getCustomerContactInformation(id));
     }
 
+
+    // TODO
+        // METHOD CAUSING NULL POINTER
     @FXML
     void onActionDisplayResults(ActionEvent event) {
-       //TODO
         // the date picker
         monthDatePicker = new DatePicker();
-        LocalDate dateSelection = monthDatePicker.getValue();
+        LocalDate month = monthDatePicker.getValue();  ///// SEEMS TO HAPPEN HERE
+        int monthValue =  month.getMonthValue();
 
-        // the type selected
+        // get the type selected
         Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
+        String selectedType = typeSelection.getType();
 
+        // call the method to calculate the results
+        AppointmentsDAO result = new AppointmentsDAO();
+        String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
 
         // then display the results in the text string
-        resultText.setText("The result is..???");
-
-
+        resultText.setText(text);
 
     }
 
