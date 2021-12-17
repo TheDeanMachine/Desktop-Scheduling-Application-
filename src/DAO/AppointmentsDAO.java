@@ -67,10 +67,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String description = resultSet.getString("description");
                 String location = resultSet.getString("location");
                 String type = resultSet.getString("type");
-                Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
-                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
-                Timestamp resultSetTimestamp1 = resultSet.getTimestamp("end");
-                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
                 int userId = resultSet.getInt("user_id");
                 int contactId = resultSet.getInt("contact_id");
@@ -97,7 +95,6 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, type);
             preparedStatement.setInt(2, month);
-
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
@@ -106,10 +103,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String description = resultSet.getString("description");
                 String location = resultSet.getString("location");
                 String apptype = resultSet.getString("type");
-                Timestamp resultSetTimestamp = resultSet.getTimestamp("start");
-                LocalDateTime start = resultSetTimestamp.toLocalDateTime();
-                Timestamp resultSetTimestamp1 = resultSet.getTimestamp("end");
-                LocalDateTime end = resultSetTimestamp1.toLocalDateTime();
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
                 int userId = resultSet.getInt("user_id");
                 int contactId = resultSet.getInt("contact_id");

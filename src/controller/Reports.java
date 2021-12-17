@@ -88,26 +88,35 @@ public class Reports extends SuperController implements Initializable  {
     }
 
 
-    // TODO
-        // METHOD CAUSING NULL POINTER
+
+    @FXML
+    void onActionSelectDisplayMonth(ActionEvent event) {
+
+        monthDatePicker = new DatePicker();
+        LocalDate month = monthDatePicker.getValue(); ////// CAUSES NULL
+        String text = String.valueOf(month);
+        resultText.setText(text);
+    }
+
+
+
     @FXML
     void onActionDisplayResults(ActionEvent event) {
-        // the date picker
-        monthDatePicker = new DatePicker();
-        LocalDate month = monthDatePicker.getValue();  ///// SEEMS TO HAPPEN HERE
-        int monthValue =  month.getMonthValue();
-
-        // get the type selected
-        Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
-        String selectedType = typeSelection.getType();
-
-        // call the method to calculate the results
-        AppointmentsDAO result = new AppointmentsDAO();
-        String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
-
-        // then display the results in the text string
-        resultText.setText(text);
-
+//        // get the date selected
+//        monthDatePicker = new DatePicker();
+//        LocalDate month = monthDatePicker.getValue();
+//        int monthValue =  month.getMonthValue();
+//
+//        // get the type selected
+//        Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
+//        String selectedType = typeSelection.getType();
+//
+//        // call the method to calculate the results
+//        AppointmentsDAO result = new AppointmentsDAO();
+//        String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
+//
+//        // then display the results in the text string
+//        resultText.setText(text);
     }
 
 
@@ -141,6 +150,5 @@ public class Reports extends SuperController implements Initializable  {
 
         // set the type combo box with list of appointment types
         typeComboBox.setItems(new AppointmentsDAO().read());
-
     }
 }
