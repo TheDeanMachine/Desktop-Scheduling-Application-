@@ -46,7 +46,7 @@
       <VBox layoutX="58.0" layoutY="423.0" spacing="15.0">
          <children>
             <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by month and type" wrapText="true" />
-            <DatePicker fx:id="monthDatePicker" onAction="#onActionSelectDisplayMonth" promptText="Select Month" />
+            <DatePicker fx:id="monthDatePicker" promptText="Select Month" />
             <ComboBox fx:id="typeComboBox" onAction="#onActionDisplayResults" prefWidth="174.0" promptText="Select Type" style="-fx-background-color: #d9d9d9;" />
             <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="200.0" spacing="10.0">
                <children>

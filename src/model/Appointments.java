@@ -126,4 +126,5 @@ public class Appointments {
     public String toString() {
         return type;
     }
+
 }

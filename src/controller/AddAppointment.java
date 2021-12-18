@@ -2,12 +2,10 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class AddAppointment extends SuperController {
 
@@ -58,6 +56,7 @@ public class AddAppointment extends SuperController {
 
     @FXML
     void onActionCreateAppointment(ActionEvent event) throws IOException {
+
 
 
         displayNewScreen(createAppointmentButton, "/view/Appointments.fxml");

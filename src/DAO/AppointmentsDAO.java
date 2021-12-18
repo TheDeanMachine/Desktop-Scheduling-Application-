@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
@@ -85,12 +84,14 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return listOfAppointments;
     }
 
+
+
     public int getResultsForReports(int month, String type) {
         int count = 0;
         try {
             query = "SELECT * \n" +
                     "FROM appointments \n" +
-                    "WHERE type = \" ? \" AND MONTH(start) = ? ;";
+                    "WHERE type = ? AND MONTH(start) = ? ;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, type);
