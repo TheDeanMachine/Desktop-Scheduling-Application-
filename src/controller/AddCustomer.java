@@ -45,8 +45,16 @@ public class AddCustomer extends SuperController {
 
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {
-        displayNewScreen(createCustomerButton, "/view/Customers.fxml");
 
+        //TODO
+        // collect input information
+        // set country/state combo box with list of there respected values
+        // create a customer object with the collected data
+        // call Create method to insert into the database
+
+
+
+        displayNewScreen(createCustomerButton, "/view/Customers.fxml");
     }
 
 }

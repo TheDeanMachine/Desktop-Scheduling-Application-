@@ -84,6 +84,24 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return listOfAppointments;
     }
 
+    // gets list of types for reports combo box
+    public ObservableList<Appointments> getListOfTypes(){
+        try {
+            statement = connection.createStatement();
+            query = "SELECT distinct type FROM appointments;" ;
+            resultSet = statement.executeQuery(query);
+
+            while(resultSet.next()){
+                String type = resultSet.getString("type");
+
+                Appointments appointment = new Appointments(type);
+                listOfAppointments.add(appointment);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfAppointments;
+    }
 
 
     public int getResultsForReports(int month, String type) {

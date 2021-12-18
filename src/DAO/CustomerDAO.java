@@ -17,6 +17,9 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     @Override
     public void create() {
 
+        //TODO
+        // crete query to insert data
+
     }
 
     @Override

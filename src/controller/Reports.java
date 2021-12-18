@@ -140,6 +140,6 @@ public class Reports extends SuperController implements Initializable  {
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
         // set the type combo box with list of appointment types
-        typeComboBox.setItems(new AppointmentsDAO().read());
+        typeComboBox.setItems(new AppointmentsDAO().getListOfTypes());
     }
 }

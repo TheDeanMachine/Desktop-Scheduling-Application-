@@ -20,7 +20,9 @@ public class Appointments {
     private int userId; //FK
     private int contactId; //FK
 
-
+    public Appointments(String type) {
+        this.type = type;
+    }
 
     public Appointments(int appointmentId, String title, String description, String location, String type,
                         LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) {
