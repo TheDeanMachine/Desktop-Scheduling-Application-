@@ -9,10 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
+import utilities.TimeHelper;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 public class Reports extends SuperController implements Initializable  {
@@ -47,7 +50,10 @@ public class Reports extends SuperController implements Initializable  {
 
     /// Month/Type Reports Fields fx:id ///
     @FXML
-    private DatePicker monthDatePicker;
+    private ComboBox<Month> monthPicker;
+
+//    @FXML
+//    private DatePicker monthDatePicker;
 
     @FXML
     private ComboBox<Appointments> typeComboBox;
@@ -89,8 +95,9 @@ public class Reports extends SuperController implements Initializable  {
 
     @FXML
     void onActionDisplayResults(ActionEvent event) {
-        // get the date selected
-        LocalDate month = monthDatePicker.getValue();
+        // get the month selected
+        Month month = monthPicker.getValue();
+//        LocalDate month = monthDatePicker.getValue(); // using date picker
 
         // get the type selected
         Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
@@ -99,9 +106,11 @@ public class Reports extends SuperController implements Initializable  {
         if(month == null || typeSelection == null ){
             return;
         }
+
         // convert to values
         String selectedType = typeSelection.getType();
-        int monthValue =  month.getMonthValue();
+        int monthValue =  month.getValue();
+//        int monthValue =  month.getMonthValue(); // using date picker
 
         // call the method to calculate the results
         AppointmentsDAO result = new AppointmentsDAO();
@@ -141,5 +150,9 @@ public class Reports extends SuperController implements Initializable  {
 
         // set the type combo box with list of appointment types
         typeComboBox.setItems(new AppointmentsDAO().getListOfTypes());
+
+        // set month list with month enums
+        monthPicker.setItems(TimeHelper.getMonths());
+
     }
 }

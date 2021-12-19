@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.Month;
 
-public class TimeHelper {
+public abstract class TimeHelper {
 
     public static ObservableList<Month> getMonths() {
         ObservableList<Month> months = FXCollections.observableArrayList();
