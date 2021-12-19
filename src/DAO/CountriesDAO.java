@@ -15,7 +15,7 @@ public class CountriesDAO implements DataAccessObject<Countries> {
     String query;
 
     @Override
-    public void create() {
+    public void create(Countries object) {
 
     }
 

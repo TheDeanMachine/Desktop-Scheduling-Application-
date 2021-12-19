@@ -15,11 +15,23 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     String query;
 
     @Override
-    public void create() {
+    public void create(Customers object) {
+        try {
+            query = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) \n" +
+                    "VALUES (?, ?, ?, ?, ?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-        //TODO
-        // crete query to insert data
+            preparedStatement.setString(1, "");
+            preparedStatement.setString(2, "");
+            preparedStatement.setString(3, "");
+            preparedStatement.setString(4, "");
+            preparedStatement.setInt(5, 0);
 
+            resultSet = preparedStatement.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -15,7 +15,7 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
     String query;
 
     @Override
-    public void create() {
+    public void create(FirstLevelDivisions object) {
 
     }
 

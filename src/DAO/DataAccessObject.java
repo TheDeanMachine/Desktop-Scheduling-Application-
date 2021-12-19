@@ -8,7 +8,7 @@ public interface DataAccessObject<T> {
     Connection connection = JDBC.getConnection();
 
     /// CRUD operations
-    public abstract void create();
+    public abstract void create(T object);
     public abstract ObservableList<T> read();
     public abstract void update();
     public abstract void delete();

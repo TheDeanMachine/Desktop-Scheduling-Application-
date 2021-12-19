@@ -17,7 +17,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
 
 
     @Override
-    public void create() {
+    public void create(Contacts object) {
 
     }
 

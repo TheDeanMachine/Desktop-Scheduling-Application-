@@ -12,8 +12,9 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ResultSet resultSet;
     String query;
 
+
     @Override
-    public void create() {
+    public void create(Appointments object) {
 
     }
 

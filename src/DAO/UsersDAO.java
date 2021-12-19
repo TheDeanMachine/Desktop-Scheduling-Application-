@@ -14,7 +14,7 @@ public class UsersDAO implements DataAccessObject<Users> {
     String query;
 
     @Override
-    public void create() {
+    public void create(Users object) {
 
     }
 

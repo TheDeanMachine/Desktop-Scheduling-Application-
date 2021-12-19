@@ -103,7 +103,7 @@ public class Reports extends SuperController implements Initializable  {
         Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
 
         // null check
-        if(month == null || typeSelection == null ){
+        if(month == null || typeSelection == null) {
             return;
         }
 
