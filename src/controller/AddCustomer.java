@@ -2,6 +2,7 @@ package controller;
 
 import DAO.CountriesDAO;
 import DAO.CustomerDAO;
+import DAO.DataAccessObject;
 import DAO.FirstLevelDivisionsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,14 +68,13 @@ public class AddCustomer extends SuperController implements Initializable {
         String phone = phoneNumberText.getText();
         String address = addressText.getText();
         String postal = postalCodeText.getText();
-
         FirstLevelDivisions divisions = divisionComboBox.getSelectionModel().getSelectedItem();
         int divisionId = divisions.getDivisionId();
 
         // create a customer object with the collected data
-        Customers newCustomer = new Customers(0, name, phone, address, postal, divisionId);
+        Customers newCustomer = new Customers(0, name, address, postal, phone, divisionId);
 
-        // call Create method to insert into the database
+        // call create method to insert into the database
         CustomerDAO dao = new CustomerDAO();
         dao.create(newCustomer);
 
