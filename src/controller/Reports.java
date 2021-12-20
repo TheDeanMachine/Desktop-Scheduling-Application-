@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import utilities.TimeHelper;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ResourceBundle;
 
-public class Reports extends SuperController implements Initializable  {
+public class Reports extends SuperController implements Initializable {
 
     /// Contact Reports Fields fx:id ///
     @FXML

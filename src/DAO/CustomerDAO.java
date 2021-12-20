@@ -21,13 +21,13 @@ public class CustomerDAO implements DataAccessObject<Customers> {
                     "VALUES (?, ?, ?, ?, ?);";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, "");
-            preparedStatement.setString(2, "");
-            preparedStatement.setString(3, "");
-            preparedStatement.setString(4, "");
-            preparedStatement.setInt(5, 0);
+            preparedStatement.setString(1, object.getCustomerName());
+            preparedStatement.setString(2, object.getAddress());
+            preparedStatement.setString(3, object.getPostalCode());
+            preparedStatement.setString(4, object.getPhone());
+            preparedStatement.setInt(5, object.getDivisionId());
 
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

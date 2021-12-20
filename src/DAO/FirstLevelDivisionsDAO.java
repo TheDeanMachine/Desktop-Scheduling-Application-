@@ -41,6 +41,29 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
     }
 
 
+    public ObservableList<FirstLevelDivisions> getDivisionsByCountryId(int id) {
+        try {
+            query = " SELECT * FROM first_level_divisions \n" +
+                    " WHERE country_id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int divisionId = resultSet.getInt("division_id");
+                String divisionName = resultSet.getString("division");
+                int countryId = resultSet.getInt("country_id");
+
+                FirstLevelDivisions divisions = new FirstLevelDivisions(divisionId, divisionName, countryId);
+                listOfDivisions.add(divisions);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfDivisions;
+    }
+
+
     public static String getDivisionNameById(int id) {
         String divisionName = "";
         try {
