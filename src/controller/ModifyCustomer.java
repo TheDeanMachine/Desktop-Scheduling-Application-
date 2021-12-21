@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import model.Countries;
 import model.Customers;
 import model.FirstLevelDivisions;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +53,10 @@ public class ModifyCustomer extends SuperController implements Initializable {
 
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
+        // if country is selected clear the division preset selection, is triggered by this method
+        divisionComboBox.getSelectionModel().clearSelection(); // doesn't seem to work??
+
+        // get the selected country, and filter divisions by it
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = countrySelection.getCountryId();
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
@@ -61,8 +64,20 @@ public class ModifyCustomer extends SuperController implements Initializable {
 
     @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
+        // collect input information
+        String name = customerNameText.getText();
+        String phone = phoneNumberText.getText();
+        String address = addressText.getText();
+        String postal = postalCodeText.getText();
+        FirstLevelDivisions divisions = divisionComboBox.getSelectionModel().getSelectedItem();
+        int divisionId = divisions.getDivisionId();
 
+        // create a customer object with the collected data
+        Customers newCustomer = new Customers(0, name, address, postal, phone, divisionId);
 
+        // call create method to insert into the database
+        CustomerDAO dao = new CustomerDAO();
+        dao.create(newCustomer);
 
         displayNewScreen(updateCustomerButton, "/view/Customers.fxml");
     }
@@ -84,10 +99,9 @@ public class ModifyCustomer extends SuperController implements Initializable {
         phoneNumberText.setText(item.getPhone());
         addressText.setText(item.getAddress());
         postalCodeText.setText(item.getPostalCode());
+        countryComboBox.getSelectionModel().select(item.getCountryObject());
+        divisionComboBox.getSelectionModel().select(item.getDivisionsObject());
 
-//        item.getDivisionId()
-//
-//        divisionComboBox.setValue();
     }
 }
 

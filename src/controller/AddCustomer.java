@@ -59,6 +59,9 @@ public class AddCustomer extends SuperController implements Initializable {
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
     }
 
+    //TODO
+    // create alert box check for the user selecting divisions before selecting countries
+
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {
         // collect input information

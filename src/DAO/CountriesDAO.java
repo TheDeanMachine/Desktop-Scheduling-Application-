@@ -57,6 +57,26 @@ public class CountriesDAO implements DataAccessObject<Countries> {
         return  countryName;
     }
 
+    public static Countries getCountryObjectById(int id) {
+        Countries country = null;
+        try {
+            String query = "SELECT * FROM first_level_divisions fd \n" +
+                    "JOIN countries con ON fd.Country_ID = con.Country_ID WHERE division_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int countryID = resultSet.getInt("Country_ID");
+                String countryName = resultSet.getString("Country");
+                country = new Countries(countryID,countryName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return country;
+    }
+
     @Override
     public void update() {
 

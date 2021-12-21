@@ -60,6 +60,14 @@ public class Customers {
         return CountriesDAO.getCountryNameById(divisionId);
     }
 
+    public Countries getCountryObject(){
+        return CountriesDAO.getCountryObjectById(divisionId);
+    }
+
+    public FirstLevelDivisions getDivisionsObject(){
+        return FirstLevelDivisionsDAO.getDivisionObjectById(divisionId);
+    }
+
     // Setters
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
