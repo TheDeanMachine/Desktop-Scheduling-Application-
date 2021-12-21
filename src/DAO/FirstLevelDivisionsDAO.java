@@ -102,7 +102,7 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
     }
 
     @Override
-    public void update() {
+    public void update(FirstLevelDivisions object) {
 
     }
 

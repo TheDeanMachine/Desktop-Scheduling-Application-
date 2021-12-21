@@ -78,7 +78,7 @@ public class CountriesDAO implements DataAccessObject<Countries> {
     }
 
     @Override
-    public void update() {
+    public void update(Countries object) {
 
     }
 

@@ -61,6 +61,11 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws IOException {
+
+        //TODO
+        // all of the customer’s appointments must be deleted first, due to foreign key constraints.
+        // When a customer record is deleted, a custom message should display in the user interface.
+
         // get users selection
         Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
         int selection = selectedCustomer.getCustomerId();

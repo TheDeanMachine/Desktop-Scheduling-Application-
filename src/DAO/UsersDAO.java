@@ -40,7 +40,7 @@ public class UsersDAO implements DataAccessObject<Users> {
     }
 
     @Override
-    public void update() {
+    public void update(Users object) {
 
     }
 

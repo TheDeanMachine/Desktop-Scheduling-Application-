@@ -10,7 +10,7 @@ public interface DataAccessObject<T> {
     /// CRUD operations
     public abstract void create(T object);
     public abstract ObservableList<T> read();
-    public abstract void update();
+    public abstract void update(T object);
     public abstract void delete(int id);
 
 }

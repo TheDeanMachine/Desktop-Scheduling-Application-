@@ -64,7 +64,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
 
 
     @Override
-    public void update() {
+    public void update(Contacts object) {
 
     }
 

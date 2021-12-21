@@ -7,6 +7,7 @@ import DAO.FirstLevelDivisionsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -57,10 +58,19 @@ public class AddCustomer extends SuperController implements Initializable {
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = countrySelection.getCountryId();
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
+
     }
 
-    //TODO
-    // create alert box check for the user selecting divisions before selecting countries
+    // alert box check for the user selecting divisions before selecting countries
+    @FXML
+    void onActionCheck(ActionEvent event) { //CURRENTLY, DOESN'T WORK
+//        if(divisionComboBox.getSelectionModel().isEmpty()) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setHeaderText("PLease select a country to first");
+//            alert.showAndWait();
+//            return;
+//        }
+    }
 
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {

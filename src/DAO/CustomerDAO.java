@@ -86,8 +86,23 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     }
 
     @Override
-    public void update() {
+    public void update(Customers object) {
+        try {
+            query = "UPDATE customers \n" +
+                    "SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? \n" +
+                    "WHERE Customer_ID = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, object.getCustomerName());
+            preparedStatement.setString(2, object.getAddress());
+            preparedStatement.setString(3, object.getPostalCode());
+            preparedStatement.setString(4, object.getPhone());
+            preparedStatement.setInt(5, object.getDivisionId());
+            preparedStatement.setInt(6, object.getCustomerId());
+            preparedStatement.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

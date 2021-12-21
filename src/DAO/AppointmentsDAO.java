@@ -141,7 +141,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     }
 
     @Override
-    public void update() {
+    public void update(Appointments object) {
 
     }
 

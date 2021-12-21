@@ -77,7 +77,7 @@ public class ModifyCustomer extends SuperController implements Initializable {
 
         // call create method to insert into the database
         CustomerDAO dao = new CustomerDAO();
-        dao.create(newCustomer);
+        dao.update(newCustomer);
 
         displayNewScreen(updateCustomerButton, "/view/Customers.fxml");
     }
