@@ -63,7 +63,7 @@ public class CountriesDAO implements DataAccessObject<Countries> {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }

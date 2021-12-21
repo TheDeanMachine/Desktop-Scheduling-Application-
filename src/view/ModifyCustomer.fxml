@@ -67,7 +67,7 @@
             <VBox>
                <children>
                   <Label text="Country" />
-                  <ComboBox fx:id="countryComboBox" prefWidth="174.0" promptText="Select an Option" style="-fx-background-color: #d9d9d9;" />
+                  <ComboBox fx:id="countryComboBox" onAction="#onActionFilterDivisionsByCountry" prefWidth="174.0" promptText="Select an Option" style="-fx-background-color: #d9d9d9;" />
                </children>
             </VBox>
             <VBox>

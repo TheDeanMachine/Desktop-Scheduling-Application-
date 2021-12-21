@@ -91,7 +91,15 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     }
 
     @Override
-    public void delete() {
-
+    public void delete(int id) {
+        try {
+            query = "DELETE FROM customers \n" +
+                    "WHERE Customer_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

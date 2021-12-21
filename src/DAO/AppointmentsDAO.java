@@ -146,7 +146,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }

@@ -4,6 +4,7 @@ import DAO.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,7 +61,13 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws IOException {
-
+        // get users selection
+        Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
+        int selection = selectedCustomer.getCustomerId();
+        CustomerDAO dao = new CustomerDAO();
+        dao.delete(selection);
+        // refresh the tableview
+        customersTableView.setItems(dao.read());
     }
 
     @FXML
@@ -70,6 +77,21 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionOpenModifyFrom(ActionEvent event) throws IOException {
+        // if the user selects the modify button, without selecting an item display an alert box
+        if(customersTableView.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(null);
+            alert.setHeaderText("No selected entry found");
+            alert.setContentText("PLease select a customer to modify");
+            alert.showAndWait();
+            return;
+        } else {
+            // get user selected part
+            Customers selectedItem = customersTableView.getSelectionModel().getSelectedItem();
+            // pass the item to part form
+            ModifyCustomer.holdData(selectedItem);
+        }
+
         displayNewScreen(modifyButton, "/view/ModifyCustomer.fxml");
     }
 

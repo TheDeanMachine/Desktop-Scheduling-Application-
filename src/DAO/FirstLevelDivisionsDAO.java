@@ -88,7 +88,7 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }

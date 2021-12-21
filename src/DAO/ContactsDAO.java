@@ -69,7 +69,7 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }

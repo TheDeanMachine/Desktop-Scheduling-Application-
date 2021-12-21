@@ -45,7 +45,7 @@ public class UsersDAO implements DataAccessObject<Users> {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 

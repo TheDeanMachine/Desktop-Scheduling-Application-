@@ -11,6 +11,6 @@ public interface DataAccessObject<T> {
     public abstract void create(T object);
     public abstract ObservableList<T> read();
     public abstract void update();
-    public abstract void delete();
+    public abstract void delete(int id);
 
 }

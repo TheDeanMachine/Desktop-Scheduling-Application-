@@ -52,13 +52,11 @@ public class AddCustomer extends SuperController implements Initializable {
         displayNewScreen(cancelButton, "/view/Customers.fxml");
     }
 
-
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = countrySelection.getCountryId();
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
-
     }
 
     @FXML
