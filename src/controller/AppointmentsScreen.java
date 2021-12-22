@@ -113,7 +113,6 @@ public class AppointmentsScreen extends SuperController implements Initializable
 
     @FXML
     void onActionOpenAddForm(ActionEvent event) throws IOException {
-
         displayNewScreen(addButton, "/view/AddAppointment.fxml" );
     }
 

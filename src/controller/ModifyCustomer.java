@@ -65,6 +65,7 @@ public class ModifyCustomer extends SuperController implements Initializable {
     @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
         // collect input information
+        int id = Integer.parseInt(customerIdText.getText());
         String name = customerNameText.getText();
         String phone = phoneNumberText.getText();
         String address = addressText.getText();
@@ -73,7 +74,7 @@ public class ModifyCustomer extends SuperController implements Initializable {
         int divisionId = divisions.getDivisionId();
 
         // create a customer object with the collected data
-        Customers newCustomer = new Customers(0, name, address, postal, phone, divisionId);
+        Customers newCustomer = new Customers(id, name, address, postal, phone, divisionId);
 
         // call create method to insert into the database
         CustomerDAO dao = new CustomerDAO();

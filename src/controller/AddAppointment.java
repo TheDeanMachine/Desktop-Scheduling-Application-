@@ -2,28 +2,35 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Appointments;
+import model.Contacts;
+import model.Customers;
+import model.Users;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class AddAppointment extends SuperController {
+public class AddAppointment extends SuperController implements Initializable  {
 
     /// Appointment Fields fx:id ///
     @FXML
     private TextField appointmentIdText;
 
     @FXML
-    private ComboBox<?> customerIdComboBox;
+    private ComboBox<Customers> customerIdComboBox;
 
     @FXML
-    private ComboBox<?> userIdComboBox;
+    private ComboBox<Users> userIdComboBox;
 
     @FXML
-    private ComboBox<?> contactComboBox;
+    private ComboBox<Contacts> contactComboBox;
 
     @FXML
-    private ComboBox<?> typeComboBox;
+    private ComboBox<Appointments> typeComboBox;
 
     @FXML
     private TextField titleText;
@@ -62,4 +69,9 @@ public class AddAppointment extends SuperController {
         displayNewScreen(createAppointmentButton, "/view/Appointments.fxml");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+    }
 }
