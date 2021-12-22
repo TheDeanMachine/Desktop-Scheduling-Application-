@@ -15,6 +15,25 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
     @Override
     public void create(Appointments object) {
+        try {
+            query = "INSERT INTO appointments (title, description, location, type, start, end, customer_id, user_id, contact_id)\n" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, object.getTitle());
+            preparedStatement.setString(2, object.getDescription());
+            preparedStatement.setString(3, object.getLocation());
+            preparedStatement.setString(4, object.getType());
+            preparedStatement.setString(5, String.valueOf(object.getStart()));
+            preparedStatement.setString(6, String.valueOf(object.getEnd()));
+            preparedStatement.setInt(7, object.getCustomerId());
+            preparedStatement.setInt(8, object.getUserId());
+            preparedStatement.setInt(9, object.getContactId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

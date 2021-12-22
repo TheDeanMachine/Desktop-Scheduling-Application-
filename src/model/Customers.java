@@ -95,6 +95,6 @@ public class Customers {
 
     @Override
     public String toString() {
-        return customerName;
+        return String.valueOf(customerId);
     }
 }

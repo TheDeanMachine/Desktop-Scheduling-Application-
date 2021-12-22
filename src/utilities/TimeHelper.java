@@ -15,10 +15,7 @@ public abstract class TimeHelper {
         return months;
     }
 
-    LocalTime startTime = LocalTime.parse("8:00:00"); //8am
-    LocalTime endTime = LocalTime.parse("17:00:00"); //5pm
-
-    public static ObservableList initializeTimeSlots() {
+    public static ObservableList<LocalTime> initializeTimeSlots() {
         ObservableList<LocalTime> timeSlots = FXCollections.observableArrayList();
 
         LocalTime time = LocalTime.of(8, 0, 0);
@@ -32,6 +29,19 @@ public abstract class TimeHelper {
             }
         }
         return timeSlots;
+    }
+
+    public static void check(){
+        LocalTime startTime = LocalTime.parse("8:00:00"); //8am
+        LocalTime endTime = LocalTime.parse("17:00:00"); //5pm
+
+//        while (startTime.isBefore(endTime)) {
+//            if (!timeSlots.get(startTime) || !timeSlots.get(endTime)) {
+//                System.out.println("Appointment not available" + " start time: " + strTime + " end time: " + edTime);
+//                return;
+//            }
+//        }
+
     }
 
 }
