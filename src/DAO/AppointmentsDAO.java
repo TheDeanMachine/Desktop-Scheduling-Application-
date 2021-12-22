@@ -166,6 +166,15 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
     @Override
     public void delete(int id) {
-
+        try {
+            query = "DELETE FROM appointments \n" +
+                    "WHERE Appointment_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }

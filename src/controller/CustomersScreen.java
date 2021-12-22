@@ -91,9 +91,9 @@ public class CustomersScreen extends SuperController implements Initializable {
             alert.showAndWait();
             return;
         } else {
-            // get user selected part
+            // get user
             Customers selectedItem = customersTableView.getSelectionModel().getSelectedItem();
-            // pass the item to part form
+            // pass the user to modify form
             ModifyCustomer.holdData(selectedItem);
         }
 

@@ -13,7 +13,6 @@ import model.Contacts;
 import model.Customers;
 import model.Users;
 import utilities.TimeHelper;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -71,7 +70,7 @@ public class AddAppointment extends SuperController implements Initializable  {
     @FXML
     void onActionCreateAppointment(ActionEvent event) throws IOException {
         // collect input information
-        Customers selectedCustomer = customerIdComboBox.getSelectionModel().getSelectedItem();
+        Customers selectedCustomer = customerIdComboBox.getValue();
         int customerId = selectedCustomer.getCustomerId();
 
         Users selectedUser = userIdComboBox.getValue();

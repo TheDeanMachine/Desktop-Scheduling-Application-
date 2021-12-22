@@ -1,6 +1,9 @@
 package model;
 
 import DAO.ContactsDAO;
+import DAO.CustomerDAO;
+import DAO.UsersDAO;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -81,6 +84,18 @@ public class Appointments {
 
     public String getContact() {
         return ContactsDAO.getContactsNameById(contactId);
+    }
+
+    public Customers getCustomerObject(){
+        return CustomerDAO.getCustomerObjectById(customerId);
+    }
+
+    public Users getUserObject(){
+        return UsersDAO.getCustomerObjectById(userId);
+    }
+
+    public Contacts getContactObject(){
+        return ContactsDAO.getContactObjectById(contactId);
     }
 
     // Setters

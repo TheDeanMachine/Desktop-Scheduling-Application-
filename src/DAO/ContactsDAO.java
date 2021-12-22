@@ -62,6 +62,27 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
         return  contactName;
     }
 
+    public static Contacts getContactObjectById(int id){
+        Contacts contact = null;
+        try {
+            String query = "SELECT * FROM contacts WHERE contact_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int contactId = resultSet.getInt("contact_id");
+                String name = resultSet.getString("contact_name");
+                String email = resultSet.getString("email");
+
+                contact = new Contacts(contactId, name, email);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contact;
+    }
+
 
     @Override
     public void update(Contacts object) {

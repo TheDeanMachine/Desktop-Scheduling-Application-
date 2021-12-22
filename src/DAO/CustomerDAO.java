@@ -85,6 +85,31 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         return listOfCustomers;
     }
 
+    public static Customers getCustomerObjectById(int id) {
+        Customers customer = null;
+        try {
+            String query = "SELECT * FROM customers  \n" +
+                            "WHERE customer_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int customerId = resultSet.getInt("customer_id");
+                String name = resultSet.getString("customer_name");
+                String address = resultSet.getString("address");
+                String code = resultSet.getString("postal_code");
+                String phone = resultSet.getString("phone");
+                int divisionId = resultSet.getInt("division_id");
+
+                customer = new Customers(customerId, name, address, code, phone, divisionId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
     @Override
     public void update(Customers object) {
         try {
