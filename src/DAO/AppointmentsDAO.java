@@ -12,14 +12,14 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ResultSet resultSet;
     String query;
 
-
     @Override
     public void create(Appointments object) {
         try {
-            query = "INSERT INTO appointments (title, description, location, type, start, end, customer_id, user_id, contact_id)\n" +
+            query = "INSERT INTO appointments (title, description, location, type, start, end, customer_id, user_id, " +
+                    "contact_id) \n" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getTitle());
             preparedStatement.setString(2, object.getDescription());
             preparedStatement.setString(3, object.getLocation());
@@ -166,8 +166,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                     "SET title = ? , description = ?, location = ?, type = ?, start = ?, end = ?, customer_id = ?, " +
                     "user_id = ?, contact_id = ? \n" +
                     "WHERE Appointment_ID = ?;";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getTitle());
             preparedStatement.setString(2, object.getDescription());
             preparedStatement.setString(3, object.getLocation());
@@ -179,6 +179,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             preparedStatement.setInt(9, object.getContactId());
             preparedStatement.setInt(10, object.getAppointmentId());
             preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -189,6 +190,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         try {
             query = "DELETE FROM appointments \n" +
                     "WHERE Appointment_ID = ?";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();

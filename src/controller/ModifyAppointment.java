@@ -121,19 +121,8 @@ public class ModifyAppointment extends SuperController implements Initializable 
         titleText.setText(item.getTitle());
         descriptionText.setText(item.getDescription());
         locationText.setText(item.getLocation());
-
-        LocalDateTime localDateTime = item.getStart();
-        LocalDate localDate = localDateTime.toLocalDate();
-        appointmentDatePicker.setValue(localDate);
-
-        LocalTime startTime = localDateTime.toLocalTime();
-        appointmentStartComboBox.setValue(startTime);
-
-        LocalDateTime localDateTime2 = item.getEnd();
-        LocalTime endTime = localDateTime2.toLocalTime();
-        appointmentEndComboBox.setValue(endTime);
-
-
-
+        appointmentDatePicker.setValue(item.getStart().toLocalDate());
+        appointmentStartComboBox.setValue(item.getStart().toLocalTime());
+        appointmentEndComboBox.setValue(item.getEnd().toLocalTime());
     }
 }

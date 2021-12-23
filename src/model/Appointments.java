@@ -3,7 +3,6 @@ package model;
 import DAO.ContactsDAO;
 import DAO.CustomerDAO;
 import DAO.UsersDAO;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
