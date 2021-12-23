@@ -19,14 +19,13 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         try {
             query = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) \n" +
                     "VALUES (?, ?, ?, ?, ?);";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getCustomerName());
             preparedStatement.setString(2, object.getAddress());
             preparedStatement.setString(3, object.getPostalCode());
             preparedStatement.setString(4, object.getPhone());
             preparedStatement.setInt(5, object.getDivisionId());
-
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -64,6 +63,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
                     "FROM customers c \n" +
                     "JOIN appointments a ON a.customer_id = c.customer_id \n" +
                     "WHERE a.contact_id = ?;";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
@@ -90,6 +90,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         try {
             String query = "SELECT * FROM customers  \n" +
                             "WHERE customer_id = ?";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -116,6 +117,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
             query = "UPDATE customers \n" +
                     "SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? \n" +
                     "WHERE Customer_ID = ?;";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getCustomerName());
             preparedStatement.setString(2, object.getAddress());
@@ -135,9 +137,11 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         try {
             query = "DELETE FROM customers \n" +
                     "WHERE Customer_ID = ?";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

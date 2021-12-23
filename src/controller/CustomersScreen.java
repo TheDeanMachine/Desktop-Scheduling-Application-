@@ -61,16 +61,16 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws IOException {
-
-        //TODO
-        // all of the customer’s appointments must be deleted first, due to foreign key constraints.
-        // When a customer record is deleted, a custom message should display in the user interface.
-
         // get users selection
         Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
         int selection = selectedCustomer.getCustomerId();
+
+        // all the customer’s appointments must be deleted first, due to foreign key constraints.
+        // When a customer record is deleted, a custom message should display in the user interface.
+
         CustomerDAO dao = new CustomerDAO();
         dao.delete(selection);
+
         // refresh the tableview
         customersTableView.setItems(dao.read());
     }
@@ -85,9 +85,7 @@ public class CustomersScreen extends SuperController implements Initializable {
         // if the user selects the modify button, without selecting an item display an alert box
         if(customersTableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(null);
-            alert.setHeaderText("No selected entry found");
-            alert.setContentText("PLease select a customer to modify");
+            alert.setHeaderText("Please select a customer to modify");
             alert.showAndWait();
             return;
         } else {

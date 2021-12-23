@@ -3,7 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Contacts;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
     Statement statement;
     ResultSet resultSet;
     String query;
-
 
     @Override
     public void create(Contacts object) {
@@ -36,7 +34,6 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
                 Contacts contact = new Contacts(id, name, email);
                 listOfContacts.add(contact);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,7 +52,6 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
             while (resultSet.next()) {
                 contactName = resultSet.getString("contact_name");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
