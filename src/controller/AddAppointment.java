@@ -69,36 +69,25 @@ public class AddAppointment extends SuperController implements Initializable  {
 
     @FXML
     void onActionCreateAppointment(ActionEvent event) throws IOException {
-        // collect input information
-        Customers selectedCustomer = customerIdComboBox.getValue();
-        int customerId = selectedCustomer.getCustomerId();
-
-        Users selectedUser = userIdComboBox.getValue();
-        int userId = selectedUser.getUserID();
-
-        Contacts selectedContact = contactComboBox.getValue();
-        int contactId = selectedContact.getContactId();
-
-        Appointments selectedType = typeComboBox.getValue();
-        String type = selectedType.getType();
-
+        // collect information
+        int customerId = customerIdComboBox.getValue().getCustomerId();
+        int userId = userIdComboBox.getValue().getUserID();
+        int contactId = contactComboBox.getValue().getContactId();
+        String type = typeComboBox.getValue().getType();
         String title = titleText.getText();
         String description = descriptionText.getText();
         String location = locationText.getText();
+        LocalDate date = appointmentDatePicker.getValue();
+        LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue());
+        LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue());
 
-        LocalDate appDay = appointmentDatePicker.getValue();
-        LocalTime startTime = appointmentStartComboBox.getValue();
-        LocalTime endTime = appointmentEndComboBox.getValue();
-
-        LocalDateTime start = LocalDateTime.of(appDay, startTime);
-        LocalDateTime end = LocalDateTime.of(appDay, endTime);
-
+        // create appointment object
         Appointments appointment = new Appointments(0, title, description, location, type, start, end,
                 customerId, userId, contactId);
 
+        // pass it to dao for insertion
         AppointmentsDAO dao = new AppointmentsDAO();
         dao.create(appointment);
-
 
         displayNewScreen(createAppointmentButton, "/view/Appointments.fxml");
     }
