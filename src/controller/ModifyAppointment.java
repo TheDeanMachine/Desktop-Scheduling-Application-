@@ -18,6 +18,8 @@ import model.Users;
 import utilities.TimeHelper;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
@@ -68,11 +70,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
         displayNewScreen(cancelButton, "/view/Appointments.fxml");
     }
 
-    private static Appointments item = null;
 
-    public static void holdAppData(Appointments selectedAppointment) {
-        item = selectedAppointment;
-    }
 
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
@@ -83,6 +81,11 @@ public class ModifyAppointment extends SuperController implements Initializable 
         displayNewScreen(updateAppointmentButton, "/view/Appointments.fxml");
     }
 
+    private static Appointments item = null;
+
+    public static void holdAppData(Appointments selectedAppointment) {
+        item = selectedAppointment;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -98,11 +101,24 @@ public class ModifyAppointment extends SuperController implements Initializable 
         appointmentIdText.setText(String.valueOf(item.getAppointmentId()));
         customerIdComboBox.getSelectionModel().select(item.getCustomerObject());
         userIdComboBox.getSelectionModel().select(item.getUserObject());
+
         contactComboBox.getSelectionModel().select(item.getContactObject());
+
         typeComboBox.getSelectionModel().select(item);
         titleText.setText(item.getTitle());
         descriptionText.setText(item.getDescription());
         locationText.setText(item.getLocation());
+
+        LocalDateTime localDateTime = item.getStart();
+        LocalDate localDate = localDateTime.toLocalDate();
+        appointmentDatePicker.setValue(localDate);
+
+        LocalTime startTime = localDateTime.toLocalTime();
+        appointmentStartComboBox.setValue(startTime);
+
+        LocalDateTime localDateTime2 = item.getEnd();
+        LocalTime endTime = localDateTime2.toLocalTime();
+        appointmentEndComboBox.setValue(endTime);
 
 
 
