@@ -82,29 +82,44 @@ public class AppointmentsScreen extends SuperController implements Initializable
     /// Radio Button Methods ///
     @FXML
     void onActionWeekRadioButton(ActionEvent event) {
-
+        // custom methods in dao to filter by time intervals
     }
 
     @FXML
     void onActionMonthRadioButton(ActionEvent event) {
-
+        // custom methods in dao to filter by time intervals
     }
 
     @FXML
     void onActionAllRadioButton(ActionEvent event) {
-
+        appointmentsTableView.setItems(new AppointmentsDAO().read());
     }
 
     /// Appointments Methods ///
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
-        // get users selection
-        Appointments selectedAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
-        int selection = selectedAppointment.getAppointmentId();
-        AppointmentsDAO dao = new AppointmentsDAO();
-        dao.delete(selection);
-        // refresh the tableview
-        appointmentsTableView.setItems(dao.read());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        if(appointmentsTableView.getSelectionModel().isEmpty()){
+            alert.setHeaderText("Please select an appointment to delete");
+            alert.showAndWait();
+            return;
+        } else {
+            // get users selection
+            Appointments selectedAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
+            int selection = selectedAppointment.getAppointmentId();
+            AppointmentsDAO dao = new AppointmentsDAO();
+            dao.delete(selection);
+
+            // Appointment_ID and type of appointment canceled.
+            int id = selectedAppointment.getAppointmentId();
+            String type = selectedAppointment.getType();
+            alert.setHeaderText("Appointment " + id + " " + type + " has been deleted");
+            alert.showAndWait();
+
+            // refresh the tableview
+            appointmentsTableView.setItems(dao.read());
+        }
     }
 
     @FXML
@@ -112,9 +127,7 @@ public class AppointmentsScreen extends SuperController implements Initializable
         // if the user selects the modify button, without selecting an item display an alert box
         if(appointmentsTableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(null);
-            alert.setHeaderText("No selected entry found");
-            alert.setContentText("PLease select a customer to modify");
+            alert.setHeaderText("Please select an appointment to modify");
             alert.showAndWait();
             return;
         } else {
@@ -123,7 +136,6 @@ public class AppointmentsScreen extends SuperController implements Initializable
             // pass the appointment to modify form
             ModifyAppointment.holdAppData(selectedItem);
         }
-
         displayNewScreen(modifyButton, "/view/ModifyAppointment.fxml");
     }
 
