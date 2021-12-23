@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.AppointmentsDAO;
 import DAO.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,18 +62,32 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws IOException {
-        // get users selection
-        Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
-        int selection = selectedCustomer.getCustomerId();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-        // all the customer’s appointments must be deleted first, due to foreign key constraints.
-        // When a customer record is deleted, a custom message should display in the user interface.
+        if(customersTableView.getSelectionModel().isEmpty()) {
+            alert.setHeaderText("Please select a customer to delete");
+            alert.showAndWait();
+            return;
+        } else {
+            // get users selection
+            Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
+            int selection = selectedCustomer.getCustomerId();
 
-        CustomerDAO dao = new CustomerDAO();
-        dao.delete(selection);
+            // all the customer’s appointments must be deleted first
+            AppointmentsDAO.deleteCustomerAppointments(selection);
 
-        // refresh the tableview
-        customersTableView.setItems(dao.read());
+            // delete the customer
+            CustomerDAO dao = new CustomerDAO();
+            dao.delete(selection);
+
+            // custom message display in the user interface after deletion
+            alert.setHeaderText("Customer has been deleted");
+            alert.setContentText("There associated appointments where also deleted");
+            alert.showAndWait();
+
+            // refresh the tableview
+            customersTableView.setItems(dao.read());
+        }
     }
 
     @FXML

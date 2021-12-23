@@ -199,4 +199,18 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         }
     }
 
+    public static void deleteCustomerAppointments(int id) {
+        try {
+            String query = "DELETE FROM appointments \n" +
+                    "WHERE Customer_ID = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
