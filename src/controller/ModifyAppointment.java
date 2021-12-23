@@ -74,8 +74,38 @@ public class ModifyAppointment extends SuperController implements Initializable 
 
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
+        // collect information
+        int appointmentId = Integer.parseInt(appointmentIdText.getText());
 
+//        Customers selectedCustomer = customerIdComboBox.getValue();
+//        int customerId = selectedCustomer.getCustomerId();
 
+        int customerId = customerIdComboBox.getValue().getCustomerId();
+
+        int userId = userIdComboBox.getValue().getUserID();
+
+        Contacts selectedContact = contactComboBox.getValue();
+        int contactId = selectedContact.getContactId();
+
+        Appointments selectedType = typeComboBox.getValue();
+        String type = selectedType.getType();
+
+        String title = titleText.getText();
+        String description = descriptionText.getText();
+        String location = locationText.getText();
+
+        LocalDate appDay = appointmentDatePicker.getValue();
+        LocalTime startTime = appointmentStartComboBox.getValue();
+        LocalTime endTime = appointmentEndComboBox.getValue();
+
+        LocalDateTime start = LocalDateTime.of(appDay, startTime);
+        LocalDateTime end = LocalDateTime.of(appDay, endTime);
+
+        Appointments appointment = new Appointments(appointmentId, title, description, location, type, start, end,
+                customerId, userId, contactId);
+
+        AppointmentsDAO dao = new AppointmentsDAO();
+        dao.update(appointment);
 
 
         displayNewScreen(updateAppointmentButton, "/view/Appointments.fxml");

@@ -141,7 +141,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 String title = resultSet.getString("title");
                 String description = resultSet.getString("description");
                 String location = resultSet.getString("location");
-                String apptype = resultSet.getString("type");
+                String appType = resultSet.getString("type");
                 LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
                 LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
@@ -149,7 +149,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
                 int contactId = resultSet.getInt("contact_id");
 
                 Appointments appointment =
-                        new Appointments(appId,title,description,location,apptype,start,end,customerId,userId,contactId);
+                        new Appointments(appId,title,description,location,appType,start,end,customerId,userId,contactId);
                 listOfAppointments.add(appointment);
                 count = listOfAppointments.size();
             }
@@ -161,7 +161,27 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
     @Override
     public void update(Appointments object) {
+        try {
+            query = "UPDATE appointments \n" +
+                    "SET title = ? , description = ?, location = ?, type = ?, start = ?, end = ?, customer_id = ?, " +
+                    "user_id = ?, contact_id = ? \n" +
+                    "WHERE Appointment_ID = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+            preparedStatement.setString(1, object.getTitle());
+            preparedStatement.setString(2, object.getDescription());
+            preparedStatement.setString(3, object.getLocation());
+            preparedStatement.setString(4, object.getType());
+            preparedStatement.setString(5, String.valueOf(object.getStart()));
+            preparedStatement.setString(6, String.valueOf(object.getEnd()));
+            preparedStatement.setInt(7, object.getCustomerId());
+            preparedStatement.setInt(8, object.getUserId());
+            preparedStatement.setInt(9, object.getContactId());
+            preparedStatement.setInt(10, object.getAppointmentId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
