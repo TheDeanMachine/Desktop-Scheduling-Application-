@@ -2,11 +2,12 @@ package utilities;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class TimeHelper {
 
@@ -41,14 +42,6 @@ public abstract class TimeHelper {
 //                return;
 //            }
 //        }
-
-    }
-
-
-    public static void getDuration(){
-
-        Period.between(LocalDate.now(), LocalDate.now().plusMonths(1));
-
 
     }
 

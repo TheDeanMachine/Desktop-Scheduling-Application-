@@ -167,8 +167,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             statement = connection.createStatement();
             query = "SELECT * \n" +
                     "FROM appointments \n" +
-                    "WHERE start BETWEEN now() \n" +
-                    "AND DATE_ADD(now(), INTERVAL 1 MONTH);" ;
+                    "WHERE MONTH(start) = MONTH(CURRENT_DATE()) \n" +
+                    "AND DATE_ADD(start, INTERVAL 1 MONTH);" ;
             resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
@@ -196,10 +196,10 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     public ObservableList<Appointments> getThisWeeksAppointments() {
         try {
             statement = connection.createStatement();
-            query = "SELECT * \n" +
-                    "FROM appointments \n" +
-                    "WHERE start BETWEEN now() \n" +
-                    "AND DATE_ADD(now(), INTERVAL 1 WEEK);" ;
+            query = "SELECT *\n" +
+                    "FROM appointments\n" +
+                    "WHERE WEEK(start) = WEEK(CURRENT_DATE()) \n" +
+                    "AND DATE_ADD(start, INTERVAL 1 WEEK);" ;
             resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
