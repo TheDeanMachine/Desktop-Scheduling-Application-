@@ -4,7 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
+
 
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ObservableList<Appointments> listOfAppointments = FXCollections.observableArrayList();
@@ -157,6 +160,12 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public static ObservableList<Appointments> getThisMonthsAppointments(){
+
+
+        return null;
     }
 
     @Override

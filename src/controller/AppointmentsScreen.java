@@ -83,11 +83,13 @@ public class AppointmentsScreen extends SuperController implements Initializable
     @FXML
     void onActionWeekRadioButton(ActionEvent event) {
         // custom methods in dao to filter by time intervals
+        // this week
     }
 
     @FXML
     void onActionMonthRadioButton(ActionEvent event) {
         // custom methods in dao to filter by time intervals
+        // this month
     }
 
     @FXML

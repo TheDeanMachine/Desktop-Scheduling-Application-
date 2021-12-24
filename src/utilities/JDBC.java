@@ -28,8 +28,7 @@ public abstract class JDBC {
             System.out.println("Connection successful!");
         }
         catch(Exception e) {
-            System.out.println("Error:" + e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -39,8 +38,7 @@ public abstract class JDBC {
             System.out.println("Connection closed!");
         }
         catch(Exception e) {
-            System.out.println("Error:" + e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

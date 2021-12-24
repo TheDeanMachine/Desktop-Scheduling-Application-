@@ -3,8 +3,10 @@ package utilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.Period;
 
 public abstract class TimeHelper {
 
@@ -19,21 +21,19 @@ public abstract class TimeHelper {
         ObservableList<LocalTime> timeSlots = FXCollections.observableArrayList();
 
         LocalTime time = LocalTime.of(8, 0, 0);
-        for (int i = 0; i < 9; i++) {
-            LocalTime temp = time.plusHours(i);
-            timeSlots.add(temp);
-
-            for (int x = 15; x <= 45; x+=15) {
-                LocalTime temp2 = temp.plusMinutes(x);
-                timeSlots.add(temp2);
-            }
+        for (int x = 15; x <= 840; x+=15) {
+                LocalTime min = time.plusMinutes(x);
+                timeSlots.add(min);
         }
         return timeSlots;
     }
 
     public static void check(){
-        LocalTime startTime = LocalTime.parse("8:00:00"); //8am
-        LocalTime endTime = LocalTime.parse("17:00:00"); //5pm
+
+        // EST ?????
+
+        LocalTime startTime = LocalTime.parse("8:00:00"); // 8am
+        LocalTime endTime = LocalTime.parse("22:00:00"); // 10pm
 
 //        while (startTime.isBefore(endTime)) {
 //            if (!timeSlots.get(startTime) || !timeSlots.get(endTime)) {
@@ -41,6 +41,14 @@ public abstract class TimeHelper {
 //                return;
 //            }
 //        }
+
+    }
+
+
+    public static void getDuration(){
+
+        Period.between(LocalDate.now(), LocalDate.now().plusMonths(1));
+
 
     }
 
