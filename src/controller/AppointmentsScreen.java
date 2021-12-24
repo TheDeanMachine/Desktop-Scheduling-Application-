@@ -10,6 +10,7 @@ import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AppointmentsScreen extends SuperController implements Initializable {
@@ -82,14 +83,12 @@ public class AppointmentsScreen extends SuperController implements Initializable
     /// Radio Button Methods ///
     @FXML
     void onActionWeekRadioButton(ActionEvent event) {
-        // custom methods in dao to filter by time intervals
-        // this week
+        appointmentsTableView.setItems(new AppointmentsDAO().getThisWeeksAppointments());
     }
 
     @FXML
     void onActionMonthRadioButton(ActionEvent event) {
-        // custom methods in dao to filter by time intervals
-        // this month
+        appointmentsTableView.setItems(new AppointmentsDAO().getThisMonthsAppointments());
     }
 
     @FXML
@@ -100,27 +99,37 @@ public class AppointmentsScreen extends SuperController implements Initializable
     /// Appointments Methods ///
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+        Alert alertConf = new Alert(Alert.AlertType.CONFIRMATION);
 
         if(appointmentsTableView.getSelectionModel().isEmpty()){
-            alert.setHeaderText("Please select an appointment to delete");
-            alert.showAndWait();
+            alertInfo.setHeaderText("Please select an appointment to delete");
+            alertInfo.showAndWait();
             return;
         } else {
-            // get users selection
-            Appointments selectedAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
-            int selection = selectedAppointment.getAppointmentId();
-            AppointmentsDAO dao = new AppointmentsDAO();
-            dao.delete(selection);
+            alertConf.setTitle("Confirmation Dialog");
+            alertConf.setHeaderText("Are you sure you want to delete this appointment?");
+            alertConf.setContentText("Press ok to delete, and cancel to go back");
 
-            // Appointment_ID and type of appointment canceled.
-            int id = selectedAppointment.getAppointmentId();
-            String type = selectedAppointment.getType();
-            alert.setHeaderText("Appointment " + id + " " + type + " has been deleted");
-            alert.showAndWait();
+            Optional<ButtonType> result = alertConf.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // get users selection
+                Appointments selectedAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
+                int selection = selectedAppointment.getAppointmentId();
+                AppointmentsDAO dao = new AppointmentsDAO();
+                dao.delete(selection);
 
-            // refresh the tableview
-            appointmentsTableView.setItems(dao.read());
+                // Appointment_ID and type of appointment canceled.
+                int id = selectedAppointment.getAppointmentId();
+                String type = selectedAppointment.getType();
+                alertInfo.setHeaderText("Appointment " + id + " " + type + " has been deleted");
+                alertInfo.showAndWait();
+
+                // refresh the tableview
+                appointmentsTableView.setItems(dao.read());
+            } else {
+                return;
+            }
         }
     }
 

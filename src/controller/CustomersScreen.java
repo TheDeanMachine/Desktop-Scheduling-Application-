@@ -5,14 +5,12 @@ import DAO.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customers;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomersScreen extends SuperController implements Initializable {
@@ -62,31 +60,41 @@ public class CustomersScreen extends SuperController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+        Alert alertConf = new Alert(Alert.AlertType.CONFIRMATION);
 
         if(customersTableView.getSelectionModel().isEmpty()) {
-            alert.setHeaderText("Please select a customer to delete");
-            alert.showAndWait();
+            alertInfo.setHeaderText("Please select a customer to delete");
+            alertInfo.showAndWait();
             return;
         } else {
-            // get users selection
-            Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
-            int selection = selectedCustomer.getCustomerId();
+            alertConf.setTitle("Confirmation Dialog");
+            alertConf.setHeaderText("Are you sure you want to delete this customer?");
+            alertConf.setContentText("Press ok to delete, and cancel to go back");
 
-            // all the customer’s appointments must be deleted first
-            AppointmentsDAO.deleteCustomerAppointments(selection);
+            Optional<ButtonType> result = alertConf.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                // get users selection
+                Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
+                int selection = selectedCustomer.getCustomerId();
 
-            // delete the customer
-            CustomerDAO dao = new CustomerDAO();
-            dao.delete(selection);
+                // all the customer’s appointments must be deleted first
+                AppointmentsDAO.deleteCustomerAppointments(selection);
 
-            // custom message display in the user interface after deletion
-            alert.setHeaderText("Customer has been deleted");
-            alert.setContentText("There associated appointments where also deleted");
-            alert.showAndWait();
+                // delete the customer
+                CustomerDAO dao = new CustomerDAO();
+                dao.delete(selection);
 
-            // refresh the tableview
-            customersTableView.setItems(dao.read());
+                // custom message display in the user interface after deletion
+                alertInfo.setHeaderText("Customer has been deleted");
+                alertInfo.setContentText("There associated appointments where also deleted");
+                alertInfo.showAndWait();
+
+                // refresh the tableview
+                customersTableView.setItems(dao.read());
+            } else {
+                return;
+            }
         }
     }
 

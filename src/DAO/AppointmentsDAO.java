@@ -162,10 +162,66 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return count;
     }
 
-    public static ObservableList<Appointments> getThisMonthsAppointments(){
+    public ObservableList<Appointments> getThisMonthsAppointments() {
+        try {
+            statement = connection.createStatement();
+            query = "SELECT * \n" +
+                    "FROM appointments \n" +
+                    "WHERE start BETWEEN now() \n" +
+                    "AND DATE_ADD(now(), INTERVAL 1 MONTH);" ;
+            resultSet = statement.executeQuery(query);
 
+            while(resultSet.next()){
+                int id = resultSet.getInt("appointment_id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String location = resultSet.getString("location");
+                String type = resultSet.getString("type");
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
+                int customerId = resultSet.getInt("customer_id");
+                int userId = resultSet.getInt("user_id");
+                int contactId = resultSet.getInt("contact_id");
 
-        return null;
+                Appointments appointment =
+                        new Appointments(id,title,description,location,type,start,end,customerId,userId,contactId);
+                listOfAppointments.add(appointment);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfAppointments;
+    }
+
+    public ObservableList<Appointments> getThisWeeksAppointments() {
+        try {
+            statement = connection.createStatement();
+            query = "SELECT * \n" +
+                    "FROM appointments \n" +
+                    "WHERE start BETWEEN now() \n" +
+                    "AND DATE_ADD(now(), INTERVAL 1 WEEK);" ;
+            resultSet = statement.executeQuery(query);
+
+            while(resultSet.next()){
+                int id = resultSet.getInt("appointment_id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String location = resultSet.getString("location");
+                String type = resultSet.getString("type");
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
+                int customerId = resultSet.getInt("customer_id");
+                int userId = resultSet.getInt("user_id");
+                int contactId = resultSet.getInt("contact_id");
+
+                Appointments appointment =
+                        new Appointments(id,title,description,location,type,start,end,customerId,userId,contactId);
+                listOfAppointments.add(appointment);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfAppointments;
     }
 
     @Override
