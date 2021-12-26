@@ -18,22 +18,22 @@
       </Label>
       <Pane layoutY="-1.0" prefHeight="406.0" prefWidth="263.0" style="-fx-background-color: #749dda;">
          <children>
-            <Label layoutX="32.0" layoutY="42.0" prefHeight="68.0" prefWidth="207.0" text="Desktop Scheduling Application " textAlignment="CENTER" textFill="#053579" wrapText="true">
+            <Label layoutX="32.0" layoutY="42.0" prefHeight="68.0" prefWidth="207.0" text="Desktop Scheduling Application " textFill="#053579" wrapText="true">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="39.0" layoutY="110.0" prefHeight="20.0" prefWidth="194.0" text="For all your scheduling needs." textFill="#053579">
+            <Label layoutX="31.0" layoutY="110.0" prefHeight="20.0" prefWidth="194.0" text="For all your scheduling needs." textFill="#053579">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="341.0" text="Your TimeZone is:">
+            <Label layoutX="32.0" layoutY="301.0" text="Your TimeZone is:" textFill="#053579">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="timezoneLabel" layoutX="152.0" layoutY="341.0" prefHeight="20.0" prefWidth="69.0" text="&quot;timezone&quot;">
+            <Label fx:id="timezoneLabel" layoutX="32.0" layoutY="321.0" prefHeight="20.0" prefWidth="178.0" text="&quot;timezone&quot;" textFill="#053579">
                <font>
                   <Font size="14.0" />
                </font>
