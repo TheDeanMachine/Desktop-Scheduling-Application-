@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LogInScreen extends SuperController implements Initializable {
@@ -58,6 +59,20 @@ public class LogInScreen extends SuperController implements Initializable {
 
         displayNewScreen(logInButton, "/view/Appointments.fxml");
     }
+
+    public static void main(String[] args) {
+//        // test
+//        Locale.setDefault((new Locale("fr")));
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("/utilities/Localization_fr.properties",
+                Locale.getDefault());
+
+        if (Locale.getDefault().getLanguage().equals("fr")){
+            System.out.println("Desktop Scheduling Application ");
+        }
+
+    }
+
 
 
 
