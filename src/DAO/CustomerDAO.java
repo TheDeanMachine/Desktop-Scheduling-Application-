@@ -59,7 +59,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
 
     public ObservableList<Customers> getCustomerContactInformation(int id) {
         try {
-            query = "SELECT c.customer_id, c.customer_name, c.address, c.postal_code, c.phone, c.division_Id \n" +
+            query = "SELECT distinct c.customer_id, c.customer_name, c.address, c.postal_code, c.phone, c.division_Id \n" +
                     "FROM customers c \n" +
                     "JOIN appointments a ON a.customer_id = c.customer_id \n" +
                     "WHERE a.contact_id = ?;";
