@@ -8,9 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -33,56 +30,32 @@ public class LogInScreen extends SuperController implements Initializable {
     @FXML
     void onActionDisplayMainScreen(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-        String userName = null; // sqlUser
-        String password = null; // Passw0rd!
+        String userName = null;
+        String password = null;
         boolean logInAttempt = false;
-        int counter = 1;
-
-//        try {
-//            userName = userNameText.getText();
-//            if (userName == null || userName.isBlank() || !userName.equals("sqlUser")) {
-//                throw new Exception();
-//            }
-//        } catch (Exception e) {
-//            errorAlert.setHeaderText("Incorrect user name");
-//            errorAlert.setContentText("Please try again");
-//            errorAlert.showAndWait();
-//            return;
-//        }
-//
-//        // password input verification
-//        try {
-//            password = passwordText.getText();
-//            if (password == null || password.isBlank() || !password.equals("Passw0rd!")) {
-//                throw new Exception();
-//            }
-//        } catch (Exception e) {
-//            errorAlert.setHeaderText("Incorrect password");
-//            errorAlert.setContentText("Please try again");
-//            errorAlert.showAndWait();
-//            return;
-//        }
+        int counter = 0;
 
         try {
             userName = userNameText.getText();
             password = passwordText.getText();
 
-
-            if ((userName == null || userName.isBlank() || !userName.equals("sqlUser")) ||
-             (password == null || password.isBlank() || !password.equals("Passw0rd!"))) {
+            if ((userName == null || userName.isBlank() || !userName.equals("sqlUser")) || // username wrong
+             (password == null || password.isBlank() || !password.equals("Passw0rd!"))) {  // password wrong
                 counter++;
                 userActivity(counter, logInAttempt);
                 throw new Exception();
+            } else {
+                counter++;
+                logInAttempt = true;
+                userActivity(counter, logInAttempt);
             }
+
         } catch (Exception e) {
             errorAlert.setHeaderText("Incorrect credentials");
             errorAlert.setContentText("Please try again");
             errorAlert.showAndWait();
             return;
         }
-
-        logInAttempt = true;
-        userActivity(counter, logInAttempt);
 
         displayNewScreen(logInButton, "/view/Appointments.fxml");
     }
@@ -92,14 +65,13 @@ public class LogInScreen extends SuperController implements Initializable {
         LocalDateTime time = LocalDateTime.now();
 
         // try-with-resources, auto closes
-        try (PrintWriter pw = new PrintWriter(new FileWriter("login_activity.txt"))){
-            pw.println(count);
-            pw.println(time);
-            pw.println(attempt);
+        try (PrintWriter pw = new PrintWriter(new FileWriter("login_activity.txt", true))){
+            pw.println("Attempts made: " + count);
+            pw.println("The time and date of attempt was: " + time);
+            pw.println("Successful log in: " + attempt);
+            pw.println("---------------------");
         }
     }
-
-
 
     public static void main(String[] args) {
         // test
