@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 public class LogInScreen extends SuperController implements Initializable {
 
     @FXML
+    private Label desktop;
+
+    @FXML
     private Label timezoneLabel;
 
     @FXML
@@ -73,20 +76,20 @@ public class LogInScreen extends SuperController implements Initializable {
         }
     }
 
+
     public static void main(String[] args) {
-        // test
-        Locale.setDefault((new Locale("fr")));
 
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("/utilities/Localization_fr.properties",
-                Locale.getDefault());
-
-        if (Locale.getDefault().getLanguage().equals("fr")){
-            System.out.println("Desktop Scheduling Application ");
-        }
+//        ResourceBundle resourceBundle = ResourceBundle.getBundle("controller/Localization_fr.properties",
+//                Locale.getDefault());
+//
+//        if (Locale.getDefault().getLanguage().equals("fr")){
+//            System.out.println(resourceBundle.getString("Desktop") +
+//                    resourceBundle.getString("Scheduling") +
+//                    resourceBundle.getString("Application")
+//            );
+//        }
 
     }
-
-
 
 
     @Override
@@ -94,5 +97,17 @@ public class LogInScreen extends SuperController implements Initializable {
         ZoneId zone = ZoneId.systemDefault();
         String zoneDisplay = zone.getId();
         timezoneLabel.setText(zoneDisplay);
+
+//
+//
+//        ResourceBundle resourceBundle2 = ResourceBundle.getBundle("controller/Localization_fr.properties",
+//                Locale.getDefault());
+//
+//        if (Locale.getDefault().getLanguage().equals("fr")){
+//            desktop.setText(resourceBundle2.getString("Desktop"));
+//
+//        }
+
+
     }
 }

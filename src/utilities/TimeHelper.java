@@ -5,9 +5,7 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 public abstract class TimeHelper {
 
@@ -20,8 +18,8 @@ public abstract class TimeHelper {
 
     public static ObservableList<LocalTime> initializeTimeSlots() {
         ObservableList<LocalTime> timeSlots = FXCollections.observableArrayList();
-
         LocalTime time = LocalTime.of(8, 0, 0);
+        timeSlots.add(time); // starts at 8am
         for (int x = 15; x <= 840; x+=15) {
                 LocalTime min = time.plusMinutes(x);
                 timeSlots.add(min);

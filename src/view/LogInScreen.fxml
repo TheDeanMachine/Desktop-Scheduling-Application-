@@ -18,7 +18,7 @@
       </Label>
       <Pane layoutY="-1.0" prefHeight="406.0" prefWidth="263.0" style="-fx-background-color: #749dda;">
          <children>
-            <Label layoutX="32.0" layoutY="42.0" prefHeight="68.0" prefWidth="207.0" text="Desktop Scheduling Application " textFill="#053579" wrapText="true">
+            <Label fx:id="desktop" layoutX="32.0" layoutY="42.0" prefHeight="68.0" prefWidth="207.0" text="Desktop Scheduling Application " textFill="#053579" wrapText="true">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
