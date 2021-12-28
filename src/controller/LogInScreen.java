@@ -79,7 +79,7 @@ public class LogInScreen extends SuperController implements Initializable {
 
     public static void main(String[] args) {
 
-//        ResourceBundle resourceBundle = ResourceBundle.getBundle("controller/Localization_fr.properties",
+//        ResourceBundle resourceBundle = ResourceBundle.getBundle("utilities/Localization_fr.properties",
 //                Locale.getDefault());
 //
 //        if (Locale.getDefault().getLanguage().equals("fr")){
@@ -100,7 +100,7 @@ public class LogInScreen extends SuperController implements Initializable {
 
 //
 //
-//        ResourceBundle resourceBundle2 = ResourceBundle.getBundle("controller/Localization_fr.properties",
+//        ResourceBundle resourceBundle2 = ResourceBundle.getBundle("utilities/Localization_fr.properties",
 //                Locale.getDefault());
 //
 //        if (Locale.getDefault().getLanguage().equals("fr")){

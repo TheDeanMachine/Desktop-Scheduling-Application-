@@ -27,8 +27,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             preparedStatement.setString(2, object.getDescription());
             preparedStatement.setString(3, object.getLocation());
             preparedStatement.setString(4, object.getType());
-            preparedStatement.setString(5, String.valueOf(object.getStart()));
-            preparedStatement.setString(6, String.valueOf(object.getEnd()));
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(object.getStart()));
+            preparedStatement.setTimestamp(6, Timestamp.valueOf(object.getEnd()));
             preparedStatement.setInt(7, object.getCustomerId());
             preparedStatement.setInt(8, object.getUserId());
             preparedStatement.setInt(9, object.getContactId());
@@ -237,8 +237,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             preparedStatement.setString(2, object.getDescription());
             preparedStatement.setString(3, object.getLocation());
             preparedStatement.setString(4, object.getType());
-            preparedStatement.setString(5, String.valueOf(object.getStart()));
-            preparedStatement.setString(6, String.valueOf(object.getEnd()));
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(object.getStart()));
+            preparedStatement.setTimestamp(6, Timestamp.valueOf(object.getEnd()));
             preparedStatement.setInt(7, object.getCustomerId());
             preparedStatement.setInt(8, object.getUserId());
             preparedStatement.setInt(9, object.getContactId());
