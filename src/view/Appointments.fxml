@@ -23,7 +23,7 @@
             <TableColumn fx:id="contactColumn" prefWidth="87.0" text="Contact" />
             <TableColumn fx:id="typeColumn" prefWidth="93.0" text="Type" />
             <TableColumn fx:id="startColumn" prefWidth="109.0" text="Start" />
-            <TableColumn fx:id="endColumn" prefWidth="101.0" text="End" />
+            <TableColumn fx:id="endColumn" prefWidth="109.0" text="End" />
             <TableColumn fx:id="customerIdColumn" minWidth="8.0" prefWidth="85.0" text="Customer_ID" />
             <TableColumn fx:id="userIdColumn" prefWidth="78.0" text="User_ID" />
          </columns>

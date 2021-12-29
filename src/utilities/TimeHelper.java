@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.ZoneId;
 
 
 public abstract class TimeHelper {
@@ -29,6 +30,9 @@ public abstract class TimeHelper {
     }
 
     public static boolean check(){
+
+        ZoneId zone = ZoneId.systemDefault();
+        String zoneDisplay = zone.getId();
 
         // Note: There are up to three time zones in effect.
         // Coordinated Universal Time (UTC) is used for storing the time in the database

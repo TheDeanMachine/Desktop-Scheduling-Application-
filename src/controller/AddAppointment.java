@@ -213,6 +213,19 @@ public class AddAppointment extends SuperController implements Initializable  {
         }
 
         // appointment time checks
+        if(end.isBefore(start)){
+            errorAlert.setHeaderText("Incorrect appointment duration!");
+            errorAlert.setContentText("Appointment end time cannot be before start time");
+            errorAlert.showAndWait();
+            return;
+        }
+        // appointment time checks
+        if(end.isEqual(start)){
+            errorAlert.setHeaderText("Incorrect appointment duration!");
+            errorAlert.setContentText("Appointment end time cannot be same as start time");
+            errorAlert.showAndWait();
+            return;
+        }
 
 
         // create appointment object

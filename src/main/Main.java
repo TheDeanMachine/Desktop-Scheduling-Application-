@@ -19,8 +19,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        // test
-        Locale.setDefault((new Locale("fr")));
+//        // test language change
+//        Locale.setDefault((new Locale("fr")));
 
         JDBC.getConnection();
         launch(args);

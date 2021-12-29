@@ -8,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -45,27 +47,25 @@ public class LogInScreen extends SuperController implements Initializable {
     @FXML
     private Button logInButton;
 
+    // keeps track of log in attempts for a given instance
+    private static int counter = 0;
+
     @FXML
     void onActionDisplayMainScreen(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         String userName = null;
         String password = null;
-        boolean logInAttempt = false;
-        int counter = 0;
 
         try {
             userName = userNameText.getText();
             password = passwordText.getText();
 
-            if ((userName == null || userName.isBlank() || !userName.equals("sqlUser")) || // username wrong
-             (password == null || password.isBlank() || !password.equals("Passw0rd!"))) {  // password wrong
-                counter++;
-                userActivity(counter, logInAttempt);
+            if ((userName == null || userName.isBlank() || !userName.equals("test")) || // username wrong
+             (password == null || password.isBlank() || !password.equals("test"))) {  // password wrong
+                userActivity(false);
                 throw new Exception();
             } else {
-                counter++;
-                logInAttempt = true;
-                userActivity(counter, logInAttempt);
+                userActivity(true);
             }
 
         } catch (Exception e) {
@@ -90,14 +90,17 @@ public class LogInScreen extends SuperController implements Initializable {
     }
 
     // user log-in attempts
-    public void userActivity(int count, boolean attempt) throws IOException {
-        LocalDateTime time = LocalDateTime.now();
+    public void userActivity(boolean attempt) throws IOException {
+        LocalDateTime dateTime = LocalDateTime.now();
+        LocalDate date = dateTime.toLocalDate();
+        LocalTime time = dateTime.toLocalTime();
 
         // try-with-resources, auto closes
         try (PrintWriter pw = new PrintWriter(new FileWriter("login_activity.txt", true))){
-            pw.println("Attempts made: " + count);
-            pw.println("The time and date of attempt was: " + time);
-            pw.println("Successful log in: " + attempt);
+            pw.println("Attempt number: " + (++counter));
+            pw.println("The date of attempt was: " + date);
+            pw.println("The time of attempt was: " + time);
+            pw.println("Successful log in was: " + attempt);
             pw.println("---------------------");
         }
     }
