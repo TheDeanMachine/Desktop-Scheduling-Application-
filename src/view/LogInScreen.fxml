@@ -11,24 +11,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="600.0" style="-fx-background-color: #fafbfc;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInScreen">
    <children>
-      <Label layoutX="300.0" layoutY="74.0" prefHeight="17.0" prefWidth="100.0" text="Sign In">
+      <Label fx:id="signInLabel" layoutX="300.0" layoutY="74.0" prefHeight="28.0" prefWidth="135.0" text="Sign In">
          <font>
             <Font name="Calibri Bold" size="24.0" />
          </font>
       </Label>
       <Pane layoutY="-1.0" prefHeight="406.0" prefWidth="263.0" style="-fx-background-color: #749dda;">
          <children>
-            <Label fx:id="desktop" layoutX="32.0" layoutY="42.0" prefHeight="68.0" prefWidth="207.0" text="Desktop Scheduling Application " textFill="#053579" wrapText="true">
+            <Label fx:id="primaryLabel" layoutX="28.0" layoutY="25.0" prefHeight="98.0" prefWidth="207.0" text="Desktop Scheduling Application " textFill="#053579" wrapText="true">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="110.0" prefHeight="20.0" prefWidth="194.0" text="For all your scheduling needs." textFill="#053579">
+            <Label fx:id="secondaryLabel" layoutX="28.0" layoutY="123.0" prefHeight="41.0" prefWidth="207.0" text="For all your scheduling needs" textFill="#053579" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="32.0" layoutY="301.0" text="Your TimeZone is:" textFill="#053579">
+            <Label fx:id="userZoneLabel" layoutX="32.0" layoutY="301.0" text="Your TimeZone is:" textFill="#053579">
                <font>
                   <Font size="14.0" />
                </font>
@@ -44,8 +44,8 @@
          <children>
             <TextField fx:id="userNameText" layoutX="43.0" layoutY="31.0" prefHeight="28.0" prefWidth="207.0" promptText="User Name" />
             <PasswordField fx:id="passwordText" layoutX="43.0" layoutY="86.0" prefHeight="28.0" prefWidth="207.0" promptText="Password" />
-            <Label layoutX="43.0" layoutY="14.0" text="User Name" />
-            <Label layoutX="43.0" layoutY="69.0" text="Password" />
+            <Label fx:id="userNameLabel" layoutX="43.0" layoutY="14.0" text="User Name" />
+            <Label fx:id="passwordLabel" layoutX="43.0" layoutY="69.0" text="Password" />
          </children>
       </Pane>
       <Button fx:id="logInButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="415.0" layoutY="244.0" mnemonicParsing="false" onAction="#onActionDisplayMainScreen" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #9ab8e5; -fx-background-radius: 5px;" text="LOG IN" textFill="#053579">

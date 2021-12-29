@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utilities.JDBC;
-
 import java.util.Locale;
 
 public class Main extends Application {
