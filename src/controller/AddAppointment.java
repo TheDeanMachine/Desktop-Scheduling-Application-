@@ -212,6 +212,8 @@ public class AddAppointment extends SuperController implements Initializable  {
             return;
         }
 
+        // appointment time checks
+
 
         // create appointment object
         Appointments appointment = new Appointments(0, title, description, location, type, start, end,

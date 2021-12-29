@@ -77,36 +77,23 @@ public class LogInScreen extends SuperController implements Initializable {
     }
 
 
-    public static void main(String[] args) {
-
-//        ResourceBundle resourceBundle = ResourceBundle.getBundle("utilities/Localization_fr.properties",
-//                Locale.getDefault());
-//
-//        if (Locale.getDefault().getLanguage().equals("fr")){
-//            System.out.println(resourceBundle.getString("Desktop") +
-//                    resourceBundle.getString("Scheduling") +
-//                    resourceBundle.getString("Application")
-//            );
-//        }
-
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ZoneId zone = ZoneId.systemDefault();
         String zoneDisplay = zone.getId();
         timezoneLabel.setText(zoneDisplay);
 
-//
-//
-//        ResourceBundle resourceBundle2 = ResourceBundle.getBundle("utilities/Localization_fr.properties",
-//                Locale.getDefault());
-//
-//        if (Locale.getDefault().getLanguage().equals("fr")){
-//            desktop.setText(resourceBundle2.getString("Desktop"));
-//
-//        }
+
+
+         resourceBundle = ResourceBundle.getBundle("utilities/Localization_fr", Locale.getDefault());
+
+        if (Locale.getDefault().getLanguage().equals("fr")){
+            desktop.setText(resourceBundle.getString("Desktop"));
+
+
+
+
+        }
 
 
     }
