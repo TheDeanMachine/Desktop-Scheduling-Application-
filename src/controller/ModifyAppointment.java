@@ -7,10 +7,7 @@ import DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Appointments;
 import model.Contacts;
 import model.Customers;
@@ -72,16 +69,72 @@ public class ModifyAppointment extends SuperController implements Initializable 
 
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
-        // collect information
+         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
+        // collect information and check for nulls
         int appointmentId = Integer.parseInt(appointmentIdText.getText());
         int customerId = customerIdComboBox.getValue().getCustomerId();
         int userId = userIdComboBox.getValue().getUserID();
         int contactId = contactComboBox.getValue().getContactId();
         String type = typeComboBox.getValue().getType();
-        String title = titleText.getText();
-        String description = descriptionText.getText();
-        String location = locationText.getText();
-        LocalDate date = appointmentDatePicker.getValue();
+
+        // only place where user could set a null in modify appointment
+        String title = null;
+        try {
+            title = titleText.getText();
+            if(title == null || titleText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter an appointment Title");
+            errorAlert.setContentText("Appointment title cannot be blank \n" +
+                    "Please enter a title into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        String description = null;
+        try {
+            description =  descriptionText.getText();
+            if(description == null || descriptionText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter an appointment Description");
+            errorAlert.setContentText("Appointment description cannot be blank \n" +
+                    "Please enter a description into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        String location = null;
+        try {
+            location = locationText.getText();
+            if(location == null || locationText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter an appointment Location");
+            errorAlert.setContentText("Appointment Location cannot be blank \n" +
+                    "Please enter a location into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        LocalDate date = null;
+        try {
+            date = appointmentDatePicker.getValue();
+            if(appointmentDatePicker.getValue() == null){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please select a Date");
+            errorAlert.setContentText("Date cannot be blank \n" +
+                    "Please select a choice from the Date Picker to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
         LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue());
         LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue());
 

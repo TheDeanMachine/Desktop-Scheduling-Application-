@@ -30,7 +30,11 @@ public abstract class TimeHelper {
 
     public static void check(){
 
-        // EST ?????
+        // Note: There are up to three time zones in effect.
+        // Coordinated Universal Time (UTC) is used for storing the time in the database,
+        // the user’s local time is used for display purposes,
+        // and Eastern Standard Time (EST) is used for the company’s office hours.
+        // Local time will be checked against EST business hours before they are stored in the database as UTC.
 
         // Business hours
         LocalTime startTime = LocalTime.parse("8:00:00"); // 8am
