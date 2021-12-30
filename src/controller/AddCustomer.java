@@ -72,7 +72,7 @@ public class AddCustomer extends SuperController implements Initializable {
                 throw new Exception();
             }
         } catch (Exception e) {
-            errorAlert.setHeaderText("Please enter a customer name");
+            errorAlert.setHeaderText("Please enter a customer Name");
             errorAlert.setContentText("Customer name cannot be blank \n" +
                     "Please enter a customer name into the text field to continue");
             errorAlert.showAndWait();
@@ -86,7 +86,7 @@ public class AddCustomer extends SuperController implements Initializable {
                 throw new Exception();
             }
         } catch (Exception e) {
-            errorAlert.setHeaderText("Please enter a customer phone number");
+            errorAlert.setHeaderText("Please enter a customer Phone Number");
             errorAlert.setContentText("Customer phone number cannot be blank \n" +
                     "Please enter a customer phone number into the text field to continue");
             errorAlert.showAndWait();
@@ -100,7 +100,7 @@ public class AddCustomer extends SuperController implements Initializable {
                 throw new Exception();
             }
         } catch (Exception e) {
-            errorAlert.setHeaderText("Please enter a customer address");
+            errorAlert.setHeaderText("Please enter a customer Address");
             errorAlert.setContentText("Customer address cannot be blank \n" +
                     "Please enter a customer address into the text field to continue");
             errorAlert.showAndWait();
@@ -114,15 +114,38 @@ public class AddCustomer extends SuperController implements Initializable {
                 throw new Exception();
             }
         } catch (Exception e) {
-            errorAlert.setHeaderText("Please enter a customer postal code");
+            errorAlert.setHeaderText("Please enter a customer Postal Code");
             errorAlert.setContentText("Customer postal code cannot be blank \n" +
                     "Please enter a customer postal code into the text field to continue");
             errorAlert.showAndWait();
             return;
         }
 
-        FirstLevelDivisions divisions = divisionComboBox.getSelectionModel().getSelectedItem();
-        int divisionId = divisions.getDivisionId();
+        try {
+            if(countryComboBox.getValue() == null || countryComboBox.getSelectionModel().isEmpty()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please select a Country");
+            errorAlert.setContentText("Country cannot be blank \n" +
+                    "Please select a choice from the combo box to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        int divisionId = 0;
+        try {
+            divisionId =   divisionComboBox.getSelectionModel().getSelectedItem().getDivisionId();
+            if(divisionId == 0 || divisionComboBox.getSelectionModel().isEmpty()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please select a States/Province");
+            errorAlert.setContentText("States/Provinces cannot be blank \n" +
+                    "Please select a choice from the combo box to continue");
+            errorAlert.showAndWait();
+            return;
+        }
 
         // create a customer object with the collected data
         Customers newCustomer = new Customers(0, name, address, postal, phone, divisionId);
