@@ -60,24 +60,67 @@ public class AddCustomer extends SuperController implements Initializable {
 
     }
 
-    // alert box check for the user selecting divisions before selecting countries
-    @FXML
-    void onActionCheck(ActionEvent event) { //CURRENTLY, DOESN'T WORK
-//        if(divisionComboBox.getSelectionModel().isEmpty()) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setHeaderText("PLease select a country to first");
-//            alert.showAndWait();
-//            return;
-//        }
-    }
-
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {
-        // collect input information
-        String name = customerNameText.getText();
-        String phone = phoneNumberText.getText();
-        String address = addressText.getText();
-        String postal = postalCodeText.getText();
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
+        // collect input information and check for nulls
+        String name = null;
+        try {
+            name = customerNameText.getText();
+            if(name == null || customerNameText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter a customer name");
+            errorAlert.setContentText("Customer name cannot be blank \n" +
+                    "Please enter a customer name into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        String phone = null;
+        try {
+            phone = phoneNumberText.getText();
+            if(phone == null || phoneNumberText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter a customer phone number");
+            errorAlert.setContentText("Customer phone number cannot be blank \n" +
+                    "Please enter a customer phone number into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        String address = null;
+        try {
+            address = addressText.getText();
+            if(address == null || addressText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter a customer address");
+            errorAlert.setContentText("Customer address cannot be blank \n" +
+                    "Please enter a customer address into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        String postal = null;
+        try {
+            postal =  postalCodeText.getText();
+            if(postal == null || postalCodeText.getText().isBlank()){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            errorAlert.setHeaderText("Please enter a customer postal code");
+            errorAlert.setContentText("Customer postal code cannot be blank \n" +
+                    "Please enter a customer postal code into the text field to continue");
+            errorAlert.showAndWait();
+            return;
+        }
+
         FirstLevelDivisions divisions = divisionComboBox.getSelectionModel().getSelectedItem();
         int divisionId = divisions.getDivisionId();
 

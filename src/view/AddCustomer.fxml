@@ -73,7 +73,7 @@
             <VBox>
                <children>
                   <Label text="States/Provinces" />
-                  <ComboBox fx:id="divisionComboBox" onAction="#onActionCheck" prefWidth="174.0" promptText="Select an Option" style="-fx-background-color: #d9d9d9;" />
+                  <ComboBox fx:id="divisionComboBox" prefWidth="174.0" promptText="Select an Option" style="-fx-background-color: #d9d9d9;" />
                </children>
             </VBox>
          </children>
