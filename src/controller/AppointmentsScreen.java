@@ -179,8 +179,8 @@ public class AppointmentsScreen extends SuperController implements Initializable
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("startTimeAsString"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("endTimeAsString"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 

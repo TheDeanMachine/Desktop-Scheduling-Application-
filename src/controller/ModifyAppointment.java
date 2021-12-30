@@ -71,7 +71,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
          Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
-        // collect information and check for nulls
+        // collect information
         int appointmentId = Integer.parseInt(appointmentIdText.getText());
         int customerId = customerIdComboBox.getValue().getCustomerId();
         int userId = userIdComboBox.getValue().getUserID();
@@ -135,8 +135,24 @@ public class ModifyAppointment extends SuperController implements Initializable 
             return;
         }
 
+        // no null check required, once set in add appointment, cannot be made null
         LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue());
         LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue());
+
+        // appointment time checks
+        if(end.isBefore(start)){
+            errorAlert.setHeaderText("Incorrect appointment duration!");
+            errorAlert.setContentText("Appointment end time cannot be before start time");
+            errorAlert.showAndWait();
+            return;
+        }
+        // appointment time checks
+        if(end.isEqual(start)){
+            errorAlert.setHeaderText("Incorrect appointment duration!");
+            errorAlert.setContentText("Appointment end time cannot be same as start time");
+            errorAlert.showAndWait();
+            return;
+        }
 
         // create appointment object
         Appointments appointment = new Appointments(appointmentId, title, description, location, type, start, end,

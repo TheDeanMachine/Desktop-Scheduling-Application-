@@ -3,6 +3,7 @@ package model;
 import DAO.ContactsDAO;
 import DAO.CustomerDAO;
 import DAO.UsersDAO;
+import utilities.TimeHelper;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -95,6 +96,14 @@ public class Appointments {
 
     public Contacts getContactObject(){
         return ContactsDAO.getContactObjectById(contactId);
+    }
+
+    public String getStartTimeAsString(){
+        return TimeHelper.getFormattedDateTime(start);
+    }
+
+    public String getEndTimeAsString(){
+        return TimeHelper.getFormattedDateTime(end);
     }
 
     // Setters

@@ -20,33 +20,60 @@ public abstract class TimeHelper {
         return months;
     }
 
+    private static ObservableList<LocalTime> timeSlots = null;
+
     public static ObservableList<LocalTime> initializeTimeSlots() {
-        ObservableList<LocalTime> timeSlots = FXCollections.observableArrayList();
+        if(timeSlots == null || timeSlots.size() == 0) {
+            timeSlots = FXCollections.observableArrayList();
 
-        LocalTime time = LocalTime.of(8, 0, 0);
+            LocalTime time = LocalTime.of(8, 0, 0);
+            LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), time);
 
-        // You will need to turn that 08:00 time into a LocalDateTime (use “now”),
-        LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), time);
+            ZoneId estZoneId = ZoneId.of("America/New_York");
+            ZonedDateTime zonedDateTime = localDateTime.atZone(estZoneId);
 
-        // Then convert to a ZonedDateTime on the Eastern zoneId
-        ZoneId estZoneId = ZoneId.of("America/New_York");
-        ZonedDateTime zonedDateTime = localDateTime.atZone(estZoneId);
+            ZoneId zone = ZoneId.systemDefault();
+            ZonedDateTime localZonedTime = zonedDateTime.withZoneSameInstant(zone);
 
-        // Convert that to a ZonedDateTime on the system default ZoneId
-        ZoneId zone = ZoneId.systemDefault();
-        ZonedDateTime localZonedTime = zonedDateTime.withZoneSameInstant(zone);
+            LocalTime localTime = localZonedTime.toLocalTime();
 
-        // Then pull out the LocalTime from the localDateTime
-        LocalTime localTime = localZonedTime.toLocalTime();
-
-        timeSlots.add(localTime); // starts at 8am
-        for (int x = 15; x <= 840; x+=15) {
-                LocalTime min = localTime.plusMinutes(x);
+            timeSlots.add(localTime); // starts at 8am
+            for (int x = 15; x < 841; x += 15) {
+                LocalTime min = localTime.plusMinutes(x); // adds increments of 15 min till 10pm
                 timeSlots.add(min);
+            }
         }
         return timeSlots;
     }
 
+
+    public static ObservableList<String> getFormattedTime(){
+        if(timeSlots == null || timeSlots.size() == 0) {
+            timeSlots = FXCollections.observableArrayList();
+
+            LocalTime time = LocalTime.of(8, 0, 0);
+            LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), time);
+
+            ZoneId estZoneId = ZoneId.of("America/New_York");
+            ZonedDateTime zonedDateTime = localDateTime.atZone(estZoneId);
+
+            ZoneId zone = ZoneId.systemDefault();
+            ZonedDateTime localZonedTime = zonedDateTime.withZoneSameInstant(zone);
+
+            LocalTime localTime = localZonedTime.toLocalTime();
+
+            timeSlots.add(localTime); // starts at 8am
+            for (int x = 15; x < 841; x += 15) {
+                LocalTime min = localTime.plusMinutes(x); // adds increments of 15 min till 10pm
+                timeSlots.add(min);
+            }
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma z");
+            formatter.format(zonedDateTime);
+
+        }
+        return null;
+    }
 
     // Local time will be checked against EST business hours before they are stored in the database as UTC.
     public static boolean checkBusinessHours(LocalDateTime start, LocalDateTime end){
@@ -59,6 +86,17 @@ public abstract class TimeHelper {
         return false;
     }
 
+
+    public static String getFormattedDateTime(LocalDateTime time){
+        ZoneId localZoneId = ZoneId.systemDefault();
+        ZonedDateTime zonedDateTime = time.atZone(localZoneId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mma z");
+
+        return formatter.format(zonedDateTime);
+    }
+
+
+    ///////// test area ////////////
     public static void main(String[] args) {
 
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -71,7 +109,7 @@ public abstract class TimeHelper {
         ZonedDateTime estZoneTime = pstZoneTime.withZoneSameInstant(estZoneId);       //EST Time
 
 
-        DateTimeFormatter globalFormat = DateTimeFormatter.ofPattern("hh:mma z");
+        DateTimeFormatter globalFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mma z");
         DateTimeFormatter etFormat = DateTimeFormatter.ofPattern("hh:mma z");
 
         System.out.println(globalFormat.format(pstZoneTime));
