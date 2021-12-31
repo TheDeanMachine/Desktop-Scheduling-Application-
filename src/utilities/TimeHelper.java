@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public abstract class TimeHelper {
-    private static ObservableList<LocalTime> timeSlots = null;
+    private static ObservableList<TimeSlot> timeSlots = null;
 
     public static ObservableList<Month> getMonths() {
         ObservableList<Month> months = FXCollections.observableArrayList();
@@ -21,7 +21,7 @@ public abstract class TimeHelper {
         return months;
     }
 
-    public static ObservableList<LocalTime> initializeTimeSlots() {
+    public static ObservableList<TimeSlot> initializeTimeSlots() {
         if(timeSlots == null || timeSlots.size() == 0) {
             timeSlots = FXCollections.observableArrayList();
 
@@ -36,10 +36,10 @@ public abstract class TimeHelper {
 
             LocalTime localTime = localZonedTime.toLocalTime();
 
-            timeSlots.add(localTime); // starts at 8am
+            timeSlots.add(new TimeSlot(localTime)); // starts at 8am
             for (int x = 15; x < 841; x += 15) {
                 LocalTime min = localTime.plusMinutes(x); // adds increments of 15 min till 10pm
-                timeSlots.add(min);
+                timeSlots.add(new TimeSlot(min));
             }
         }
         return timeSlots;
@@ -53,6 +53,26 @@ public abstract class TimeHelper {
         return formatter.format(zonedDateTime);
     }
 
+
+
+    //// TEST AREA //////////////////////////
+    public static void main(String[] args) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        ZoneId localZoneId = ZoneId.systemDefault();
+        ZonedDateTime zonedDateTime = localDateTime.atZone(localZoneId);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma z");
+        System.out.println(formatter.format(zonedDateTime));
+
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("hh:mma");
+        System.out.println(formatter2.format(localDateTime));
+
+        LocalTime localTime =   LocalTime.now();
+        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("hh:mma");
+        System.out.println(formatter3.format(localTime));
+
+
+    }
 
 }
 

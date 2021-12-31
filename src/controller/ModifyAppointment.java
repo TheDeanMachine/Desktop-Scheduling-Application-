@@ -13,6 +13,7 @@ import model.Contacts;
 import model.Customers;
 import model.Users;
 import utilities.TimeHelper;
+import utilities.TimeSlot;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -51,10 +52,10 @@ public class ModifyAppointment extends SuperController implements Initializable 
     private DatePicker appointmentDatePicker;
 
     @FXML
-    private ComboBox<LocalTime> appointmentStartComboBox;
+    private ComboBox<TimeSlot> appointmentStartComboBox;
 
     @FXML
-    private ComboBox<LocalTime> appointmentEndComboBox;
+    private ComboBox<TimeSlot> appointmentEndComboBox;
 
     @FXML
     private Button cancelButton;
@@ -136,8 +137,8 @@ public class ModifyAppointment extends SuperController implements Initializable 
         }
 
         // no null check required, once set in add appointment, cannot be made null
-        LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue());
-        LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue());
+        LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue().getLocalTime());
+        LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue().getLocalTime());
 
         // appointment time checks
         if(end.isBefore(start)){
@@ -191,7 +192,20 @@ public class ModifyAppointment extends SuperController implements Initializable 
         descriptionText.setText(item.getDescription());
         locationText.setText(item.getLocation());
         appointmentDatePicker.setValue(item.getStart().toLocalDate());
-        appointmentStartComboBox.setValue(item.getStart().toLocalTime());
-        appointmentEndComboBox.setValue(item.getEnd().toLocalTime());
+
+        for(TimeSlot t : appointmentStartComboBox.getItems()){
+            if(item.getStart().toLocalTime().equals(t.getLocalTime())){
+                appointmentStartComboBox.setValue(t);
+                break;
+            }
+        }
+
+        for(TimeSlot t : appointmentEndComboBox.getItems()){
+            if(item.getStart().toLocalTime().equals(t.getLocalTime())){
+                appointmentEndComboBox.setValue(t);
+                break;
+            }
+        }
+
     }
 }

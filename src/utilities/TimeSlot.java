@@ -11,9 +11,13 @@ public class TimeSlot {
         this.localTime = localTime;
     }
 
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         return formatter.format(localTime);
     }
 

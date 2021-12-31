@@ -13,6 +13,7 @@ import model.Contacts;
 import model.Customers;
 import model.Users;
 import utilities.TimeHelper;
+import utilities.TimeSlot;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -51,10 +52,10 @@ public class AddAppointment extends SuperController implements Initializable  {
     private DatePicker appointmentDatePicker;
 
     @FXML
-    private ComboBox<LocalTime> appointmentStartComboBox;
+    private ComboBox<TimeSlot> appointmentStartComboBox;
 
     @FXML
-    private ComboBox<LocalTime> appointmentEndComboBox;
+    private ComboBox<TimeSlot> appointmentEndComboBox;
 
     @FXML
     private Button cancelButton;
@@ -186,7 +187,7 @@ public class AddAppointment extends SuperController implements Initializable  {
 
         LocalDateTime start = null;
         try {
-            start = LocalDateTime.of(date, appointmentStartComboBox.getValue());
+            start = LocalDateTime.of(date, appointmentStartComboBox.getValue().getLocalTime());
             if(appointmentStartComboBox.getSelectionModel().isEmpty()){
                 throw new Exception();
             }
@@ -200,7 +201,7 @@ public class AddAppointment extends SuperController implements Initializable  {
 
         LocalDateTime end = null;
         try {
-            end = LocalDateTime.of(date, appointmentEndComboBox.getValue());
+            end = LocalDateTime.of(date, appointmentEndComboBox.getValue().getLocalTime());
             if(appointmentEndComboBox.getSelectionModel().isEmpty()){
                 throw new Exception();
             }

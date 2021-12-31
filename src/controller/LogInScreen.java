@@ -60,6 +60,7 @@ public class LogInScreen extends SuperController implements Initializable {
             userName = userNameText.getText();
             password = passwordText.getText();
 
+            // check database for user!!
             if ((userName == null || userName.isBlank() || !userName.equals("test")) || // username wrong
              (password == null || password.isBlank() || !password.equals("test"))) {  // password wrong
                 userActivity(false);
