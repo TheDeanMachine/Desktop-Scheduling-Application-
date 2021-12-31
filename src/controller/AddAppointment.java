@@ -4,6 +4,7 @@ import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
 import DAO.CustomerDAO;
 import DAO.UsersDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -227,6 +228,8 @@ public class AddAppointment extends SuperController implements Initializable  {
             errorAlert.showAndWait();
             return;
         }
+        AppointmentsDAO dao = new AppointmentsDAO();
+        ObservableList<Appointments> listByCustomerID = dao.findAppointmentByCustomerId(customerId);
 
 
         // create appointment object
@@ -234,7 +237,6 @@ public class AddAppointment extends SuperController implements Initializable  {
                 customerId, userId, contactId);
 
         // pass it to dao for insertion
-        AppointmentsDAO dao = new AppointmentsDAO();
         dao.create(appointment);
 
         displayNewScreen(createAppointmentButton, "/view/Appointments.fxml");
