@@ -22,7 +22,7 @@ public abstract class TimeHelper {
     }
 
     public static ObservableList<TimeSlot> initializeTimeSlots() {
-        if(timeSlots == null || timeSlots.size() == 0) {
+        if(timeSlots == null || timeSlots.size() == 0) { // initialize the list once to improve performance
             timeSlots = FXCollections.observableArrayList();
 
             LocalTime time = LocalTime.of(8, 0, 0);

@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,9 +61,12 @@ public class LogInScreen extends SuperController implements Initializable {
             userName = userNameText.getText();
             password = passwordText.getText();
 
-            // check database for user!!
-            if ((userName == null || userName.isBlank() || !userName.equals("test")) || // username wrong
-             (password == null || password.isBlank() || !password.equals("test"))) {  // password wrong
+            // check for credentials
+            if ((userName == null || userName.isBlank()) ||
+             (password == null || password.isBlank())) {
+                userActivity(false);
+                throw new Exception();
+            } else if(!UsersDAO.checkForUser(userName, password)){
                 userActivity(false);
                 throw new Exception();
             } else {

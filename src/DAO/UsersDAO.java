@@ -62,6 +62,34 @@ public class UsersDAO implements DataAccessObject<Users> {
         return user;
     }
 
+    public static boolean checkForUser(String user, String password){
+        String name = "";
+        String pass = "";
+        String query;
+        try {
+            query = "SELECT * FROM users\n" +
+                    "WHERE User_Name = ? AND Password = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                name = resultSet.getString("User_Name");
+                pass = resultSet.getString("Password");
+            }
+
+            if(user.equals(name) && password.equals(pass)){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public void update(Users object) {
 

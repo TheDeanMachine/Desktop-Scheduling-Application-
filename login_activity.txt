@@ -39,3 +39,38 @@ The date of attempt was: 2021-12-29
 The time of attempt was: 15:35:16.016719
 Successful log in was: true
 ---------------------
+Attempt number: 1
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:27:11.488324600
+Successful log in was: false
+---------------------
+Attempt number: 2
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:27:17.007146
+Successful log in was: false
+---------------------
+Attempt number: 3
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:27:22.140644900
+Successful log in was: true
+---------------------
+Attempt number: 1
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:30:12.973033100
+Successful log in was: true
+---------------------
+Attempt number: 1
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:30:47.463112500
+Successful log in was: false
+---------------------
+Attempt number: 2
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:30:56.084787800
+Successful log in was: false
+---------------------
+Attempt number: 3
+The date of attempt was: 2021-12-31
+The time of attempt was: 12:30:59.079171400
+Successful log in was: true
+---------------------
