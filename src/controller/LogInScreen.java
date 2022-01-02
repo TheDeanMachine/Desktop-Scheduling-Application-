@@ -58,8 +58,8 @@ public class LogInScreen extends SuperController implements Initializable {
         String password = null;
 
         try {
-            userName = userNameText.getText();
-            password = passwordText.getText();
+            userName = userNameText.getText().trim();
+            password = passwordText.getText().trim();
 
             // check for credentials
             if ((userName == null || userName.isBlank()) ||

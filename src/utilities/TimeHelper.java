@@ -53,6 +53,24 @@ public abstract class TimeHelper {
         return formatter.format(zonedDateTime);
     }
 
+    public static boolean checkAppointmentTime(LocalDateTime currentStart, LocalDateTime newStart,
+                                               LocalDateTime currentEnd, LocalDateTime newEnd ){
+
+        if ((newStart.isAfter(currentStart) && newEnd.isBefore(currentEnd)) ||
+                (newStart.isAfter(currentStart) && newEnd.isAfter(currentEnd)) ||
+                (newStart.isBefore(currentStart) && newEnd.isBefore(currentEnd)) ||
+                (newStart.isBefore(currentStart) && newEnd.isAfter(currentEnd)) ||
+                (newStart.isEqual(currentStart) && newEnd.isEqual(currentEnd)) ||
+                (newStart.isEqual(currentStart) && newEnd.isBefore(currentEnd)) ||
+                (newStart.isEqual(currentStart) && newEnd.isAfter(currentEnd)) ||
+                (newStart.isAfter(currentStart) && newEnd.isEqual(currentEnd)) ||
+                (newStart.isBefore(currentStart) && newEnd.isEqual(currentEnd))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
 
     //// TEST AREA //////////////////////////

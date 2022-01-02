@@ -3,6 +3,8 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
+import utilities.TimeHelper;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -224,10 +226,10 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return listOfAppointments;
     }
 
-    public ObservableList<Appointments> findAppointmentByCustomerId(int id) {
+    public boolean findAppointmentByCustomerId(int id, LocalDateTime timeStart, LocalDateTime timeEnd ) {
         try {
             query = "SELECT appointment_id, title, description, location, type, start, end, customer_id, user_id, contact_id\n" +
-                    "FROM appointments WHERE customer_id = 1;";
+                    "FROM appointments WHERE customer_id = ?;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
@@ -235,25 +237,20 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
 
             while(resultSet.next()) {
                 int appId = resultSet.getInt("appointment_id");
-                String title = resultSet.getString("title");
-                String description = resultSet.getString("description");
-                String location = resultSet.getString("location");
-                String type = resultSet.getString("type");
                 LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
                 LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
-                int userId = resultSet.getInt("user_id");
-                int contactId = resultSet.getInt("contact_id");
 
-                Appointments appointment =
-                        new Appointments(appId, title, description, location, type, start, end, customerId, userId, contactId);
-                listOfAppointments.add(appointment);
+                if(!TimeHelper.checkAppointmentTime(start, timeStart, end, timeEnd)){
+                    return false;
+                }
+
             }
 
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        return listOfAppointments;
+        return true;
     }
 
     @Override

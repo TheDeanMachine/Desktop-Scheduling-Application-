@@ -72,6 +72,7 @@ public class AddAppointment extends SuperController implements Initializable  {
     @FXML
     void onActionCreateAppointment(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        AppointmentsDAO dao = new AppointmentsDAO();
 
         // collect information and check for nulls
         int customerId = 0;
@@ -214,23 +215,28 @@ public class AddAppointment extends SuperController implements Initializable  {
             return;
         }
 
-        // appointment time checks
+        // logical time check
         if(end.isBefore(start)){
             errorAlert.setHeaderText("Incorrect appointment duration!");
             errorAlert.setContentText("Appointment end time cannot be before start time");
             errorAlert.showAndWait();
             return;
         }
-        // appointment time checks
+        // logical time check
         if(end.isEqual(start)){
             errorAlert.setHeaderText("Incorrect appointment duration!");
             errorAlert.setContentText("Appointment end time cannot be same as start time");
             errorAlert.showAndWait();
             return;
         }
-        AppointmentsDAO dao = new AppointmentsDAO();
-        ObservableList<Appointments> listByCustomerID = dao.findAppointmentByCustomerId(customerId);
 
+        // overlapping appointment check
+        if ( !dao.findAppointmentByCustomerId(customerId, start, end) ) {
+            errorAlert.setHeaderText("Overlap appointment!");
+            errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
+            errorAlert.showAndWait();
+            return;
+        }
 
         // create appointment object
         Appointments appointment = new Appointments(0, title, description, location, type, start, end,
