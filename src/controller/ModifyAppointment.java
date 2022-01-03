@@ -209,7 +209,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
         }
 
         for(TimeSlot t : appointmentEndComboBox.getItems()){
-            if(item.getStart().toLocalTime().equals(t.getLocalTime())){
+            if(item.getEnd().toLocalTime().equals(t.getLocalTime())){
                 appointmentEndComboBox.setValue(t);
                 break;
             }

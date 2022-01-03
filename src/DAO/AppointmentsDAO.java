@@ -252,8 +252,8 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     public boolean findAppointmentByCustomerId(int appointment, int id, LocalDateTime timeStart, LocalDateTime timeEnd ) {
         try {
             query = "SELECT appointment_id, title, description, location, type, start, end, customer_id, user_id, contact_id\n" +
-                    "FROM appointments WHERE  user_id = ? \n" +
-                    "AND NOT appointment_id = ?;";
+                    "FROM appointments WHERE customer_id = ? \n" +
+                    "AND NOT appointment_id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
