@@ -56,15 +56,19 @@ public abstract class TimeHelper {
     public static boolean checkAppointmentTime(LocalDateTime currentStart, LocalDateTime newStart,
                                                LocalDateTime currentEnd, LocalDateTime newEnd ){
 
-        if (((newStart.isAfter(currentStart) || newStart.isEqual(currentStart)) && newStart.isBefore(currentEnd)) ||
-                (newEnd.isAfter(currentStart) && (newEnd.isBefore(currentEnd) || newEnd.isEqual(currentEnd))) ||
-                (newStart.isBefore(currentStart) && newEnd.isAfter(currentEnd)) ||
-                (newStart.isEqual(currentStart) && newEnd.isEqual(currentEnd)) ||
-                (newStart.isAfter(currentStart) && newEnd.isBefore(currentEnd))){
-        return false;
+        if (((newStart.isAfter(currentStart) || newStart.isEqual(currentStart)) && newStart.isBefore(currentEnd))){
+            return false;
+        } else if(newEnd.isAfter(currentStart) && (newEnd.isBefore(currentEnd) || newEnd.isEqual(currentEnd))) {
+            return false;
+        } else if (newStart.isBefore(currentStart) && newEnd.isAfter(currentEnd)) {
+            return false;
+        } else if (newStart.isEqual(currentStart) && newEnd.isEqual(currentEnd)) {
+            return false;
+        } else if (newStart.isAfter(currentStart) && newEnd.isBefore(currentEnd)) {
+            return false;
+        } else {
+            return true;
         }
-
-        return true;
     }
 
 
