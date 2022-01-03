@@ -73,6 +73,7 @@ public class AddAppointment extends SuperController implements Initializable  {
     void onActionCreateAppointment(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         AppointmentsDAO dao = new AppointmentsDAO();
+        ObservableList<Appointments> listOfApp;
 
         // collect information and check for nulls
         int customerId = 0;
@@ -231,14 +232,15 @@ public class AddAppointment extends SuperController implements Initializable  {
         }
 
         // overlapping appointment check
-        if ( !dao.findAppointmentByCustomerId(customerId, start, end) ) {
-            errorAlert.setHeaderText("Overlap appointment!");
-            errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
-            errorAlert.showAndWait();
-            return;
+        listOfApp = dao.findAppointmentByCustomerId(customerId);
+        for(Appointments app : listOfApp) {
+            if(!TimeHelper.checkAppointmentTime(app.getStart(), start, app.getEnd(), end)){
+                errorAlert.setHeaderText("Overlap appointment!");
+                errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
+                errorAlert.showAndWait();
+                return;
+            }
         }
-
-//        ObservableList<Appointments> listOfApp = dao.findAppointmentByCustomerId(customerId, start, end);
 
         // create appointment object
         Appointments appointment = new Appointments(0, title, description, location, type, start, end,

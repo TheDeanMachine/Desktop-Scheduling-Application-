@@ -4,6 +4,7 @@ import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
 import DAO.CustomerDAO;
 import DAO.UsersDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,6 +73,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         AppointmentsDAO dao = new AppointmentsDAO();
+        ObservableList<Appointments> listOfApp;
 
         // collect information and check for nulls
         int appointmentId = Integer.parseInt(appointmentIdText.getText());
@@ -157,11 +159,14 @@ public class ModifyAppointment extends SuperController implements Initializable 
         }
 
         // overlapping appointment check
-        if ( !dao.findAppointmentByCustomerId(appointmentId, customerId, start, end) ) {
-            errorAlert.setHeaderText("Overlap appointment!");
-            errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
-            errorAlert.showAndWait();
-            return;
+        listOfApp = dao.findAppointmentByCustomerId(appointmentId, customerId);
+        for(Appointments app : listOfApp) {
+            if(!TimeHelper.checkAppointmentTime(app.getStart(), start, app.getEnd(), end)){
+                errorAlert.setHeaderText("Overlap appointment!");
+                errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
+                errorAlert.showAndWait();
+                return;
+            }
         }
 
         // create appointment object
