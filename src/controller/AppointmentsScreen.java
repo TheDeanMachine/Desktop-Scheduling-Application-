@@ -169,6 +169,7 @@ public class AppointmentsScreen extends SuperController implements Initializable
         displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
+    // holds the user id of the logged-in user
     private static int userId;
 
     public static void holdId(int id){
@@ -177,25 +178,32 @@ public class AppointmentsScreen extends SuperController implements Initializable
 
     public void checkForUpcomingAppointments(){
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+        boolean found = false;
 
         // get list appointments for given user id
         ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);
 
-        // check those appointments with 15min of that user
+        // check those appointments within 15 min of that user
         for(Appointments app : listOfApp) {
-            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())){
-                alertInfo.setHeaderText("Upcoming appointment " + app.getAppointmentId() + " for " + app.getStart() + "\n" +
-                        "Start in " + TimeHelper.timeDifference);
+            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+                alertInfo.setHeaderText(
+                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
+                         app.getStartTimeAsString() + "\n" +
+                        "Start in " + TimeHelper.timeDifference + " minutes");
                 alertInfo.setContentText("Press ok to continue");
                 alertInfo.showAndWait();
-                return;
-            } else {
-                alertInfo.setHeaderText("No upcoming appointments found");
-                alertInfo.setContentText("Press ok to continue");
-                alertInfo.showAndWait();
+                found = true;
                 return;
             }
         }
+
+        if(!found) { // if listOfApp does not contain an upcoming app
+            alertInfo.setHeaderText("No upcoming appointments found");
+            alertInfo.setContentText("Press ok to continue");
+            alertInfo.showAndWait();
+            return;
+        }
+
     }
 
     @Override
