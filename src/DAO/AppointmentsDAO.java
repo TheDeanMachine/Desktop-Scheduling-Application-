@@ -236,17 +236,38 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                int appId = resultSet.getInt("appointment_id");
                 LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
                 LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
-                int customerId = resultSet.getInt("customer_id");
 
                 if(!TimeHelper.checkAppointmentTime(start, timeStart, end, timeEnd)){
                     return false;
                 }
-
             }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
+    public boolean findAppointmentByCustomerId(int appointment, int id, LocalDateTime timeStart, LocalDateTime timeEnd ) {
+        try {
+            query = "SELECT appointment_id, title, description, location, type, start, end, customer_id, user_id, contact_id\n" +
+                    "FROM appointments WHERE  user_id = ? \n" +
+                    "AND NOT appointment_id = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, appointment);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+                LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
+
+                if(!TimeHelper.checkAppointmentTime(start, timeStart, end, timeEnd)){
+                    return false;
+                }
+            }
         } catch(SQLException e) {
             e.printStackTrace();
         }

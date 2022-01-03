@@ -56,15 +56,15 @@ public abstract class TimeHelper {
     public static boolean checkAppointmentTime(LocalDateTime currentStart, LocalDateTime newStart,
                                                LocalDateTime currentEnd, LocalDateTime newEnd ){
 
-        if ((newStart.isAfter(currentStart) && newEnd.isBefore(currentEnd)) ||
-                (newStart.isAfter(currentStart) && newEnd.isAfter(currentEnd)) ||
-                (newStart.isBefore(currentStart) && newEnd.isBefore(currentEnd)) ||
-                (newStart.isBefore(currentStart) && newEnd.isAfter(currentEnd)) ||
-                (newStart.isEqual(currentStart) && newEnd.isEqual(currentEnd)) ||
-                (newStart.isEqual(currentStart) && newEnd.isBefore(currentEnd)) ||
-                (newStart.isEqual(currentStart) && newEnd.isAfter(currentEnd)) ||
-                (newStart.isAfter(currentStart) && newEnd.isEqual(currentEnd)) ||
-                (newStart.isBefore(currentStart) && newEnd.isEqual(currentEnd))) {
+        if ((newStart.isAfter(currentStart) && newEnd.isBefore(currentEnd)) ||       // condition 1
+                (newStart.isAfter(currentStart) && newEnd.isAfter(currentEnd)) ||    // condition 2 error
+                (newStart.isBefore(currentStart) && newEnd.isBefore(currentEnd)) ||  // condition 3 error
+                (newStart.isBefore(currentStart) && newEnd.isAfter(currentEnd)) ||   // condition 4
+                (newStart.isEqual(currentStart) && newEnd.isEqual(currentEnd)) ||    // condition 5
+                (newStart.isEqual(currentStart) && newEnd.isBefore(currentEnd)) ||   // condition 6
+                (newStart.isEqual(currentStart) && newEnd.isAfter(currentEnd)) ||    // condition 7
+                (newStart.isAfter(currentStart) && newEnd.isEqual(currentEnd)) ||    // condition 8
+                (newStart.isBefore(currentStart) && newEnd.isEqual(currentEnd))) {   // condition 9
             return false;
         } else {
             return true;
@@ -89,6 +89,14 @@ public abstract class TimeHelper {
         DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("hh:mma");
         System.out.println(formatter3.format(localTime));
 
+
+
+        // appointments based on user id
+                // get list appointments in dao for given user id
+        // check those appointments with 15 of that user
+                // search through list of app based user id, check for any within 15min localTime
+                        // call static method to look through appointment times and compare to current time
+        // display message if found or not found
 
     }
 

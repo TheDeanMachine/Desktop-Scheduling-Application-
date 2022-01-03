@@ -70,9 +70,10 @@ public class ModifyAppointment extends SuperController implements Initializable 
 
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
-         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        AppointmentsDAO dao = new AppointmentsDAO();
 
-        // collect information
+        // collect information and check for nulls
         int appointmentId = Integer.parseInt(appointmentIdText.getText());
         int customerId = customerIdComboBox.getValue().getCustomerId();
         int userId = userIdComboBox.getValue().getUserID();
@@ -140,17 +141,25 @@ public class ModifyAppointment extends SuperController implements Initializable 
         LocalDateTime start = LocalDateTime.of(date, appointmentStartComboBox.getValue().getLocalTime());
         LocalDateTime end = LocalDateTime.of(date, appointmentEndComboBox.getValue().getLocalTime());
 
-        // appointment time checks
+        // logical time check
         if(end.isBefore(start)){
             errorAlert.setHeaderText("Incorrect appointment duration!");
             errorAlert.setContentText("Appointment end time cannot be before start time");
             errorAlert.showAndWait();
             return;
         }
-        // appointment time checks
+        // logical time check
         if(end.isEqual(start)){
             errorAlert.setHeaderText("Incorrect appointment duration!");
             errorAlert.setContentText("Appointment end time cannot be same as start time");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        // overlapping appointment check
+        if ( !dao.findAppointmentByCustomerId(appointmentId, customerId, start, end) ) {
+            errorAlert.setHeaderText("Overlap appointment!");
+            errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
             errorAlert.showAndWait();
             return;
         }
@@ -160,7 +169,6 @@ public class ModifyAppointment extends SuperController implements Initializable 
                 customerId, userId, contactId);
 
         // pass it to dao for updating
-        AppointmentsDAO dao = new AppointmentsDAO();
         dao.update(appointment);
 
         displayNewScreen(updateAppointmentButton, "/view/Appointments.fxml");
