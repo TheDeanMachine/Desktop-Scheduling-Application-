@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 public class CustomerDAO implements DataAccessObject<Customers> {
     ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
+    PreparedStatement preparedStatement;
     Statement statement;
     ResultSet resultSet;
     String query;
@@ -20,7 +21,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
             query = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) \n" +
                     "VALUES (?, ?, ?, ?, ?);";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getCustomerName());
             preparedStatement.setString(2, object.getAddress());
             preparedStatement.setString(3, object.getPostalCode());
@@ -64,7 +65,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
                     "JOIN appointments a ON a.customer_id = c.customer_id \n" +
                     "WHERE a.contact_id = ?;";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
 
@@ -118,7 +119,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
                     "SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? \n" +
                     "WHERE Customer_ID = ?;";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, object.getCustomerName());
             preparedStatement.setString(2, object.getAddress());
             preparedStatement.setString(3, object.getPostalCode());
@@ -138,7 +139,7 @@ public class CustomerDAO implements DataAccessObject<Customers> {
             query = "DELETE FROM customers \n" +
                     "WHERE Customer_ID = ?";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 

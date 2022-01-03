@@ -62,13 +62,15 @@ public class LogInScreen extends SuperController implements Initializable {
             password = passwordText.getText().trim();
 
             // check for credentials
-            if ((userName == null || userName.isBlank()) ||
-             (password == null || password.isBlank())) {
+            if (userName.isBlank() || password.isBlank()) {
                 userActivity(false);
                 throw new Exception();
+
             } else if(!UsersDAO.checkForUser(userName, password)){
                 userActivity(false);
                 throw new Exception();
+
+
             } else {
                 userActivity(true);
             }

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 // Note: There are up to three time zones in effect.
 // Coordinated Universal Time (UTC) is used for storing the time in the database
@@ -71,11 +72,22 @@ public abstract class TimeHelper {
         }
     }
 
+    public static long timeDifference;
+
+    public static boolean checkForAppointmentsWithin15(LocalDateTime timeToCheck){
+        timeDifference = ChronoUnit.MINUTES.between(timeToCheck, LocalDateTime.now());
+
+        if(timeDifference > 0 && timeDifference < 16 ) {
+            return true;
+        }
+        return false;
+    }
 
 
     //// TEST AREA //////////////////////////
     public static void main(String[] args) {
         LocalDateTime localDateTime = LocalDateTime.now();
+
         ZoneId localZoneId = ZoneId.systemDefault();
         ZonedDateTime zonedDateTime = localDateTime.atZone(localZoneId);
 
@@ -89,14 +101,15 @@ public abstract class TimeHelper {
         DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("hh:mma");
         System.out.println(formatter3.format(localTime));
 
+        LocalTime time = LocalTime.of(11, 30, 0);
+        LocalDateTime startTime = LocalDateTime.of(LocalDate.now(), time);
 
+        long timeDifference = ChronoUnit.MINUTES.between(startTime, localDateTime);
 
-        // appointments based on user id
-                // get list appointments in dao for given user id
-        // check those appointments with 15 of that user
-                // search through list of app based user id, check for any within 15min localTime
-                        // call static method to look through appointment times and compare to current time
-        // display message if found or not found
+        if(timeDifference > 0 && timeDifference < 16 ) {
+            System.out.println(timeDifference);
+        }
+
 
     }
 

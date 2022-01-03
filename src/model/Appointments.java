@@ -91,7 +91,7 @@ public class Appointments {
     }
 
     public Users getUserObject(){
-        return UsersDAO.getCustomerObjectById(userId);
+        return UsersDAO.getUserById(userId);
     }
 
     public Contacts getContactObject(){

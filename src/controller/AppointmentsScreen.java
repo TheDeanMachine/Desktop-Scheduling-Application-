@@ -1,12 +1,15 @@
 package controller;
 
 import DAO.AppointmentsDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
+import utilities.TimeHelper;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -166,6 +169,34 @@ public class AppointmentsScreen extends SuperController implements Initializable
         displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
+    private static int userId;
+
+    public static void holdId(int id){
+        userId = id;
+    }
+
+    public void checkForUpcomingAppointments(){
+        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+
+        // get list appointments for given user id
+        ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);
+
+        // check those appointments with 15min of that user
+        for(Appointments app : listOfApp) {
+            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())){
+                alertInfo.setHeaderText("Upcoming appointment " + app.getAppointmentId() + " for " + app.getStart() + "\n" +
+                        "Start in " + TimeHelper.timeDifference);
+                alertInfo.setContentText("Press ok to continue");
+                alertInfo.showAndWait();
+                return;
+            } else {
+                alertInfo.setHeaderText("No upcoming appointments found");
+                alertInfo.setContentText("Press ok to continue");
+                alertInfo.showAndWait();
+                return;
+            }
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -184,5 +215,6 @@ public class AppointmentsScreen extends SuperController implements Initializable
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
+        checkForUpcomingAppointments();
     }
 }

@@ -1,5 +1,6 @@
 package DAO;
 
+import controller.AppointmentsScreen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Users;
@@ -40,7 +41,7 @@ public class UsersDAO implements DataAccessObject<Users> {
         return listOfUsers;
     }
 
-    public static Users getCustomerObjectById(int id){
+    public static Users getUserById(int id){
         Users user = null;
         try {
             String query = "SELECT * FROM users \n" +
@@ -63,6 +64,7 @@ public class UsersDAO implements DataAccessObject<Users> {
     }
 
     public static boolean checkForUser(String user, String password){
+        int userId = 0;
         String name = "";
         String pass = "";
         String query;
@@ -76,11 +78,13 @@ public class UsersDAO implements DataAccessObject<Users> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                userId = resultSet.getInt("User_ID");
                 name = resultSet.getString("User_Name");
                 pass = resultSet.getString("Password");
             }
 
             if(user.equals(name) && password.equals(pass)){
+                AppointmentsScreen.holdId(userId);
                 return true;
             }
 
