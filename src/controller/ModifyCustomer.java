@@ -3,6 +3,7 @@ package controller;
 import DAO.CountriesDAO;
 import DAO.CustomerDAO;
 import DAO.FirstLevelDivisionsDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,13 +55,14 @@ public class ModifyCustomer extends SuperController implements Initializable {
 
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
-        // if country is selected clear the division preset selection, is triggered by this method
-        divisionComboBox.getSelectionModel().clearSelection(); // doesn't seem to work??
+        // if country is selected clear the division preset selection
+        divisionComboBox.getSelectionModel().clearSelection();
 
         // get the selected country, and filter divisions by it
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = countrySelection.getCountryId();
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
+
     }
 
     @FXML
@@ -132,7 +134,7 @@ public class ModifyCustomer extends SuperController implements Initializable {
         // create a customer object with the collected data
         Customers newCustomer = new Customers(id, name, address, postal, phone, divisionId);
 
-        // call create method to insert into the database
+        // call update method to insert into the database
         CustomerDAO dao = new CustomerDAO();
         dao.update(newCustomer);
 
@@ -157,6 +159,12 @@ public class ModifyCustomer extends SuperController implements Initializable {
         addressText.setText(item.getAddress());
         postalCodeText.setText(item.getPostalCode());
         countryComboBox.getSelectionModel().select(item.getCountryObject());
+
+        // set the division combo box with the list
+        int countryId = item.getCountryObject().getCountryId();
+        divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
+
+        // set combo box with the item from the list
         divisionComboBox.getSelectionModel().select(item.getDivisionsObject());
 
     }

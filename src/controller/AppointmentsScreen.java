@@ -168,43 +168,6 @@ public class AppointmentsScreen extends SuperController implements Initializable
         displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
-    // holds the user id of the logged-in user
-    private static int userId;
-
-    public static void holdId(int id){
-        userId = id;
-    }
-
-    public void checkForUpcomingAppointments(){
-        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
-        boolean found = false;
-
-        // get list appointments for given user id
-        ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);
-
-        // check those appointments within 15 min of that user
-        for(Appointments app : listOfApp) {
-            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
-                alertInfo.setHeaderText(
-                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
-                         app.getStartTimeAsString() + "\n" +
-                        "Start in " + TimeHelper.timeDifference + " minutes");
-                alertInfo.setContentText("Press ok to continue");
-                alertInfo.showAndWait();
-                found = true;
-                return;
-            }
-        }
-
-        if(!found) { // if listOfApp does not contain an upcoming app
-            alertInfo.setHeaderText("No upcoming appointments found");
-            alertInfo.setContentText("Press ok to continue");
-            alertInfo.showAndWait();
-            return;
-        }
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the appointments' tableview with the data it will be working with
@@ -222,6 +185,5 @@ public class AppointmentsScreen extends SuperController implements Initializable
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
-        checkForUpcomingAppointments();
     }
 }

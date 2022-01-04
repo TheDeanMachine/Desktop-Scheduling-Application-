@@ -50,7 +50,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="47.0" text="Result:" />
-                  <Label fx:id="resultText" prefHeight="17.0" prefWidth="71.0" text="&quot;&quot;" />
+                  <Label fx:id="resultText" prefHeight="17.0" prefWidth="71.0" />
                </children>
             </HBox>
          </children>

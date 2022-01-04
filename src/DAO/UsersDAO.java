@@ -1,6 +1,6 @@
 package DAO;
 
-import controller.AppointmentsScreen;
+import controller.LogInScreen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Users;
@@ -84,7 +84,7 @@ public class UsersDAO implements DataAccessObject<Users> {
             }
 
             if(user.equals(name) && password.equals(pass)){
-                AppointmentsScreen.holdId(userId);
+                LogInScreen.holdId(userId);
                 return true;
             }
 

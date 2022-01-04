@@ -52,6 +52,18 @@ public class AddCustomer extends SuperController implements Initializable {
         displayNewScreen(cancelButton, "/view/Customers.fxml");
     }
 
+    // create alert box check for the user selecting divisions before selecting countries
+    // alert box check for the user selecting divisions before selecting countries
+    @FXML
+    void onActionCheck(ActionEvent event) { //CURRENTLY, DOESN'T WORK // deleted on action in fx controller
+//        if(divisionComboBox.getSelectionModel().isEmpty()) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setHeaderText("PLease select a country to first");
+//            alert.showAndWait();
+//            return;
+//        }
+    }
+
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();

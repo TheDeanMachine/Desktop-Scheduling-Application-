@@ -1,10 +1,14 @@
 package controller;
 
+import DAO.AppointmentsDAO;
 import DAO.UsersDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Appointments;
+import utilities.TimeHelper;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -51,6 +55,43 @@ public class LogInScreen extends SuperController implements Initializable {
     // keeps track of log in attempts for a given instance
     private static int counter = 0;
 
+    // holds the user id of the logged-in user
+    private static int userId;
+
+    public static void holdId(int id){
+        userId = id;
+    }
+
+    public void checkForUpcomingAppointments(){
+        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+        boolean found = false;
+
+        // get list appointments for given user id
+        ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);
+
+        // check those appointments within 15 min of that user
+        for(Appointments app : listOfApp) {
+            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+                alertInfo.setHeaderText(
+                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
+                                app.getStartTimeAsString() + "\n" +
+                                "Start in " + TimeHelper.timeDifference + " minutes");
+                alertInfo.setContentText("Press ok to continue");
+                alertInfo.showAndWait();
+                found = true;
+                return;
+            }
+        }
+
+        if(!found) { // if listOfApp does not contain an upcoming app
+            alertInfo.setHeaderText("No upcoming appointments found");
+            alertInfo.setContentText("Press ok to continue");
+            alertInfo.showAndWait();
+            return;
+        }
+
+    }
+
     @FXML
     void onActionDisplayMainScreen(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -71,6 +112,7 @@ public class LogInScreen extends SuperController implements Initializable {
                 throw new Exception();
 
             } else {
+                checkForUpcomingAppointments();
                 userActivity(true);
             }
 
