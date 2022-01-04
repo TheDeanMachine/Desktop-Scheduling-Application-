@@ -70,7 +70,6 @@ public class LogInScreen extends SuperController implements Initializable {
                 userActivity(false);
                 throw new Exception();
 
-
             } else {
                 userActivity(true);
             }
