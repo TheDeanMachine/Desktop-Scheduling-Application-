@@ -114,7 +114,7 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
             query = "SELECT appointment_id, title, description, location, type, start, end, " +
                     "customer_id, user_id, contact_id " +
                     "FROM appointments WHERE user_id = ?" ;
-//                    "AND day(start) = DAY(current_date())";  // only get today's appointments
+//                    "AND day(start) = DAY(current_date())";  // only get today's appointments // throws sql error
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);

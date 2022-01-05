@@ -3,7 +3,6 @@ package controller;
 import DAO.CountriesDAO;
 import DAO.CustomerDAO;
 import DAO.FirstLevelDivisionsDAO;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +55,7 @@ public class ModifyCustomer extends SuperController implements Initializable {
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
         // if country is selected clear the division preset selection
-        divisionComboBox.getSelectionModel().clearSelection();
+        divisionComboBox.getSelectionModel().clearSelection(); // not working
 
         // get the selected country, and filter divisions by it
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();

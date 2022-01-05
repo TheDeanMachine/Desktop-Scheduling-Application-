@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class AddAppointment extends SuperController implements Initializable  {
 
@@ -223,6 +224,7 @@ public class AddAppointment extends SuperController implements Initializable  {
             errorAlert.showAndWait();
             return;
         }
+
         // logical time check
         if(end.isEqual(start)){
             errorAlert.setHeaderText("Incorrect appointment duration!");
