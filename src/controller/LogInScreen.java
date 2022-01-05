@@ -82,7 +82,6 @@ public class LogInScreen extends SuperController implements Initializable {
 
     public void checkForUpcomingAppointments() {
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
-//        boolean found = false;
 
         // get list appointments for given user id
         ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);

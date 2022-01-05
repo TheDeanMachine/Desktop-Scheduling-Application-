@@ -234,3 +234,13 @@ The date of attempt was: 2022-01-05
 The time of attempt was: 12:03:26.484557300
 Successful log in was: true
 ---------------------
+Attempt number: 1
+The date of attempt was: 2022-01-05
+The time of attempt was: 12:06:18.176170400
+Successful log in was: false
+---------------------
+Attempt number: 2
+The date of attempt was: 2022-01-05
+The time of attempt was: 12:06:27.037772200
+Successful log in was: true
+---------------------
