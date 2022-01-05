@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Appointments;
+import utilities.TimeCheck;
 import utilities.TimeHelper;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -55,12 +57,24 @@ public class LogInScreen extends SuperController implements Initializable {
     // keeps track of log in attempts for a given instance
     private static int counter = 0;
 
+    // holds the different in time between appointments
+    public static long timeDifference;
+
     // holds the user id of the logged-in user
     private static int userId;
 
     public static void holdId(int id){
         userId = id;
     }
+
+
+    TimeCheck check = timeToCheck -> {
+        timeDifference = ChronoUnit.MINUTES.between(LocalDateTime.now(), timeToCheck);
+        if(timeDifference > 0 && timeDifference < 16 ) {
+            return true;
+        }
+        return false;
+    };
 
     public void checkForUpcomingAppointments(){
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
@@ -71,11 +85,11 @@ public class LogInScreen extends SuperController implements Initializable {
 
         // check those appointments within 15 min of that user
         for(Appointments app : listOfApp) {
-            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+            if(check.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
                 alertInfo.setHeaderText(
                         "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
                                 app.getStartTimeAsString() + "\n" +
-                                "Start in " + TimeHelper.timeDifference + " minutes");
+                                "Starts in " + timeDifference + " minutes");
                 alertInfo.setContentText("Press ok to continue");
                 alertInfo.showAndWait();
                 found = true;

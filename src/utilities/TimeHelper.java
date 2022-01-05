@@ -72,49 +72,21 @@ public abstract class TimeHelper {
         }
     }
 
-    public static long timeDifference;
-
-    public static boolean checkForAppointmentsWithin15(LocalDateTime timeToCheck){
-
-        timeDifference = ChronoUnit.MINUTES.between(LocalDateTime.now(), timeToCheck);
-
-        if(timeDifference > 0 && timeDifference < 16 ) {
-            return true;
-        }
-        return false;
-    }
-
-
-    //// TEST AREA //////////////////////////
-    public static void main(String[] args) {
-        LocalDateTime localDateTime = LocalDateTime.now();
+//    // variable and method for checking time difference, prior to lambda
+//    public static long timeDifference;
+//    public static boolean checkForAppointmentsWithin15(LocalDateTime timeToCheck){
 //
-//        ZoneId localZoneId = ZoneId.systemDefault();
-//        ZonedDateTime zonedDateTime = localDateTime.atZone(localZoneId);
+//        timeDifference = ChronoUnit.MINUTES.between(LocalDateTime.now(), timeToCheck);
 //
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma z");
-//        System.out.println(formatter.format(zonedDateTime));
-//
-//        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("hh:mma");
-//        System.out.println(formatter2.format(localDateTime));
-//
-//        LocalTime localTime =   LocalTime.now();
-//        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("hh:mma");
-//        System.out.println(formatter3.format(localTime));
-
-        LocalTime time = LocalTime.of(14, 20, 0);
-        LocalDateTime startTime = LocalDateTime.of(LocalDate.now(), time);
-
-        long timeDifference = ChronoUnit.MINUTES.between(localDateTime, startTime );
-
-        System.out.println(timeDifference);
-
-        if(timeDifference > 0 && timeDifference < 16 ) {
-            System.out.println( "The diffreence is " + timeDifference);
-        }
+//        if(timeDifference > 0 && timeDifference < 16 ) {
+//            return true;
+//        }
+//        return false;
+//    }
 
 
-    }
+
+
 
 }
 
