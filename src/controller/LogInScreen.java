@@ -21,6 +21,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class LogInScreen extends SuperController implements Initializable {
 
@@ -60,6 +61,9 @@ public class LogInScreen extends SuperController implements Initializable {
     // holds the different in time between appointments
     public static long timeDifference;
 
+    // used to check if an appointment within 15 has been found
+    private static boolean found = false;
+
     // holds the user id of the logged-in user
     private static int userId;
 
@@ -76,26 +80,40 @@ public class LogInScreen extends SuperController implements Initializable {
         return false;
     };
 
-    public void checkForUpcomingAppointments(){
+    public void checkForUpcomingAppointments() {
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
-        boolean found = false;
+//        boolean found = false;
 
         // get list appointments for given user id
         ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByUserId(userId);
 
+//        // check those appointments within 15 min of that user // prior to lambda
+//        for(Appointments app : listOfApp) {
+//            if(check.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+//                alertInfo.setHeaderText(
+//                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
+//                                app.getStartTimeAsString() + "\n" +
+//                                "Starts in " + TimeHelper.timeDifference + " minutes");
+//                alertInfo.setContentText("Press ok to continue");
+//                alertInfo.showAndWait();
+//                found = true;
+//                return;
+//            }
+//        }
+
         // check those appointments within 15 min of that user
-        for(Appointments app : listOfApp) {
-            if(check.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+        listOfApp.forEach(appointments -> {
+            if(check.checkForAppointmentsWithin15(appointments.getStart())) { // if listOfApp contains an upcoming app
                 alertInfo.setHeaderText(
-                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
-                                app.getStartTimeAsString() + "\n" +
+                        "Upcoming appointment ID #" + appointments.getAppointmentId() + " for " + "\n" +
+                                appointments.getStartTimeAsString() + "\n" +
                                 "Starts in " + timeDifference + " minutes");
                 alertInfo.setContentText("Press ok to continue");
                 alertInfo.showAndWait();
                 found = true;
                 return;
             }
-        }
+        });
 
         if(!found) { // if listOfApp does not contain an upcoming app
             alertInfo.setHeaderText("No upcoming appointments found");
