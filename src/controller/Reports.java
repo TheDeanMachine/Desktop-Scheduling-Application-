@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to generate various reports.
+ */
 public class Reports extends SuperController implements Initializable {
 
     /// Contact Reports Fields fx:id ///
@@ -64,16 +67,24 @@ public class Reports extends SuperController implements Initializable {
     @FXML
     private Label resultText2;
 
-
     /// Back
     @FXML
     private Button backButton;
 
+    /**
+     * This method is used return the main (appointments) screen.
+     * Uses the back button as the event trigger.
+     */
     @FXML
     void onActionBackToMain(ActionEvent event) throws IOException {
         displayNewScreen(backButton, "/view/Appointments.fxml");
     }
 
+    /**
+     * This method displays results based on user selection.
+     * When the user selects a contact from the combo-box, the tableview
+     * is populated with appointments for that contact.
+     */
     @FXML
     void onActionSelectContact(ActionEvent event) {
         // get users selection
@@ -83,6 +94,12 @@ public class Reports extends SuperController implements Initializable {
         reportsTableView.setItems(new AppointmentsDAO().findAppointmentByContactId(id));
     }
 
+    /**
+     * This method displays results based on the user selection.
+     * When user selects a Month type from the first combo-box,
+     * and then an appointment type from the second combo-box,
+     * the results are displayed in label based on the calculation of those two combined.
+     */
     @FXML
     void onActionDisplayResults(ActionEvent event) {
         // get the month selected
@@ -91,7 +108,7 @@ public class Reports extends SuperController implements Initializable {
         // get the type selected
         Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
 
-        // check for null in either combo box before calculating hte results
+        // check for null in either combo box before calculating the results
         if(month == null || typeSelection == null) {
             return;
         } else {
@@ -108,6 +125,11 @@ public class Reports extends SuperController implements Initializable {
         }
     }
 
+    /**
+     * This method displays results based on user selection.
+     * When the user selects a customer ID from the combo-box,
+     * the results are displayed in a label based on the number of appointees the customer has.
+     */
     @FXML
     void onActionDisplayTotalCustomers(ActionEvent event) {
         // one liner version of similar process in the method above
@@ -115,12 +137,15 @@ public class Reports extends SuperController implements Initializable {
                 findTotalAppointmentByCustomer(customerIdComboBox.getValue().getCustomerId())));
     }
 
+    /**
+     * The initialize method sets the values for all the combo-boxes and table views in the reports window.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the contacts' combo box with contacts
         contactComboBox.setItems(new ContactsDAO().read());
 
-        // set the contacts appointments' tableview with an empty list
+        // set the contacts appointments' tableview with an empty list, until a contact has been selected
         ObservableList<Appointments> emptyList = FXCollections.observableArrayList();
         reportsTableView.setItems(emptyList);
 

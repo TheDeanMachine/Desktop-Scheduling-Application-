@@ -62,8 +62,8 @@
       <VBox layoutX="498.0" layoutY="423.0" spacing="15.0">
          <children>
             <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by customer" wrapText="true" />
-            <ComboBox fx:id="customerIdComboBox" onAction="#onActionDisplayTotalCustomers" prefWidth="174.0" promptText="Customer_ID" style="-fx-background-color: #d9d9d9;" />
-            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="200.0" spacing="10.0">
+            <ComboBox fx:id="customerIdComboBox" onAction="#onActionDisplayTotalCustomers" prefHeight="25.0" prefWidth="191.0" promptText="Customer_ID" style="-fx-background-color: #d9d9d9;" />
+            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="158.0" spacing="10.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="47.0" text="Result:" />
                   <Label fx:id="resultText2" prefHeight="17.0" prefWidth="71.0" />
