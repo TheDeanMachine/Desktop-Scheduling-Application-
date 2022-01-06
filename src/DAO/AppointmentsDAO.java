@@ -206,6 +206,26 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
         return listOfAppointments;
     }
 
+    public int findTotalAppointmentByCustomer(int id) {
+        int AppCount = 0;
+        try {
+            query = "SELECT COUNT(distinct appointment_id) as Appointment_Count \n" +
+                    "FROM appointments \n" +
+                    "WHERE Customer_ID = ?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                AppCount = resultSet.getInt("Appointment_Count");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return AppCount;
+    }
+
 
     // gets list of types for reports combo box
     public ObservableList<Appointments> getListOfTypes(){

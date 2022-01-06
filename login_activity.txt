@@ -244,3 +244,28 @@ The date of attempt was: 2022-01-05
 The time of attempt was: 12:06:27.037772200
 Successful log in was: true
 ---------------------
+Attempt number: 1
+The date of attempt was: 2022-01-06
+The time of attempt was: 09:51:06.706004800
+Successful log in was: true
+---------------------
+Attempt number: 1
+The date of attempt was: 2022-01-06
+The time of attempt was: 10:09:09.815489800
+Successful log in was: true
+---------------------
+Attempt number: 1
+The date of attempt was: 2022-01-06
+The time of attempt was: 10:21:47.461803200
+Successful log in was: false
+---------------------
+Attempt number: 2
+The date of attempt was: 2022-01-06
+The time of attempt was: 10:21:53.539303400
+Successful log in was: true
+---------------------
+Attempt number: 1
+The date of attempt was: 2022-01-06
+The time of attempt was: 10:28:28.652997700
+Successful log in was: true
+---------------------

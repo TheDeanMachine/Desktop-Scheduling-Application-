@@ -23,6 +23,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+/**
+ * Log in screen, contains methods for application access.
+ *
+ */
 public class LogInScreen extends SuperController implements Initializable {
 
     @FXML

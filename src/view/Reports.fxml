@@ -57,15 +57,19 @@
       </VBox>
       <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="405.0" startX="-286.0" stroke="#053579" />
       <VBox layoutX="437.0" layoutY="438.0" spacing="15.0" />
-      <TableView fx:id="customerContactInformationTableView" layoutX="402.0" layoutY="452.0" prefHeight="117.0" prefWidth="296.0">
-        <columns>
-          <TableColumn fx:id="customerIdReferenceColumn" prefWidth="76.0" text="Customer_ID" />
-          <TableColumn fx:id="customerNameColumn" prefWidth="116.0" text="Customer_Name" />
-            <TableColumn fx:id="customerPhoneColumn" prefWidth="103.0" text="Phone Number" />
-        </columns>
-      </TableView>
-      <Label layoutX="402.0" layoutY="415.0" prefHeight="17.0" prefWidth="276.0" text="Contact information for the contacts customer " wrapText="true" />
       <Line endX="417.0" fill="#053579" layoutX="308.0" layoutY="615.0" startX="-286.0" stroke="#053579" />
       <Line endX="47.0" endY="199.0" fill="#053579" layoutX="325.0" layoutY="416.0" startX="47.0" startY="-10.0" stroke="#053579" />
+      <VBox layoutX="498.0" layoutY="423.0" spacing="15.0">
+         <children>
+            <Label prefHeight="34.0" prefWidth="190.0" text="View total number of appointments by customer" wrapText="true" />
+            <ComboBox fx:id="customerIdComboBox" onAction="#onActionDisplayTotalCustomers" prefWidth="174.0" promptText="Customer_ID" style="-fx-background-color: #d9d9d9;" />
+            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="47.0" text="Result:" />
+                  <Label fx:id="resultText2" prefHeight="17.0" prefWidth="71.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

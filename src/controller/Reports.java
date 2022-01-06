@@ -51,9 +51,6 @@ public class Reports extends SuperController implements Initializable {
     @FXML
     private ComboBox<Month> monthPicker;
 
-//    @FXML
-//    private DatePicker monthDatePicker;
-
     @FXML
     private ComboBox<Appointments> typeComboBox;
 
@@ -62,16 +59,11 @@ public class Reports extends SuperController implements Initializable {
 
     /// Customer Reports Fields fx:id ///
     @FXML
-    private TableView<Customers> customerContactInformationTableView;
+    private ComboBox<Customers> customerIdComboBox;
 
     @FXML
-    private TableColumn<Customers, Integer> customerIdReferenceColumn;
+    private Label resultText2;
 
-    @FXML
-    private TableColumn<Customers, String> customerNameColumn;
-
-    @FXML
-    private TableColumn<Customers, String> customerPhoneColumn;
 
     /// Back
     @FXML
@@ -89,36 +81,39 @@ public class Reports extends SuperController implements Initializable {
         int id = selectedContact.getContactId();
         // display the appointments corresponding to the contact
         reportsTableView.setItems(new AppointmentsDAO().findAppointmentByContactId(id));
-        customerContactInformationTableView.setItems(new CustomerDAO().getCustomerContactInformation(id));
     }
 
     @FXML
     void onActionDisplayResults(ActionEvent event) {
         // get the month selected
         Month month = monthPicker.getValue();
-//        LocalDate month = monthDatePicker.getValue(); // using date picker
 
         // get the type selected
         Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
 
-        // null check
+        // check for null in either combo box before calculating hte results
         if(month == null || typeSelection == null) {
             return;
+        } else {
+            // convert to values
+            String selectedType = typeSelection.getType();
+            int monthValue =  month.getValue();
+
+            // call the method to calculate the results
+            AppointmentsDAO result = new AppointmentsDAO();
+            String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
+
+            // then display the results in the text string
+            resultText.setText(text);
         }
-
-        // convert to values
-        String selectedType = typeSelection.getType();
-        int monthValue =  month.getValue();
-//        int monthValue =  month.getMonthValue(); // using date picker
-
-        // call the method to calculate the results
-        AppointmentsDAO result = new AppointmentsDAO();
-        String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
-
-        // then display the results in the text string
-        resultText.setText(text);
     }
 
+    @FXML
+    void onActionDisplayTotalCustomers(ActionEvent event) {
+        // one liner version of similar process in the method above
+        resultText2.setText(String.valueOf(new AppointmentsDAO().
+                findTotalAppointmentByCustomer(customerIdComboBox.getValue().getCustomerId())));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -128,15 +123,6 @@ public class Reports extends SuperController implements Initializable {
         // set the contacts appointments' tableview with an empty list
         ObservableList<Appointments> emptyList = FXCollections.observableArrayList();
         reportsTableView.setItems(emptyList);
-
-        // set customer contact information tableview with the empty list
-        ObservableList<Customers> emptyList2 = FXCollections.observableArrayList();
-        customerContactInformationTableView.setItems(emptyList2);
-
-        // set the customer contact information columns with the data
-        customerIdReferenceColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        customerPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
         // set the contact appointments columns with the data
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
@@ -152,6 +138,9 @@ public class Reports extends SuperController implements Initializable {
 
         // set month list with month enums
         monthPicker.setItems(TimeHelper.getMonths());
+
+        // set the customerId combo box with list of customers
+        customerIdComboBox.setItems(new CustomerDAO().read());
 
     }
 }
