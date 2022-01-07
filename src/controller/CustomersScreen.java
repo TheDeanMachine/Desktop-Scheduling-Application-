@@ -120,7 +120,7 @@ public class CustomersScreen extends SuperController implements Initializable {
     }
 
     /**
-     * This method is used to open the modify customer form.
+     * This method gets the user selection from the tableview and then passes that selection to the modify form.
      * @throws IOException catches input output errors.
      */
     @FXML

@@ -62,7 +62,7 @@ public class LogInScreen extends SuperController implements Initializable {
     // keeps track of log in attempts for a given instance
     private static int counter = 0;
 
-    // holds the different in time between appointments
+    // holds the difference in time between appointments
     public static long timeDifference;
 
     // used to check if an appointment within 15 has been found
@@ -71,11 +71,20 @@ public class LogInScreen extends SuperController implements Initializable {
     // holds the user id of the logged-in user
     private static int userId;
 
+    /**
+     * Sets the userId variable with value passed in.
+     * @param id the value passed in, used to set userId.
+     */
     public static void holdId(int id){
         userId = id;
     }
 
 
+    /**
+     * LAMBDA.
+     * This lambda is used to check the difference in time between the current time, and the time passed in.
+     * It allows for better code flow, and readability.
+     */
     TimeCheck check = timeToCheck -> {
         timeDifference = ChronoUnit.MINUTES.between(LocalDateTime.now(), timeToCheck);
         if(timeDifference > 0 && timeDifference < 16 ) {
@@ -84,6 +93,16 @@ public class LogInScreen extends SuperController implements Initializable {
         return false;
     };
 
+    /**
+     * Used to check for any upcoming appointments for a given user.
+     * Method creates a list of appointments based on the userID of the logging in user.
+     * It checks that list against the current time and notifies the user if there are any
+     * appointments within 15 min.
+     *
+     * LAMBDA.
+     * The use of the consumer lambda function improves the code flow, and allows for easier iteration
+     * and checking for the given list of appointments.
+     */
     public void checkForUpcomingAppointments() {
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
 
@@ -92,7 +111,7 @@ public class LogInScreen extends SuperController implements Initializable {
 
 //        // check those appointments within 15 min of that user // prior to lambda
 //        for(Appointments app : listOfApp) {
-//            if(check.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
+//            if(TimeHelper.checkForAppointmentsWithin15(app.getStart())) { // if listOfApp contains an upcoming app
 //                alertInfo.setHeaderText(
 //                        "Upcoming appointment ID #" + app.getAppointmentId() + " for " + "\n" +
 //                                app.getStartTimeAsString() + "\n" +
@@ -127,6 +146,12 @@ public class LogInScreen extends SuperController implements Initializable {
 
     }
 
+    /**
+     * This method is used to verify credentials and log the user in.
+     * The user input is collected and compared against the users in the database.
+     * If there is match, the user is logged in, else is presented with error.
+     * @throws IOException catches input and output errors.
+     */
     @FXML
     void onActionDisplayMainScreen(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -153,7 +178,7 @@ public class LogInScreen extends SuperController implements Initializable {
 
         } catch (Exception e) {
             // check for french
-            if (Locale.getDefault().getLanguage().equals("fr")){
+            if(Locale.getDefault().getLanguage().equals("fr")){ // custom error alert for french
                 errorAlert.setHeaderText("Identifiants incorrects");
                 errorAlert.setContentText("Veuillez réessayer");
                 // make "ok" button in French
@@ -172,7 +197,12 @@ public class LogInScreen extends SuperController implements Initializable {
         displayNewScreen(logInButton, "/view/Appointments.fxml");
     }
 
-    // user log-in attempts
+
+    /**
+     * This method is used to document the user log in attempts.
+     * The attempts are written to a file, with corresponding information.
+     * @param attempt variable representing the status of successful log in.
+     */
     public void userActivity(boolean attempt) throws IOException {
         LocalDateTime dateTime = LocalDateTime.now();
         LocalDate date = dateTime.toLocalDate();
@@ -188,6 +218,14 @@ public class LogInScreen extends SuperController implements Initializable {
         }
     }
 
+    /**
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the method in Main.
+     * It contains instructions to configure the output of words used in the log in screen to French,
+     * if that user happens to be in French region.
+     * It also contains settings to display the users' timezone.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // displays user timezone

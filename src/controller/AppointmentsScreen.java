@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to display the appointments' information.
+ */
 public class AppointmentsScreen extends SuperController implements Initializable {
 
     /// Appointments TableView Fields fx:id ///
@@ -81,24 +84,41 @@ public class AppointmentsScreen extends SuperController implements Initializable
     @FXML
     private Button viewReportsButton;
 
-
     /// Radio Button Methods ///
+
+    /**
+     * Displays the appointments for this week.
+     * Appointments are displayed based on the current week of Sunday - Saturday.
+     */
     @FXML
     void onActionWeekRadioButton(ActionEvent event) {
         appointmentsTableView.setItems(new AppointmentsDAO().getThisWeeksAppointments());
     }
 
+    /**
+     * Displays appointments for this month.
+     * Appointments are displayed based the current full month.
+     */
     @FXML
     void onActionMonthRadioButton(ActionEvent event) {
         appointmentsTableView.setItems(new AppointmentsDAO().getThisMonthsAppointments());
     }
 
+    /**
+     * Displays all appointments.
+     */
     @FXML
     void onActionAllRadioButton(ActionEvent event) {
         appointmentsTableView.setItems(new AppointmentsDAO().read());
     }
 
     /// Appointments Methods ///
+
+    /**
+     * Deletes the appointment selected by the user.
+     * When the user selects an appointment, it is deleted from the database based on the unique appointment id.
+     * The user is presented with confirmation prompt, and the tableview is refreshed to reflect the changes.
+     */
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
@@ -135,6 +155,10 @@ public class AppointmentsScreen extends SuperController implements Initializable
         }
     }
 
+    /**
+     * This method gets the user selection from the tableview and then passes that selection to the modify form.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenModifyForm(ActionEvent event) throws IOException {
         // if the user selects the modify button, without selecting an item display an alert box
@@ -152,22 +176,41 @@ public class AppointmentsScreen extends SuperController implements Initializable
         displayNewScreen(modifyButton, "/view/ModifyAppointment.fxml");
     }
 
+    /**
+     * This method opends the add form.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenAddForm(ActionEvent event) throws IOException {
         displayNewScreen(addButton, "/view/AddAppointment.fxml" );
     }
 
     /// Transfer Screen Methods ///
+
+    /**
+     * This method opens report window.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenReportsWindow(ActionEvent event) throws IOException {
         displayNewScreen(viewReportsButton, "/view/Reports.fxml");
     }
 
+    /**
+     * This method opens Customer window.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenCustomersWindow(ActionEvent event) throws IOException {
         displayNewScreen(viewCustomersButton, "/view/Customers.fxml" );
     }
 
+    /**
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the display method in LogInScreen.
+     * It contains instructions to set the TableView with the data it will be working with.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the appointments' tableview with the data it will be working with
