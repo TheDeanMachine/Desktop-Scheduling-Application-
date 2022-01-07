@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to display customer information.
+ */
 public class CustomersScreen extends SuperController implements Initializable {
 
     /// Customers TableView Fields fx:id ///
@@ -53,13 +56,22 @@ public class CustomersScreen extends SuperController implements Initializable {
     @FXML
     private Button backButton;
 
+    /**
+     * This method is used return the main (appointments) screen.
+     * Uses the back button as the event trigger.
+     */
     @FXML
     void onActionBackToMain(ActionEvent event) throws IOException {
         displayNewScreen(backButton, "/view/Appointments.fxml");
     }
 
+    /**
+     * This method is used to delete a customer.
+     * When the user selects a customer to delete, their corresponding appointments
+     * are deleted from the database first, before the customer itself is deleted from the database.
+     */
     @FXML
-    void onActionDeleteCustomer(ActionEvent event) throws IOException {
+    void onActionDeleteCustomer(ActionEvent event)  {
         Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
         Alert alertConf = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -98,14 +110,22 @@ public class CustomersScreen extends SuperController implements Initializable {
         }
     }
 
+    /**
+     * This method is used to open the add customer form.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenAddForm(ActionEvent event) throws IOException {
         displayNewScreen(addButton, "/view/AddCustomer.fxml");
     }
 
+    /**
+     * This method is used to open the modify customer form.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionOpenModifyFrom(ActionEvent event) throws IOException {
-        // if the user selects the modify button, without selecting an item display an alert box
+        // if the user selects the modify button, without selecting a customer, display an alert box
         if(customersTableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Please select a customer to modify");
@@ -122,6 +142,12 @@ public class CustomersScreen extends SuperController implements Initializable {
     }
 
 
+    /**
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the display method in AppointmentsScreen.
+     * It contains instructions to set the TableView with the data it will be working with.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the customers' tableview with the data it will be working with

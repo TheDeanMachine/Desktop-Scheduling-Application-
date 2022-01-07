@@ -138,7 +138,10 @@ public class Reports extends SuperController implements Initializable {
     }
 
     /**
-     * The initialize method sets the values for all the combo-boxes and table views in the reports window.
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the display method in appointmentsScreen.
+     * It contains instructions to set TableView and Combo Boxes with the data that they will be working with.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -154,8 +157,8 @@ public class Reports extends SuperController implements Initializable {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("startTimeAsString"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("endTimeAsString"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
         // set the type combo box with list of appointment types

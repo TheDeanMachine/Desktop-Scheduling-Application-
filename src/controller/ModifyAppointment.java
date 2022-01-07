@@ -22,6 +22,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to modify the appointment in the database.
+ */
 public class ModifyAppointment extends SuperController implements Initializable {
 
     /// Appointment Fields fx:id ///
@@ -64,16 +67,24 @@ public class ModifyAppointment extends SuperController implements Initializable 
     @FXML
     private Button updateAppointmentButton;
 
+    /**
+     * This method is used to return to the appointment screen, without making changes.
+     * Uses the cancel button as the event trigger.
+     */
     @FXML
     void onActionBackToMain(ActionEvent event) throws IOException {
         displayNewScreen(cancelButton, "/view/Appointments.fxml");
     }
 
+    /**
+     * This method is used to collect information and modify the appointment.
+     * The user entries are collected in text fields and combo boxes, and then used to create a new appointment object.
+     * That object is then passed into the database and updated based on the appointment id.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-        AppointmentsDAO dao = new AppointmentsDAO();
-        ObservableList<Appointments> listOfApp;
 
         // collect information and check for nulls
         int appointmentId = Integer.parseInt(appointmentIdText.getText());
@@ -158,8 +169,10 @@ public class ModifyAppointment extends SuperController implements Initializable 
             return;
         }
 
+        // create a list of appointments by a given customerId, in order to check against existing appointments
+        ObservableList<Appointments> listOfApp = new AppointmentsDAO().findAppointmentByCustomerId(appointmentId, customerId);
+
         // overlapping appointment check
-        listOfApp = dao.findAppointmentByCustomerId(appointmentId, customerId);
         for(Appointments app : listOfApp) {
             if(!TimeHelper.checkAppointmentTime(app.getStart(), start, app.getEnd(), end)){
                 errorAlert.setHeaderText("Overlap appointment!");
@@ -174,17 +187,29 @@ public class ModifyAppointment extends SuperController implements Initializable 
                 customerId, userId, contactId);
 
         // pass it to dao for updating
-        dao.update(appointment);
+        new AppointmentsDAO().update(appointment);
 
         displayNewScreen(updateAppointmentButton, "/view/Appointments.fxml");
     }
 
+    // holds the appointment object passed in by the modify button in appointments screen
     private static Appointments item = null;
 
+    /**
+     * Sets the item variable with the appointment object passed in, by the modify button in AppointmentScreen.
+     * @param selectedAppointment the appointment object passed in.
+     */
     public static void holdAppData(Appointments selectedAppointment) {
         item = selectedAppointment;
     }
 
+    /**
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the display method in AppointmentScreen.
+     * It contains instructions to set a Combo Boxes and text fields with the data they will be working with.
+     * In Addition to that, it sets the appointment values based on the object passed in.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set the combo boxes with data

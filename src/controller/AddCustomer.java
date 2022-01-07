@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class is used to add a customer to the database.
+ */
 public class AddCustomer extends SuperController implements Initializable {
 
     /// Customer Fields fx:id ///
@@ -47,20 +50,33 @@ public class AddCustomer extends SuperController implements Initializable {
     @FXML
     private Button createCustomerButton;
 
+    /**
+     * This method is used return to the customer screen, without making changes.
+     * Uses the cancel button as the event trigger.
+     */
     @FXML
     void onActionBackToMain(ActionEvent event) throws IOException {
         displayNewScreen(cancelButton, "/view/Customers.fxml");
     }
 
-
+    /**
+     * This method is used to filter divisions by country.
+     * When the user selects a country from the country combo box the divisions' combo box is set with the
+     * divisions of that country.
+     */
     @FXML
     void onActionFilterDivisionsByCountry(ActionEvent event) {
         Countries countrySelection = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = countrySelection.getCountryId();
         divisionComboBox.setItems(new FirstLevelDivisionsDAO().getDivisionsByCountryId(countryId));
-
     }
 
+    /**
+     * This method is used to collect information and create the customer.
+     * The user entries are collected in text fields and combo boxes, and then used to create the customer object.
+     * That object is then passed into the database and created with a unique customer id.
+     * @throws IOException catches input output errors.
+     */
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -158,6 +174,12 @@ public class AddCustomer extends SuperController implements Initializable {
         displayNewScreen(createCustomerButton, "/view/Customers.fxml");
     }
 
+    /**
+     * Initialize Method.
+     * This method is from the interface Initializable, and is overridden here.
+     * The method is loaded(initialized) when this controller gets called by the display method in CustomerScreen.
+     * It contains instructions to set a Combo Box with the data it will be working with.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set combo box with values
