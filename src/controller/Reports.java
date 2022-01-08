@@ -72,7 +72,7 @@ public class Reports extends SuperController implements Initializable {
     private Button backButton;
 
     /**
-     * This method is used return the main (appointments) screen.
+     * This method is used to return to the main (appointments) screen.
      * Uses the back button as the event trigger.
      */
     @FXML
@@ -98,7 +98,7 @@ public class Reports extends SuperController implements Initializable {
      * This method displays results based on the user selection.
      * When user selects a Month type from the first combo-box,
      * and then an appointment type from the second combo-box,
-     * the results are displayed in label based on the calculation of those two combined.
+     * the results are displayed in label based on the results of those two.
      */
     @FXML
     void onActionDisplayResults(ActionEvent event) {

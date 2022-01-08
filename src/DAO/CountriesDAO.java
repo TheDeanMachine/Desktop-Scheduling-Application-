@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is used to implement CRUD operations on the Countries table.
+ */
 public class CountriesDAO implements DataAccessObject<Countries> {
     ObservableList<Countries> listOfCountries = FXCollections.observableArrayList();
     Statement statement;
@@ -19,6 +22,10 @@ public class CountriesDAO implements DataAccessObject<Countries> {
 
     }
 
+    /**
+     * This method is used to access and read all the countries.
+     * @return a list of countries from the countries table.
+     */
     @Override
     public ObservableList<Countries> read() {
         try {
@@ -39,6 +46,12 @@ public class CountriesDAO implements DataAccessObject<Countries> {
         return listOfCountries;
     }
 
+
+    /**
+     * This method is used to get the name of the country based on its id.
+     * @param id the country id to search for.
+     * @return the country name based on the parameter passed in.
+     */
     public static String getCountryNameById(int id) {
         String countryName = "";
         try {
@@ -57,6 +70,11 @@ public class CountriesDAO implements DataAccessObject<Countries> {
         return  countryName;
     }
 
+    /**
+     * This method is used to get a countries' entry/row from the database as an object, based on its id.
+     * @param id the countries' id to search for.
+     * @return a country object, based on the parameter passed in.
+     */
     public static Countries getCountryObjectById(int id) {
         Countries country = null;
         try {

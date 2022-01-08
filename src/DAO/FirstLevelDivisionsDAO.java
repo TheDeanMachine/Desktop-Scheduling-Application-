@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is used to implement CRUD operations on the First Level Divisions table.
+ */
 public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisions> {
     ObservableList<FirstLevelDivisions> listOfDivisions = FXCollections.observableArrayList();
     Statement statement;
@@ -19,6 +22,10 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
 
     }
 
+    /**
+     * This method is used to access and read all the divisions.
+     * @return a list of divisions from the first level divisions table.
+     */
     @Override
     public ObservableList<FirstLevelDivisions> read() {
         try {
@@ -40,7 +47,11 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
         return listOfDivisions;
     }
 
-
+    /**
+     * This method is used to get a list of divisions based on a country id.
+     * @param id the country id.
+     * @return a list of divisions based on a country.
+     */
     public ObservableList<FirstLevelDivisions> getDivisionsByCountryId(int id) {
         try {
             query = " SELECT * FROM first_level_divisions \n" +
@@ -64,6 +75,11 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
     }
 
 
+    /**
+     * This method is used to get the name of the division based on its id.
+     * @param id the division id to search for.
+     * @return the division name based on the parameter passed in.
+     */
     public static String getDivisionNameById(int id) {
         String divisionName = "";
         try {
@@ -81,6 +97,11 @@ public class FirstLevelDivisionsDAO implements DataAccessObject<FirstLevelDivisi
         return  divisionName;
     }
 
+    /**
+     * This method is used to get a division entry/row from the database as an object, based on its id.
+     * @param id the division id to search for.
+     * @return a division object, based on the parameter passed in.
+     */
     public static FirstLevelDivisions getDivisionObjectById(int id) {
         FirstLevelDivisions division = null;
         try {

@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is used to implement CRUD operations on the Customers table.
+ */
 public class CustomerDAO implements DataAccessObject<Customers> {
     ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
     PreparedStatement preparedStatement;
@@ -15,6 +18,10 @@ public class CustomerDAO implements DataAccessObject<Customers> {
     ResultSet resultSet;
     String query;
 
+    /**
+     * This method is used to insert a customer object/record into the database.
+     * @param object the customer object to be inserted into the database.
+     */
     @Override
     public void create(Customers object) {
         try {
@@ -34,6 +41,10 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         }
     }
 
+    /**
+     * This method is used to access and read all the customers.
+     * @return a list of customers from the customers table.
+     */
     @Override
     public ObservableList<Customers> read() {
         try {
@@ -58,7 +69,12 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         return listOfCustomers;
     }
 
-    public ObservableList<Customers> getCustomerContactInformation(int id) {
+    /**
+     * This method is used to get contact information based on associated contact.
+     * @param id the contact id.
+     * @return list of contact information for a set of customers.
+     */
+    public ObservableList<Customers> getCustomerContactInformation(int id) { // not used anymore
         try {
             query = "SELECT distinct c.customer_id, c.customer_name, c.address, c.postal_code, c.phone, c.division_Id \n" +
                     "FROM customers c \n" +
@@ -86,6 +102,11 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         return listOfCustomers;
     }
 
+    /**
+     * This method is used to get a customers' entry/row from the database as an object, based on its id.
+     * @param id the customers' id to search for.
+     * @return a customers object, based on the parameter passed in.
+     */
     public static Customers getCustomerObjectById(int id) {
         Customers customer = null;
         try {
@@ -112,6 +133,10 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         return customer;
     }
 
+    /**
+     * This method is used to update information for a customer object/record.
+     * @param object the customer object to be updated.
+     */
     @Override
     public void update(Customers object) {
         try {
@@ -133,6 +158,10 @@ public class CustomerDAO implements DataAccessObject<Customers> {
         }
     }
 
+    /**
+     * Used to delete a record from the database.
+     * @param id the customer id to be deleted.
+     */
     @Override
     public void delete(int id) {
         try {

@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is used to implement CRUD operations on the User table.
+ */
 public class UsersDAO implements DataAccessObject<Users> {
     ObservableList<Users> listOfUsers = FXCollections.observableArrayList();
     Statement statement;
@@ -20,6 +23,10 @@ public class UsersDAO implements DataAccessObject<Users> {
 
     }
 
+    /**
+     * This method is used to access and read all the users.
+     * @return a list of users from the users table.
+     */
     @Override
     public ObservableList<Users> read() {
         try {
@@ -41,6 +48,11 @@ public class UsersDAO implements DataAccessObject<Users> {
         return listOfUsers;
     }
 
+    /**
+     * This method is used to get a user by there userId.
+     * @param id the search parameter for the userId.
+     * @return Users object, based on search criteria.
+     */
     public static Users getUserById(int id){
         Users user = null;
         try {
@@ -63,6 +75,12 @@ public class UsersDAO implements DataAccessObject<Users> {
         return user;
     }
 
+    /**
+     * This method is used to verify the login credentials of the user.
+     * @param user The username entered in the login form.
+     * @param password The password entered in the login form.
+     * @return True if found a matching user, or False if not.
+     */
     public static boolean checkForUser(String user, String password){
         int userId = 0;
         String name = "";

@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is used to implement CRUD operations on the Contacts table.
+ */
 public class ContactsDAO implements DataAccessObject<Contacts> {
     ObservableList<Contacts> listOfContacts = FXCollections.observableArrayList();
     Statement statement;
@@ -19,6 +22,10 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
 
     }
 
+    /**
+     * This method is used to access and read all the contacts.
+     * @return a list of contacts from the contacts table.
+     */
     @Override
     public ObservableList<Contacts> read() {
         try {
@@ -40,7 +47,11 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
         return listOfContacts;
     }
 
-    // get contact name corresponding to contact id in appointments table
+    /**
+     * This method is used to get the name of the contact based on its id.
+     * @param id the contact id to search for.
+     * @return the contact name based on the parameter passed in.
+     */
     public static String getContactsNameById(int id) {
         String contactName = "";
         try {
@@ -58,6 +69,11 @@ public class ContactsDAO implements DataAccessObject<Contacts> {
         return  contactName;
     }
 
+    /**
+     * This method is used to get a contacts' entry/row from the database as an object, based on its id.
+     * @param id the contacts' id to search for.
+     * @return a contact object, based on the parameter passed in.
+     */
     public static Contacts getContactObjectById(int id){
         Contacts contact = null;
         try {
