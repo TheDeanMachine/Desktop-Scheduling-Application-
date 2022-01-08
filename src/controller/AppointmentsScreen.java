@@ -144,7 +144,7 @@ public class AppointmentsScreen extends SuperController implements Initializable
                 // Appointment_ID and type of appointment canceled.
                 int id = selectedAppointment.getAppointmentId();
                 String type = selectedAppointment.getType();
-                alertInfo.setHeaderText("Appointment " + id + " " + type + " has been deleted");
+                alertInfo.setHeaderText("Appointment ID #" + id + " \n" + type + " has been deleted");
                 alertInfo.showAndWait();
 
                 // refresh the tableview

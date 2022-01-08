@@ -3,6 +3,9 @@ package model;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * This class is used as the model for the representation of the contacts table.
+ */
 public class Countries {
     private int countryId; //PK
     private String country;
@@ -34,6 +37,10 @@ public class Countries {
         this.country = country;
     }
 
+    /**
+     * Used to set what is displayed in the combo boxes of Countries.
+     * @return string value of the country.
+     */
     @Override
     public String toString() {
         return country;

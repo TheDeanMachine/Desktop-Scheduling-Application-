@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * This class is used as the model for the representation of the contacts table.
+ */
 public class Contacts {
     private int contactId;
     private String contactName;
@@ -37,6 +40,10 @@ public class Contacts {
         this.email = email;
     }
 
+    /**
+     * Used to set what is displayed in the combo boxes of Contacts.
+     * @return string value of the contact name.
+     */
     @Override
     public String toString() {
         return contactName;

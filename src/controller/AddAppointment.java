@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 /**
@@ -248,7 +247,7 @@ public class AddAppointment extends SuperController implements Initializable  {
 
         // overlapping appointment check
         for(Appointments app : listOfApp) {
-            if(!TimeHelper.checkAppointmentTime(app.getStart(), start, app.getEnd(), end)){
+            if(TimeHelper.checkAppointmentTime(app.getStart(), start, app.getEnd(), end)){
                 errorAlert.setHeaderText("Overlap appointment!");
                 errorAlert.setContentText("Appointment time conflicts with existing customer appointment");
                 errorAlert.showAndWait();

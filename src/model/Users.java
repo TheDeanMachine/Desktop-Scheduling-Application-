@@ -1,10 +1,12 @@
 package model;
 
 import utilities.TimeHelper;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * This class is used as the model for the representation of the users table.
+ */
 public class Users {
     private int userID; //PK
     private String userName;
@@ -47,6 +49,10 @@ public class Users {
         this.password = password;
     }
 
+    /**
+     * Used to set what is displayed in the combo boxes of Users.
+     * @return string value of the userId.
+     */
     @Override
     public String toString() {
         return String.valueOf(userID);

@@ -2,6 +2,9 @@ package model;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * This class is used as the model for the representation of the First Level Divisions table.
+ */
 public class FirstLevelDivisions {
     private int divisionId; //PK
     private String division;
@@ -43,6 +46,10 @@ public class FirstLevelDivisions {
         this.countryId = countryId;
     }
 
+    /**
+     * Used to set what is displayed in the combo boxes of Divisions.
+     * @return string value of the division.
+     */
     @Override
     public String toString() {
         return division;
