@@ -1,24 +1,26 @@
-Log in attempt for: test
+
 Attempt number: 1
-The date of attempt was: 2022-01-11
-The time of attempt was: 09:47:18.728875900
+Log in attempt for: Null
+The timestamp was: 01/11/2022 10:02PM UTC
+Successful log in was: false
+-------------------------------------------
+Attempt number: 2
+Log in attempt for: Null
+The timestamp was: 01/11/2022 10:02PM UTC
+Successful log in was: false
+-------------------------------------------
+Attempt number: 3
+Log in attempt for: test
+The timestamp was: 01/11/2022 10:03PM UTC
 Successful log in was: true
 -------------------------------------------
-Log in attempt for: 
 Attempt number: 1
-The date of attempt was: 2022-01-11
-The time of attempt was: 09:47:44.428873
-Successful log in was: false
--------------------------------------------
 Log in attempt for: test
-Attempt number: 2
-The date of attempt was: 2022-01-11
-The time of attempt was: 09:47:47.863113
-Successful log in was: false
+The timestamp was: 01/11/2022 10:22PM UTC
+Successful log in was: true
 -------------------------------------------
+Attempt number: 1
 Log in attempt for: test
-Attempt number: 3
-The date of attempt was: 2022-01-11
-The time of attempt was: 09:47:52.645760400
+The timestamp was: 01/11/2022 10:37PM UTC
 Successful log in was: true
 -------------------------------------------

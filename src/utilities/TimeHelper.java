@@ -69,6 +69,20 @@ public abstract class TimeHelper {
     }
 
     /**
+     * This method is used to format date time.
+     * @param time the date time to be formatted.
+     * @param zone The destination zone.
+     * @return formatted date time.
+     */
+    public static String getFormattedDateTime(LocalDateTime time, ZoneId zone){
+        ZonedDateTime zonedDateTime = time.atZone(ZoneId.systemDefault());
+        ZonedDateTime dateTime = zonedDateTime.withZoneSameInstant(zone);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mma z");
+
+        return formatter.format(dateTime);
+    }
+
+    /**
      * This method is used to check for overlapping appointments.
      * The start and end time of the appointment being scheduled is checked against
      * the appointments in the database. The four parameters are passed into this method for validation.

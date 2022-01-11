@@ -55,7 +55,7 @@ public class Reports extends SuperController implements Initializable {
     private ComboBox<Month> monthPicker;
 
     @FXML
-    private ComboBox<Appointments> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     @FXML
     private Label resultText;
@@ -106,19 +106,18 @@ public class Reports extends SuperController implements Initializable {
         Month month = monthPicker.getValue();
 
         // get the type selected
-        Appointments typeSelection = typeComboBox.getSelectionModel().getSelectedItem();
+        String typeSelection = typeComboBox.getValue();
 
         // check for null in either combo box before calculating the results
         if(month == null || typeSelection == null) {
             return;
         } else {
             // convert to values
-            String selectedType = typeSelection.getType();
             int monthValue =  month.getValue();
 
             // call the method to calculate the results
             AppointmentsDAO result = new AppointmentsDAO();
-            String text = String.valueOf(result.getResultsForReports(monthValue, selectedType));
+            String text = String.valueOf(result.getResultsForReports(monthValue, typeSelection));
 
             // then display the results in the text string
             resultText.setText(text);

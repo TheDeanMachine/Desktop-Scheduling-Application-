@@ -40,7 +40,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
     private ComboBox<Contacts> contactComboBox;
 
     @FXML
-    private ComboBox<Appointments> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     @FXML
     private TextField titleText;
@@ -90,7 +90,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
         int customerId = customerIdComboBox.getValue().getCustomerId();
         int userId = userIdComboBox.getValue().getUserID();
         int contactId = contactComboBox.getValue().getContactId();
-        String type = typeComboBox.getValue().getType();
+        String type = typeComboBox.getValue();
 
         // only place where user could set a null in modify appointment
         String title = null;
@@ -224,7 +224,7 @@ public class ModifyAppointment extends SuperController implements Initializable 
         customerIdComboBox.getSelectionModel().select(item.getCustomerObject());
         userIdComboBox.getSelectionModel().select(item.getUserObject());
         contactComboBox.getSelectionModel().select(item.getContactObject());
-        typeComboBox.getSelectionModel().select(item);
+        typeComboBox.setValue(item.getType());
         titleText.setText(item.getTitle());
         descriptionText.setText(item.getDescription());
         locationText.setText(item.getLocation());

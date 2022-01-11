@@ -164,7 +164,7 @@ public class LogInScreen extends SuperController implements Initializable {
 
             // check for credentials
             if (userName.isBlank() || password.isBlank()) {
-                userActivity(false, userName);
+                userActivity(false, "Null");
                 throw new Exception();
 
             } else if(!UsersDAO.checkForUser(userName, password)){
@@ -204,16 +204,13 @@ public class LogInScreen extends SuperController implements Initializable {
      * @param attempt variable representing the status of successful log in.
      */
     public void userActivity(boolean attempt, String user) throws IOException {
-        LocalDateTime dateTime = LocalDateTime.now();
-        LocalDate date = dateTime.toLocalDate();
-        LocalTime time = dateTime.toLocalTime();
+        ZoneId zone = ZoneId.of("UTC");
 
         // try-with-resources, auto closes
         try (PrintWriter pw = new PrintWriter(new FileWriter("login_activity.txt", true))){
-            pw.println("Log in attempt for: " + user);
             pw.println("Attempt number: " + (++counter));
-            pw.println("The date of attempt was: " + date);
-            pw.println("The time of attempt was: " + time);
+            pw.println("Log in attempt for: " + user);
+            pw.println("The timestamp was: " + TimeHelper.getFormattedDateTime(LocalDateTime.now(), zone));
             pw.println("Successful log in was: " + attempt);
             pw.println("-------------------------------------------");
         }

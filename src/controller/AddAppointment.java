@@ -40,7 +40,7 @@ public class AddAppointment extends SuperController implements Initializable  {
     private ComboBox<Contacts> contactComboBox;
 
     @FXML
-    private ComboBox<Appointments> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     @FXML
     private TextField titleText;
@@ -130,7 +130,7 @@ public class AddAppointment extends SuperController implements Initializable  {
 
         String type = null;
         try {
-            type = typeComboBox.getValue().getType();
+            type = typeComboBox.getValue();
             if(type == null || typeComboBox.getSelectionModel().isEmpty()){
                 throw new Exception();
             }

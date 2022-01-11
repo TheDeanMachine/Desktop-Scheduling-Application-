@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  */
 public class AppointmentsDAO implements DataAccessObject<Appointments> {
     ObservableList<Appointments> listOfAppointments = FXCollections.observableArrayList();
+    ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
     PreparedStatement preparedStatement;
     Statement statement;
     ResultSet resultSet;
@@ -263,22 +264,30 @@ public class AppointmentsDAO implements DataAccessObject<Appointments> {
     /**
      * Used to get a list of appointment types for the reports' combo box.
      */
-    public ObservableList<Appointments> getListOfTypes(){
-        try {
-            statement = connection.createStatement();
-            query = "SELECT distinct type FROM appointments;" ;
-            resultSet = statement.executeQuery(query);
+    public ObservableList<String> getListOfTypes(){
+//        try {
+//            statement = connection.createStatement();
+//            query = "SELECT distinct type FROM appointments;" ;
+//            resultSet = statement.executeQuery(query);
+//
+//            while(resultSet.next()){
+//                String type = resultSet.getString("type");
+//
+//                Appointments appointment = new Appointments(type);
+//                listOfAppointments.add(appointment);
+//            }
+//        } catch(SQLException e) {
+//            e.printStackTrace();
+//        }
 
-            while(resultSet.next()){
-                String type = resultSet.getString("type");
-
-                Appointments appointment = new Appointments(type);
-                listOfAppointments.add(appointment);
-            }
-        } catch(SQLException e) {
-            e.printStackTrace();
+        if(appointmentTypes.size() < 1) {
+            appointmentTypes.add("Planning Session");
+            appointmentTypes.add("De-Briefing");
+            appointmentTypes.add("Consultation");
+            appointmentTypes.add("Other");
         }
-        return listOfAppointments;
+
+        return appointmentTypes;
     }
 
     /**
