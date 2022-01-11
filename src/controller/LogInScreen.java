@@ -164,16 +164,16 @@ public class LogInScreen extends SuperController implements Initializable {
 
             // check for credentials
             if (userName.isBlank() || password.isBlank()) {
-                userActivity(false);
+                userActivity(false, userName);
                 throw new Exception();
 
             } else if(!UsersDAO.checkForUser(userName, password)){
-                userActivity(false);
+                userActivity(false, userName);
                 throw new Exception();
 
             } else {
                 checkForUpcomingAppointments();
-                userActivity(true);
+                userActivity(true, userName);
             }
 
         } catch (Exception e) {
@@ -203,18 +203,19 @@ public class LogInScreen extends SuperController implements Initializable {
      * The attempts are written to a file, with corresponding information.
      * @param attempt variable representing the status of successful log in.
      */
-    public void userActivity(boolean attempt) throws IOException {
+    public void userActivity(boolean attempt, String user) throws IOException {
         LocalDateTime dateTime = LocalDateTime.now();
         LocalDate date = dateTime.toLocalDate();
         LocalTime time = dateTime.toLocalTime();
 
         // try-with-resources, auto closes
         try (PrintWriter pw = new PrintWriter(new FileWriter("login_activity.txt", true))){
+            pw.println("Log in attempt for: " + user);
             pw.println("Attempt number: " + (++counter));
             pw.println("The date of attempt was: " + date);
             pw.println("The time of attempt was: " + time);
             pw.println("Successful log in was: " + attempt);
-            pw.println("---------------------");
+            pw.println("-------------------------------------------");
         }
     }
 
