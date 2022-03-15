@@ -14,7 +14,7 @@ The appointments are stored in a MySql database along with supporting informatio
 
 ## Directions to run the program
 To run the program, be sure to have all of the dependencies listed in the project information and installed. </br>
-Next, unzip the project file and load it in IntelliJ. Set your IDE to work with Java 11, and JavaFX 11. </br>
-Make sure the PATH_TO_FX is set. Make sure to also have the VM options set to the following: </br>
-“ --module-path ${PATH_TO_FX} --add-modules javafx.fxml,javafx.controls,javafx.graphics “ </br>
-Finally, set the mysq- connector in your library with the installed file on your machine. </br>
+  - Next, unzip the project file and load it in IntelliJ. Set your IDE to work with Java 11, and JavaFX 11. </br>
+  - Make sure the PATH_TO_FX is set. Make sure to also have the VM options set to the following: </br>
+  - “ --module-path ${PATH_TO_FX} --add-modules javafx.fxml,javafx.controls,javafx.graphics “ </br>
+  - Finally, set the mysq- connector in your library with the installed file on your machine. </br>
